@@ -6,7 +6,7 @@ import { ContactForm } from "@/components/ContactForm";
 export const metadata: Metadata = {
   title: "Contatti — Flowente",
   description:
-    "Una call di mezz'ora, senza impegno. Raccontaci dove il lavoro si inceppa e ti diciamo con sincerità se e come l'AI può aiutarti.",
+    "Un primo confronto di trenta minuti, senza impegno. Descrivi il processo su cui vuoi intervenire: valutiamo se l'AI è la risposta adatta.",
 };
 
 export default function Contatti() {
@@ -18,11 +18,11 @@ export default function Contatti() {
           <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24 grid md:grid-cols-[1fr_1.05fr] gap-12 lg:gap-20">
             <div>
               <h1 className="font-display font-semibold tracking-[-0.035em] text-[clamp(2.8rem,6.5vw,4.4rem)] leading-[0.98]">
-                Parliamone.
+                Contatti.
               </h1>
               <p className="text-fg-2 text-[1.08rem] mt-6 max-w-[460px]">
-                Una call di mezz&apos;ora, senza impegno. Ci racconti dove il lavoro si inceppa, e ti diciamo con
-                sincerità se e come l&apos;AI può aiutarti — anche quando la risposta è &ldquo;non ancora&rdquo;.
+                Un primo confronto di trenta minuti, senza impegno. Descrivi il processo su cui vuoi intervenire:
+                valutiamo se l&apos;AI è la risposta adatta, compreso il caso in cui non lo sia.
               </p>
               <div className="mt-10 space-y-3 font-mono text-[0.82rem] text-fg-2">
                 <div>

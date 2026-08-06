@@ -8,7 +8,7 @@ export function ForWho() {
         <div className="max-w-[620px] mb-11">
           <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted">Per chi</p>
           <h2 className="mt-4 font-display font-semibold tracking-[-0.03em] text-[clamp(2rem,4vw,3rem)] leading-[1.02]">
-            Aziende che vogliono risultati, non slide.
+            Organizzazioni con processi definiti e dati da proteggere.
           </h2>
         </div>
         <div className="grid gap-6 md:gap-0 md:grid-cols-4">

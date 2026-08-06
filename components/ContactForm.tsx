@@ -37,8 +37,8 @@ export function ContactForm() {
   if (status === "ok") {
     return (
       <div className="rounded-[14px] border border-border bg-surface-2 p-8 text-center">
-        <p className="font-display font-semibold text-[1.35rem] tracking-[-0.02em]">Ricevuto.</p>
-        <p className="text-fg-2 mt-2">Ti scrivo io a breve.</p>
+        <p className="font-display font-semibold text-[1.35rem] tracking-[-0.02em]">Richiesta ricevuta.</p>
+        <p className="text-fg-2 mt-2">Rispondiamo entro un giorno lavorativo.</p>
       </div>
     );
   }
@@ -67,13 +67,13 @@ export function ContactForm() {
       </label>
 
       <label className="block">
-        <span className="block text-[0.82rem] text-fg-2 mb-1.5">Di cosa parliamo?</span>
+        <span className="block text-[0.82rem] text-fg-2 mb-1.5">Il processo o il progetto</span>
         <textarea
           name="message"
           required
           rows={4}
           className={inputCls + " resize-y"}
-          placeholder="Il processo più lento che hai, o l'idea che hai in mente."
+          placeholder="Il processo su cui vuoi intervenire, o il progetto che hai in mente."
         />
       </label>
 
@@ -90,7 +90,7 @@ export function ContactForm() {
 
       {status === "error" && (
         <p className="text-[0.88rem] text-fg-2">
-          Serve il consenso, oppure qualcosa non ha funzionato. Riprova, oppure scrivimi a{" "}
+          Serve il consenso, oppure qualcosa non ha funzionato. Riprova, oppure scrivici a{" "}
           <a href="mailto:ciao@flowente.com" className="underline hover:text-fg">
             ciao@flowente.com
           </a>
@@ -103,8 +103,8 @@ export function ContactForm() {
           {status === "sending" ? "Invio…" : "Invia"}
         </Button>
         <p className="text-fg-muted text-[0.82rem] mt-4 max-w-[440px]">
-          Ti rispondiamo entro un giorno lavorativo. I tuoi dati servono solo a risponderti — niente newsletter, niente
-          terze parti.
+          Rispondiamo entro un giorno lavorativo. I dati inseriti sono usati esclusivamente per rispondere alla
+          richiesta: nessuna newsletter, nessuna cessione a terzi.
         </p>
       </div>
     </form>

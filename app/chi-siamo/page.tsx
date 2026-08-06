@@ -108,6 +108,7 @@ export default function ChiSiamo() {
         <CtaBand
           title="Se ti va, partiamo dal tuo caso."
           text="Una call di mezz'ora per capire se e come possiamo far scorrere il tuo lavoro."
+          ctaLabel="Parliamone"
         />
       </main>
       <Footer />

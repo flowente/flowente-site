@@ -14,11 +14,10 @@ export function ProcessSection() {
           >
             Dal prototipo alla
             <br />
-            produzione, davvero.
+            produzione.
           </h2>
           <p className="mt-5 max-w-[420px] text-fg-2 text-[1.06rem]">
-            Cicli brevi, misurazioni oneste, rilasci frequenti. Ogni progetto parte da un caso d&apos;uso reale e finisce
-            nelle mani di chi lo usa ogni giorno.
+            Ogni progetto parte da un caso d&apos;uso e si chiude quando lo strumento è in uso quotidiano.
           </p>
           <div className="mt-6">
             <Button variant="ghost" href="#">

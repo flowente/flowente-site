@@ -8,23 +8,23 @@ type Item = { label: string; lead: string; text: string; note?: string; mark: Ma
 const ITEMS: Item[] = [
   {
     label: "Advisory",
-    lead: "Capire e scegliere.",
-    text: "Quale modello, dove, a che costo. Ti diamo la bussola prima di scrivere una riga di codice.",
+    lead: "Scegliere prima di costruire.",
+    text: "Guardiamo il processo, confrontiamo i modelli disponibili e ti diciamo quale usare, dove farlo girare e quanto costa. Anche quando la risposta è che non conviene.",
     mark: marks.onda,
     shape: "circle",
   },
   {
     label: "Studio",
-    lead: "Costruire.",
-    text: "Applicazioni e modelli su misura, portati fino in produzione — non fino alla demo.",
+    lead: "Costruire e mettere in produzione.",
+    text: "Progettiamo e sviluppiamo l'applicazione, la colleghiamo ai dati e ai programmi che usi già, e la portiamo online. Il lavoro finisce quando le persone la usano.",
     mark: marks.flusso,
     shape: "square",
   },
   {
     label: "AI privata",
-    lead: "Tenere i dati al sicuro.",
-    text: "Modelli che girano nel tuo perimetro, on-premise. I dati non escono.",
-    note: "Per chi ha dati sensibili o vincoli normativi.",
+    lead: "Tenere i dati dentro l'azienda.",
+    text: "Installiamo il modello sui tuoi server, o su un cloud privato europeo. Le domande e i documenti non passano da servizi esterni.",
+    note: "Per chi tratta dati soggetti a GDPR, EU AI Act o vincoli di riservatezza.",
     mark: marks.coil,
     shape: "triangle",
   },
@@ -37,7 +37,7 @@ export function ServiceCards() {
         <div className="max-w-[560px] mb-12">
           <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted">Cosa facciamo</p>
           <h2 className="mt-4 font-display font-semibold tracking-[-0.03em] text-[clamp(2rem,4vw,3rem)] leading-[1.02]">
-            Tre modi di far scorrere il lavoro.
+            Scegliere, costruire, proteggere i dati.
           </h2>
         </div>
         <div className="grid gap-5 md:grid-cols-3">

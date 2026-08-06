@@ -17,9 +17,9 @@ export default function Home() {
         <Hero />
         <ProcessSection />
         <FeatureSection
-          title={<>Troppa AI resta un esperimento.</>}
-          text="Succede spesso: una demo che a schermo funziona, e poi si ferma lì — non entra mai nel lavoro di tutti i giorni. Noi partiamo dall'altra parte. Dal problema reale, fino a qualcosa che gira ogni giorno."
-          ctaLabel="Come lavoriamo"
+          title={<>Molti progetti di AI si fermano al prototipo.</>}
+          text="Il modello funziona, la dimostrazione convince, e poi non succede più niente. La parte difficile non è il modello: è collegarlo ai dati e ai programmi che l'azienda usa ogni giorno, e decidere cosa deve fare quando sbaglia. Noi partiamo da lì."
+          ctaLabel="Il metodo"
           ctaHref="/servizi"
           mark={marks.onde}
           shape="square"
@@ -28,8 +28,8 @@ export default function Home() {
         <Steps />
         <ForWho />
         <CtaBand
-          title="Il tuo progetto AI è fermo alla demo?"
-          text="Vediamo insieme come portarlo al lavoro. Il primo passo è una call di mezz'ora."
+          title="Valutiamo il tuo caso."
+          text="Un primo confronto di trenta minuti per definire ambito, vincoli e fattibilità."
         />
       </main>
       <Footer />

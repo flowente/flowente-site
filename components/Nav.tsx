@@ -23,7 +23,7 @@ export function Nav() {
           ))}
         </nav>
         <div className="flex gap-2.5 items-center">
-          <Button variant="primary" href="/contatti">Parliamone</Button>
+          <Button variant="primary" href="/contatti">Contattaci</Button>
         </div>
       </div>
     </header>

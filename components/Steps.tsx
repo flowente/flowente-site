@@ -1,14 +1,14 @@
 type Step = { n: string; title: string; text: string };
 
 const STEPS: Step[] = [
-  { n: "1", title: "Capire", text: "Partiamo dal processo che si inceppa, non dalla tecnologia." },
-  { n: "2", title: "Prototipare", text: "Una prova concreta, in fretta, per vedere se conviene davvero." },
-  { n: "3", title: "Mettere in produzione", text: "Lo portiamo dove serve, in sicurezza, e resta." },
+  { n: "1", title: "Analisi", text: "Si parte dal processo che richiede più lavoro manuale, non dalla tecnologia disponibile." },
+  { n: "2", title: "Prototipo", text: "Una verifica circoscritta, con i criteri di successo definiti prima di iniziare." },
+  { n: "3", title: "Produzione", text: "Messa in esercizio sui sistemi in uso, con i controlli di accesso e sicurezza necessari." },
 ];
 
 type Props = { eyebrow?: string; title?: string };
 
-export function Steps({ eyebrow = "Il metodo", title = "Semplice, in tre passi." }: Props) {
+export function Steps({ eyebrow = "Il metodo", title = "Il metodo, in tre fasi." }: Props) {
   return (
     <section className="border-b border-border">
       <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24">

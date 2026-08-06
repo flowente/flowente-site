@@ -21,7 +21,7 @@ const COLS = [
   {
     h: "Contatti",
     links: [
-      { label: "Parliamone", href: "/contatti" },
+      { label: "Contattaci", href: "/contatti" },
       { label: "LinkedIn", href: "#" },
       { label: "Email", href: "mailto:ciao@flowente.com" },
     ],

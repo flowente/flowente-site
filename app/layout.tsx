@@ -10,11 +10,11 @@ export const metadata: Metadata = {
     template: "%s",
   },
   description:
-    "Studio di AI applicata. Scegliamo la soluzione di AI giusta per il tuo caso e la portiamo in produzione, in sicurezza — dalla strategia al modello.",
+    "Studio di AI applicata. Scegliamo modello e infrastruttura adatti al caso d'uso e li portiamo in produzione. Anche sui tuoi server, se i dati non devono uscire.",
   openGraph: {
-    title: "Flowente — Il lavoro che scorre",
+    title: "Flowente — L'AI nel flusso",
     description:
-      "Studio di AI applicata. Dalla strategia al modello in produzione, in sicurezza. Anche AI privata on-premise.",
+      "Studio di AI applicata. Dalla strategia al modello in produzione. Anche AI privata on-premise, con i dati che restano in azienda.",
     type: "website",
     locale: "it_IT",
     siteName: "Flowente",
