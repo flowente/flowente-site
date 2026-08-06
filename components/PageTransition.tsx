@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
-const FADE_OUT_MS = 300;
+const FADE_OUT_MS = 450;
 
 // Intercetta i click sui link interni: fade-out della pagina corrente, poi
 // navigazione client-side; il fade-in lo fa template.tsx (.page-fade).
