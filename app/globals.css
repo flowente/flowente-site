@@ -70,6 +70,19 @@ body {
 @keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .page-fade { animation: none; } }
 
+/* ===== PROSE LEGALE ===== */
+.prose-legal { color: var(--text-2); font-size: 1rem; line-height: 1.7; }
+.prose-legal h2 { font-family: var(--font-space-grotesk); color: var(--text); font-weight: 600; letter-spacing: -0.02em; font-size: 1.5rem; margin: 2.4rem 0 0.8rem; }
+.prose-legal h3 { font-family: var(--font-space-grotesk); color: var(--text); font-weight: 600; font-size: 1.1rem; margin: 1.6rem 0 0.5rem; }
+.prose-legal p { margin: 0 0 1rem; max-width: 68ch; }
+.prose-legal a { color: var(--text); text-decoration: underline; text-underline-offset: 2px; }
+.prose-legal ul { margin: 0 0 1rem 1.1rem; max-width: 68ch; }
+.prose-legal li { margin: 0.3rem 0; }
+.prose-legal table { width: 100%; max-width: 68ch; border-collapse: collapse; margin: 0.5rem 0 1.4rem; font-size: 0.92rem; }
+.prose-legal th, .prose-legal td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; }
+.prose-legal th { font-family: var(--font-jetbrains); font-weight: 500; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+.prose-legal .muted { color: var(--muted); font-size: 0.92rem; }
+
 /* ===== GRID a puntini (hero) ===== */
 .dot-grid {
   background-image: radial-gradient(color-mix(in srgb, var(--text) 5%, transparent) 1px, transparent 1px);

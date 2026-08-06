@@ -13,11 +13,18 @@ export function LogoMark({ className = "", style }: { className?: string; style?
 }
 
 /** Lockup: marchio (accent) + wordmark "flowente" in Space Grotesk (ink). */
-export function Logo({ className = "" }: { className?: string }) {
-  return (
+export function Logo({ className = "", href }: { className?: string; href?: string }) {
+  const inner = (
     <span className={`inline-flex items-center gap-[0.42em] font-display font-medium tracking-[-0.03em] leading-none ${className}`}>
       <LogoMark className="h-[0.8em] w-auto" />
       <span>flowente</span>
     </span>
+  );
+  return href ? (
+    <a href={href} aria-label="Flowente — home">
+      {inner}
+    </a>
+  ) : (
+    inner
   );
 }

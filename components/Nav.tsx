@@ -1,6 +1,12 @@
 import { Logo } from "./Logo";
 import { Button } from "./Button";
 
+const LINKS = [
+  { label: "Servizi", href: "/servizi" },
+  { label: "Chi siamo", href: "/chi-siamo" },
+  { label: "Contatti", href: "/contatti" },
+];
+
 export function Nav() {
   return (
     <header
@@ -8,16 +14,16 @@ export function Nav() {
       style={{ background: "color-mix(in srgb, var(--bg) 88%, transparent)", backdropFilter: "blur(12px)" }}
     >
       <div className="mx-auto max-w-content px-6 md:px-10 h-[66px] flex items-center justify-between">
-        <Logo className="text-[1.25rem]" />
+        <Logo className="text-[1.25rem]" href="/" />
         <nav className="hidden md:flex gap-7 text-[0.9rem] text-fg-2">
-          <a className="hover:text-fg transition-colors" href="#">Studio</a>
-          <a className="hover:text-fg transition-colors" href="#">Advisory</a>
-          <a className="hover:text-fg transition-colors" href="#">Lavori</a>
-          <a className="hover:text-fg transition-colors" href="#">Blog</a>
+          {LINKS.map((l) => (
+            <a key={l.href} className="hover:text-fg transition-colors" href={l.href}>
+              {l.label}
+            </a>
+          ))}
         </nav>
         <div className="flex gap-2.5 items-center">
-          <Button variant="ghost" href="#">Login</Button>
-          <Button variant="primary" href="#">Parliamone</Button>
+          <Button variant="primary" href="/contatti">Parliamone</Button>
         </div>
       </div>
     </header>

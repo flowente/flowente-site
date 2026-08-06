@@ -3,9 +3,21 @@ import { SvgFilters } from "@/components/SvgFilters";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Flowente — Il lavoro che scorre",
+  metadataBase: new URL("https://flowente.com"),
+  title: {
+    default: "Flowente — Il lavoro che scorre",
+    template: "%s",
+  },
   description:
-    "Studio di AI applicata. Trasformiamo i processi più lenti in flussi che vanno da soli — dalla strategia al modello in produzione.",
+    "Studio di AI applicata. Scegliamo la soluzione di AI giusta per il tuo caso e la portiamo in produzione, in sicurezza — dalla strategia al modello.",
+  openGraph: {
+    title: "Flowente — Il lavoro che scorre",
+    description:
+      "Studio di AI applicata. Dalla strategia al modello in produzione, in sicurezza. Anche AI privata on-premise.",
+    type: "website",
+    locale: "it_IT",
+    siteName: "Flowente",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
