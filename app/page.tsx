@@ -15,6 +15,7 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
+        <ProcessSection />
         <FeatureSection
           title={<>Troppa AI resta un esperimento.</>}
           text="Succede spesso: una demo che a schermo funziona, e poi si ferma lì — non entra mai nel lavoro di tutti i giorni. Noi partiamo dall'altra parte. Dal problema reale, fino a qualcosa che gira ogni giorno."
@@ -23,7 +24,6 @@ export default function Home() {
           mark={marks.onde}
           shape="square"
         />
-        <ProcessSection />
         <ServiceCards />
         <Steps />
         <ForWho />

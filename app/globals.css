@@ -63,6 +63,10 @@ body {
 .btn-lg { padding: 15px 26px; font-size: 1rem; }
 .btn-primary { background: var(--text); color: var(--bg); }
 .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+.btn-paper { background: #FBFBF9; color: #0B0B0C; }
+
+/* CTA band scura: i marks passano a paper */
+.cta-dark .mark-stroke { stroke: #FBFBF9; }
 @media (prefers-reduced-motion: reduce) { .btn:hover { transform: none; } }
 
 /* ===== TRANSIZIONE PAGINA — fade lento (0.7s) ===== */
