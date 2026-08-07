@@ -1,27 +1,36 @@
-type Case = { label: string; title: string; text: string };
+type Case = { label: string; title: string; text: string; img: string };
 
 // Onesto: non sono clienti, sono i problemi che incontriamo più spesso.
 // Nessun numero, nessun nome. Si sostituiscono con lavori veri appena ci sono.
+//
+// FOTO — i file in /public/media/casi sono SEGNAPOSTO.
+// Quando arrivano gli scatti veri basta cambiare l'estensione qui sotto (.svg -> .jpg).
+// Brief di scatto: CONTENT.md §13. Le foto sono d'ambiente, mai di clienti:
+// per questo l'alt resta vuoto e nessun nome o azienda va mai associato.
 const CASES: Case[] = [
   {
     label: "Archivio",
     title: "Cercare dentro anni di documenti.",
     text: "Pratiche, contratti e relazioni in cartelle che nessuno riesce più a percorrere. Si fa una domanda in italiano e la risposta arriva con il riferimento al documento da cui è presa — così è verificabile.",
+    img: "/media/casi/01-archivio.svg",
   },
   {
     label: "Documenti in entrata",
     title: "Leggere e smistare quello che arriva.",
     text: "Fatture, ordini, certificati che arrivano via mail e vengono ricopiati a mano in un gestionale. Il modello legge ed estrae i campi; quello di cui non è sicuro lo mette in coda a una persona invece di indovinare.",
+    img: "/media/casi/02-documenti.svg",
   },
   {
     label: "Prime stesure",
     title: "Partire da una bozza invece che dal foglio bianco.",
     text: "Documenti che nascono sempre dagli stessi blocchi. La prima versione la prepara il modello, sui vostri modelli e sui vostri dati. La revisione e la firma restano a chi di dovere.",
+    img: "/media/casi/03-stesure.svg",
   },
   {
     label: "Risposte interne",
     title: "Rispondere a domande che hanno già una risposta.",
     text: "Le stesse domande che tornano ogni settimana, quando la risposta è già scritta da qualche parte. Il modello la trova e cita la fonte; quando la domanda esce dal seminato, passa a una persona.",
+    img: "/media/casi/04-risposte.svg",
   },
 ];
 
@@ -42,10 +51,16 @@ export function UseCases() {
 
         <div className="grid gap-5 md:grid-cols-2">
           {CASES.map((c) => (
-            <div key={c.label} className="rounded-[16px] border border-border bg-surface p-7">
-              <div className="font-mono text-[0.68rem] uppercase tracking-wide text-accent">{c.label}</div>
-              <h3 className="font-display font-semibold text-[1.2rem] tracking-[-0.015em] mt-3">{c.title}</h3>
-              <p className="text-fg-2 text-[0.98rem] mt-2.5">{c.text}</p>
+            <div key={c.label} className="rounded-[16px] border border-border bg-surface overflow-hidden flex flex-col">
+              <div className="aspect-[3/2] bg-surface-2 border-b border-border">
+                {/* Immagine d'ambiente, non un cliente: alt vuoto per non attribuirle un'identità. */}
+                <img src={c.img} alt="" className="h-full w-full object-cover" loading="lazy" />
+              </div>
+              <div className="p-7">
+                <div className="font-mono text-[0.68rem] uppercase tracking-wide text-accent">{c.label}</div>
+                <h3 className="font-display font-semibold text-[1.2rem] tracking-[-0.015em] mt-3">{c.title}</h3>
+                <p className="text-fg-2 text-[0.98rem] mt-2.5">{c.text}</p>
+              </div>
             </div>
           ))}
         </div>
