@@ -7,6 +7,7 @@ type Props = {
   eyebrow?: string;
   title: React.ReactNode;
   text: string;
+  note?: string;
   ctaLabel?: string;
   ctaHref?: string;
   mark: Mark;
@@ -14,7 +15,7 @@ type Props = {
   reverse?: boolean;
 };
 
-export function FeatureSection({ eyebrow, title, text, ctaLabel, ctaHref, mark, shape = "square", reverse }: Props) {
+export function FeatureSection({ eyebrow, title, text, note, ctaLabel, ctaHref, mark, shape = "square", reverse }: Props) {
   return (
     <section className="border-b border-border">
       <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24 grid gap-10 md:gap-14 items-center md:grid-cols-2">
@@ -29,6 +30,9 @@ export function FeatureSection({ eyebrow, title, text, ctaLabel, ctaHref, mark, 
             {title}
           </h2>
           <p className="mt-5 max-w-[420px] text-fg-2 text-[1.06rem]">{text}</p>
+          {note && (
+            <p className="mt-5 max-w-[420px] text-fg-muted text-[0.9rem] pl-4 border-l border-border">{note}</p>
+          )}
           {ctaLabel && (
             <div className="mt-6">
               <Button variant="ghost" href={ctaHref || "#"}>{ctaLabel}</Button>

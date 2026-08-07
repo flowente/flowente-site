@@ -3,6 +3,7 @@ import { Button } from "./Button";
 
 const LINKS = [
   { label: "Servizi", href: "/servizi" },
+  { label: "Metodo", href: "/metodo" },
   { label: "Chi siamo", href: "/chi-siamo" },
   { label: "Contatti", href: "/contatti" },
 ];
@@ -23,7 +24,7 @@ export function Nav() {
           ))}
         </nav>
         <div className="flex gap-2.5 items-center">
-          <Button variant="primary" href="/contatti">Contattaci</Button>
+          <Button variant="primary" href="/contatti">Prenota una call</Button>
         </div>
       </div>
     </header>

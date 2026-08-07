@@ -14,6 +14,8 @@ const COLS = [
     h: "Naviga",
     links: [
       { label: "Servizi", href: "/servizi" },
+      { label: "Metodo", href: "/metodo" },
+      { label: "Casi d'uso", href: "/servizi#casi-duso" },
       { label: "Chi siamo", href: "/chi-siamo" },
       { label: "Contatti", href: "/contatti" },
     ],
@@ -21,7 +23,7 @@ const COLS = [
   {
     h: "Contatti",
     links: [
-      { label: "Contattaci", href: "/contatti" },
+      { label: "Prenota una call", href: "/contatti" },
       { label: "LinkedIn", href: "#" },
       { label: "Email", href: "mailto:ciao@flowente.com" },
     ],

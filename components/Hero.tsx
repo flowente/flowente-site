@@ -21,8 +21,8 @@ export function Hero() {
             server, se i dati non devono uscire.
           </p>
           <div className="mt-8 flex gap-3 flex-wrap">
-            <Button href="/contatti" size="lg">Contattaci</Button>
-            <Button href="/servizi" variant="ghost" size="lg">Il metodo</Button>
+            <Button href="/contatti" size="lg">Prenota una call</Button>
+            <Button href="/metodo" variant="ghost" size="lg">Il metodo</Button>
           </div>
         </div>
         <div className="relative h-[300px] md:h-[340px] flex items-center justify-center rounded-xl dot-grid">
