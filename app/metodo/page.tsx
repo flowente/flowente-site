@@ -20,20 +20,20 @@ const LAYERS = [
 
 const NOT_FOR = [
   {
-    t: "Chi cerca una scorciatoia.",
-    d: "Se l'obiettivo è poter dire che si usa l'AI, il lavoro migliore non lo facciamo noi.",
+    t: "Quando basta un abbonamento.",
+    d: "Se il bisogno è mettere uno strumento in mano alle persone e finisce lì, esistono prodotti già pronti che costano poco. Lo diciamo, invece di costruire qualcosa che non serve.",
   },
   {
-    t: "Chi vuole delegare la decisione.",
-    d: "Il modello propone, le persone decidono. Se questa parte non interessa, non è il progetto giusto.",
+    t: "Quando i dati non ci sono ancora.",
+    d: "Se le informazioni sono sparse, incomplete o in formati che nessuno riesce a leggere, il primo lavoro è quello — e non è un progetto di AI.",
   },
   {
-    t: "Chi non ha ancora i dati in ordine.",
-    d: "Se le informazioni non ci sono o sono sparse ovunque, prima si sistema quello. Lo diciamo prima di partire, non a metà.",
+    t: "Quando le persone devono uscire dal processo.",
+    d: "Costruiamo sistemi in cui il modello propone e qualcuno decide. Se l'obiettivo è togliere del tutto le persone dalle decisioni, serve un altro progetto.",
   },
   {
-    t: "Chi ha bisogno di un fornitore strutturato.",
-    d: "Se serve un team dedicato e un presidio continuativo, siamo la scelta sbagliata — e te lo diciamo subito.",
+    t: "Quando la scadenza è la settimana prossima.",
+    d: "Un sistema che entra nel lavoro va costruito, collegato e verificato. Se quel tempo non c'è, quello che esce è una dimostrazione — esattamente la cosa che diciamo di non fare.",
   },
 ];
 
@@ -86,7 +86,7 @@ export default function Metodo() {
             <div className="max-w-[620px] mb-12">
               <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted">Onestà</p>
               <h2 className="mt-4 font-display font-semibold tracking-[-0.03em] text-[clamp(2rem,4vw,3rem)] leading-[1.02]">
-                Per chi non siamo adatti.
+                Quando conviene dirsi di no.
               </h2>
               <p className="text-fg-2 text-[1.06rem] mt-5">
                 Scriverlo prima fa risparmiare tempo a tutti e due.
