@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { FeatureSection } from "@/components/FeatureSection";
 import { DecisionMap } from "@/components/DecisionMap";
+import { CostCalculator } from "@/components/CostCalculator";
 import { UseCases } from "@/components/UseCases";
 import { CtaBand } from "@/components/CtaBand";
 import { marks } from "@/lib/marks";
@@ -26,6 +27,7 @@ export default function Servizi() {
           ctaLabel="Prenota una call"
         />
         <DecisionMap />
+        <CostCalculator />
         <FeatureSection
           eyebrow="Advisory"
           title="Prima la scelta, poi lo sviluppo."
