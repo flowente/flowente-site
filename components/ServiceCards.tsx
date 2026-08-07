@@ -14,7 +14,7 @@ const ITEMS: Item[] = [
     shape: "circle",
   },
   {
-    label: "Studio",
+    label: "Sviluppo software",
     lead: "Costruire e mettere in produzione.",
     text: "Progettiamo e sviluppiamo l'applicazione, la colleghiamo ai dati e ai programmi che usi già, e la portiamo online. Il lavoro finisce quando le persone la usano.",
     mark: marks.flusso,

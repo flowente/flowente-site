@@ -17,10 +17,10 @@ export default function Home() {
         <Hero />
         <ProcessSection />
         <FeatureSection
-          title={<>Molti progetti di AI si fermano al prototipo.</>}
-          text="Il modello funziona, la dimostrazione convince, e poi non succede più niente. La parte difficile non è il modello: è collegarlo ai dati e ai programmi che l'azienda usa ogni giorno, e decidere cosa deve fare quando sbaglia. Noi partiamo da lì."
-          ctaLabel="Il metodo"
-          ctaHref="/servizi"
+          title={<>L&apos;AI è già in azienda. Le regole no.</>}
+          text="Le persone hanno cominciato da sole: documenti incollati dentro un chatbot, e nessuno che abbia deciso cosa si può fare e cosa no. Il progetto serio invece non parte, perché in azienda manca chi sappia scegliere. È lo stesso problema visto da due lati — l'AI non è entrata nel lavoro, ci è passata accanto."
+          ctaLabel="Quando conviene cosa"
+          ctaHref="/servizi#la-scelta"
           mark={marks.onde}
           shape="square"
         />

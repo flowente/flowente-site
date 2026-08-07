@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { FeatureSection } from "@/components/FeatureSection";
 import { Steps } from "@/components/Steps";
+import { DecisionMap } from "@/components/DecisionMap";
 import { CtaBand } from "@/components/CtaBand";
 import { marks } from "@/lib/marks";
 
@@ -24,6 +25,7 @@ export default function Servizi() {
           text="L'intervento parte dai requisiti — riservatezza dei dati, volumi, latenza accettabile, costo di esercizio — e arriva al sistema in produzione. Quando i dati non possono uscire, l'infrastruttura resta interna."
           ctaLabel="Contattaci"
         />
+        <DecisionMap />
         <FeatureSection
           eyebrow="Advisory"
           title="Prima la scelta, poi lo sviluppo."
@@ -33,7 +35,7 @@ export default function Servizi() {
         />
         <FeatureSection
           reverse
-          eyebrow="Studio"
+          eyebrow="Sviluppo software"
           title="Costruiamo, colleghiamo, mettiamo online."
           text="Progettiamo e sviluppiamo l'applicazione, la colleghiamo ai dati e ai programmi già in uso — gestionale, archivi, posta, strumenti interni — e la portiamo in produzione. Ci occupiamo anche delle parti che di solito fanno fallire i progetti: cosa succede quando il modello sbaglia, chi può vedere cosa, quanto costa tenerlo acceso."
           mark={marks.flusso}

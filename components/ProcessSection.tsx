@@ -20,8 +20,8 @@ export function ProcessSection() {
             Ogni progetto parte da un caso d&apos;uso e si chiude quando lo strumento è in uso quotidiano.
           </p>
           <div className="mt-6">
-            <Button variant="ghost" href="#">
-              Il nostro processo
+            <Button variant="ghost" href="/servizi#la-scelta">
+              Come scegliamo
             </Button>
           </div>
         </div>
