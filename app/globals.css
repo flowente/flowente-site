@@ -58,6 +58,13 @@ body {
   padding: 12px 22px; border-radius: 8px; border: 1px solid transparent;
   cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
   transition: transform .18s ease; text-decoration: none;
+  /* Senza questo "Prenota una call" andava a capo su due righe nella barra
+     in alto a 375px, arrivando a toccare il marchio. */
+  white-space: nowrap;
+}
+@media (max-width: 420px) {
+  .btn { padding: 11px 15px; font-size: .875rem; }
+  .btn-lg { padding: 14px 20px; font-size: .95rem; }
 }
 .btn:hover { transform: scale(1.02); }
 .btn-lg { padding: 15px 26px; font-size: 1rem; }

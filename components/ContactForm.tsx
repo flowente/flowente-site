@@ -5,8 +5,10 @@ import { Button } from "./Button";
 
 type Status = "idle" | "sending" | "ok" | "error";
 
+// 16px su mobile non è un vezzo: sotto quella soglia Safari su iOS ingrandisce
+// la pagina appena si tocca il campo, e l'utente deve rimpicciolire a mano.
 const inputCls =
-  "w-full rounded-[10px] border border-border bg-surface px-4 py-3 text-[0.98rem] outline-none transition-[border-color,box-shadow] focus:border-accent focus:shadow-[0_0_0_3px_color-mix(in_srgb,var(--accent)_18%,transparent)]";
+  "w-full rounded-[10px] border border-border bg-surface px-4 py-3 text-[16px] md:text-[0.98rem] outline-none transition-[border-color,box-shadow] focus:border-accent focus:shadow-[0_0_0_3px_color-mix(in_srgb,var(--accent)_18%,transparent)]";
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -78,7 +80,12 @@ export function ContactForm() {
       </label>
 
       <label className="flex items-start gap-3 text-[0.86rem] text-fg-2">
-        <input type="checkbox" name="consent" value="yes" className="mt-1 accent-[var(--accent)]" />
+        <input
+          type="checkbox"
+          name="consent"
+          value="yes"
+          className="mt-0.5 h-[18px] w-[18px] shrink-0 accent-[var(--accent)]"
+        />
         <span>
           Ho letto la{" "}
           <a href="/privacy" className="underline hover:text-fg">
