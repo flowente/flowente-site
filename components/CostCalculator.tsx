@@ -13,6 +13,14 @@ const FASCE = [
   { nome: "Modello piccolo", esempio: "Claude Haiku 4.5", in: 1, out: 5 },
 ];
 
+// Nessuno decide quante richieste fare: il numero si eredita dal volume di lavoro.
+// Questi sono conti fatti a vista, con l'aritmetica in chiaro — non medie di settore.
+const VOLUMI = [
+  { id: "reparto", label: "Un reparto che lo usa ogni giorno", richieste: 4400, calcolo: "20 persone × 10 volte al giorno × 22 giorni" },
+  { id: "documenti", label: "Il flusso di documenti in entrata", richieste: 22000, calcolo: "1.000 documenti al giorno × 22 giorni" },
+  { id: "clienti", label: "Un servizio rivolto ai clienti", richieste: 300000, calcolo: "10.000 al giorno, sette giorni su sette" },
+];
+
 // Punti di partenza da cambiare, non medie di settore: il volume di testo
 // varia moltissimo da un compito all'altro ed è il cliente a conoscerlo.
 const COMPITI = [
@@ -22,11 +30,17 @@ const COMPITI = [
   { id: "risposta", label: "Risposta breve a una domanda", tokenIn: 500, tokenOut: 200 },
 ];
 
+// useGrouping "always": senza, it-IT raggruppa solo da cinque cifre e in colonna
+// si vedrebbero "10.500" e "6300" uno sotto l'altro.
 const euro = (n: number) =>
-  n.toLocaleString("it-IT", { minimumFractionDigits: n < 10 ? 2 : 0, maximumFractionDigits: n < 10 ? 2 : 0 });
+  n.toLocaleString("it-IT", {
+    minimumFractionDigits: n < 10 ? 2 : 0,
+    maximumFractionDigits: n < 10 ? 2 : 0,
+    useGrouping: "always",
+  });
 
 export function CostCalculator() {
-  const [richieste, setRichieste] = useState(2000);
+  const [richieste, setRichieste] = useState(4400);
   const [compitoId, setCompitoId] = useState("documenti");
 
   const compito = COMPITI.find((c) => c.id === compitoId) ?? COMPITI[0];
@@ -58,7 +72,31 @@ export function CostCalculator() {
 
         <div className="grid gap-10 md:grid-cols-[0.8fr_1.2fr] md:gap-14">
           <div>
-            <label className="block">
+            <div>
+              <span className="block font-mono text-[0.68rem] uppercase tracking-[0.1em] text-fg-muted mb-3">
+                Quanto lo si usa
+              </span>
+              <div className="flex flex-col gap-2">
+                {VOLUMI.map((v) => (
+                  <button
+                    key={v.id}
+                    type="button"
+                    onClick={() => setRichieste(v.richieste)}
+                    aria-pressed={v.richieste === richieste}
+                    className={`text-left rounded-[10px] border px-4 py-3 transition-colors ${
+                      v.richieste === richieste ? "border-accent bg-surface" : "border-border hover:border-fg-muted"
+                    }`}
+                  >
+                    <span className={`block text-[0.94rem] ${v.richieste === richieste ? "text-fg" : "text-fg-2"}`}>
+                      {v.label}
+                    </span>
+                    <span className="block font-mono text-[0.72rem] text-fg-muted mt-1">{v.calcolo}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <label className="block mt-7">
               <span className="block font-mono text-[0.68rem] uppercase tracking-[0.1em] text-fg-muted mb-2">
                 Richieste al mese
               </span>
@@ -70,6 +108,9 @@ export function CostCalculator() {
                 onChange={(e) => setRichieste(Math.max(0, Number(e.target.value) || 0))}
                 className={inputCls}
               />
+              <span className="block text-fg-muted text-[0.84rem] mt-2">
+                Nessuno decide quante richieste fare: il numero arriva dal volume di lavoro che hai già.
+              </span>
             </label>
 
             <div className="mt-7">
@@ -126,11 +167,37 @@ export function CostCalculator() {
               </p>
             )}
 
+            {richieste > 0 && piuCaro < 200 && (
+              <p className="text-fg-2 text-[1.02rem] mt-4 max-w-[520px]">
+                A questi volumi, però, il costo del modello non è il problema: è rumore accanto al tempo delle persone
+                che ci lavorano. Diventa una decisione sopra le decine di migliaia di richieste al mese.
+              </p>
+            )}
+
+            {/* Il modello installato: non inventiamo un prezzo dell'hardware, diamo la soglia. */}
+            <div className="mt-8 pt-7 border-t border-border max-w-[520px]">
+              <p className="font-mono text-[0.68rem] uppercase tracking-[0.1em] text-fg-muted">Tenerlo in casa</p>
+              <p className="text-fg-2 text-[1.02rem] mt-3">
+                Un modello installato non si paga a richiesta: si paga l&apos;infrastruttura, uguale che tu ne faccia
+                mille o un milione. Su questo volume conviene, sul solo costo, se costa meno di{" "}
+                <span className="text-accent font-mono">{euro(piuEconomico)} $</span> al mese — o di{" "}
+                <span className="font-mono">{euro(piuCaro)} $</span> se oggi useresti un modello di frontiera.
+              </p>
+              <p className="text-fg-2 text-[0.96rem] mt-3">
+                Quasi mai però il motivo per installarlo è il costo: sono i dati. Quando il motivo è quello, la soglia
+                qui sopra non c&apos;entra e la domanda diventa un&apos;altra.
+              </p>
+              <p className="text-fg-muted text-[0.9rem] mt-3">
+                Sulla velocità non pubblichiamo numeri: dipende dall&apos;hardware, dal modello e da quanto lo si
+                comprime, e chi ti dà una cifra senza aver visto la tua macchina sta indovinando. Quello che cambia di
+                sicuro è che spariscono la rete, le code e i limiti di chiamate. La misuriamo sul tuo hardware prima di
+                consigliarti qualcosa.
+              </p>
+            </div>
+
             <p className="text-fg-muted text-[0.82rem] mt-8 max-w-[520px]">
               Prezzi di listino pubblici Anthropic in dollari, al 7 agosto 2026, presi come riferimento per le tre
-              fasce; cambiano nel tempo e sul tuo caso confrontiamo anche altri fornitori. Il conto copre le chiamate al
-              modello: un modello installato da te ha invece un costo fisso, che dipende dall&apos;hardware e si calcola
-              sul caso.
+              fasce; cambiano nel tempo e sul tuo caso confrontiamo anche altri fornitori.
             </p>
           </div>
         </div>
