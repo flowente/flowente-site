@@ -30,7 +30,7 @@ const CASES: Case[] = [
     label: "Risposte interne",
     title: "Rispondere a domande che hanno già una risposta.",
     text: "Le stesse domande che tornano ogni settimana, quando la risposta è già scritta da qualche parte. Il modello la trova e cita la fonte; quando la domanda esce dal seminato, passa a una persona.",
-    img: "/media/casi/04-risposte.svg",
+    img: "/media/casi/04-risposte.jpg",
   },
 ];
 
@@ -52,9 +52,11 @@ export function UseCases() {
         <div className="grid gap-5 md:grid-cols-2">
           {CASES.map((c) => (
             <div key={c.label} className="rounded-[16px] border border-border bg-surface overflow-hidden flex flex-col">
-              <div className="aspect-[3/2] bg-surface-2 border-b border-border">
-                {/* Immagine d'ambiente, non un cliente: alt vuoto per non attribuirle un'identità. */}
-                <img src={c.img} alt="" className="h-full w-full object-cover" loading="lazy" />
+              <div className="bg-surface-2 border-b border-border">
+                {/* Immagine d'ambiente, non un cliente: alt vuoto per non attribuirle un'identità.
+                    Il rapporto sta sull'immagine, non sul contenitore: lì un file più alto del 3:2
+                    non verrebbe vincolato e allungherebbe la card. */}
+                <img src={c.img} alt="" className="block w-full aspect-[3/2] object-cover" loading="lazy" />
               </div>
               <div className="p-7">
                 <div className="font-mono text-[0.68rem] uppercase tracking-wide text-accent">{c.label}</div>

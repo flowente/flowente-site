@@ -1,18 +1,29 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
 const FADE_OUT_MS = 450;
 
+// useLayoutEffect avvisa in SSR: in quel caso non serve, non c'è DOM da ripulire.
+const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
 // Intercetta i click sui link interni: fade-out della pagina corrente, poi
 // navigazione client-side; il fade-in lo fa template.tsx (.page-fade).
+//
+// La classe di uscita va messa sull'elemento che esce, mai su <html>: quando
+// template.tsx rimonta, il nuovo .page-fade erediterebbe una regola globale e
+// verrebbe dipinto a opacità 1 per un fotogramma prima di ripartire da zero —
+// uno scatto visibile a ogni cambio pagina.
 export function PageTransition() {
   const router = useRouter();
   const pathname = usePathname();
 
-  useEffect(() => {
-    document.documentElement.classList.remove("page-leaving");
+  // Rete di sicurezza: se React riusasse il nodo invece di ricrearlo, la classe
+  // resterebbe attaccata e la pagina nuova non comparirebbe. Gira prima del
+  // paint, quindi non introduce sfarfallii.
+  useIsoLayoutEffect(() => {
+    document.querySelectorAll(".page-fade.is-leaving").forEach((el) => el.classList.remove("is-leaving"));
   }, [pathname]);
 
   useEffect(() => {
@@ -32,7 +43,7 @@ export function PageTransition() {
         go();
         return;
       }
-      document.documentElement.classList.add("page-leaving");
+      document.querySelector(".page-fade")?.classList.add("is-leaving");
       window.setTimeout(go, FADE_OUT_MS);
     };
     document.addEventListener("click", onClick);

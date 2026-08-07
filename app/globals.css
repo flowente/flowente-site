@@ -74,9 +74,12 @@ body {
    nuova pagina entra con un fade-in lento e morbido. */
 .page-fade { animation: pageIn 1.4s ease-out both; }
 @keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }
-.page-leaving .page-fade { animation: pageOut .45s ease-in-out both; }
+/* La classe sta sull'elemento che esce, non su <html>: se fosse globale la
+   pagina nuova la erediterebbe al montaggio e lampeggerebbe a piena opacità
+   per un fotogramma prima di ripartire da zero. */
+.page-fade.is-leaving { animation: pageOut .45s ease-in-out both; }
 @keyframes pageOut { from { opacity: 1; } to { opacity: 0; } }
-@media (prefers-reduced-motion: reduce) { .page-fade, .page-leaving .page-fade { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .page-fade, .page-fade.is-leaving { animation: none; } }
 
 /* ===== PROSE LEGALE ===== */
 .prose-legal { color: var(--text-2); font-size: 1rem; line-height: 1.7; }
