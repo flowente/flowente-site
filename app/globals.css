@@ -88,6 +88,49 @@ body {
 @keyframes pageOut { from { opacity: 1; } to { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .page-fade, .page-fade.is-leaving { animation: none; } }
 
+/* ===== FASCIA "POWERED BY" — scorrimento continuo =====
+   Il nastro contiene tre copie identiche della lista e trasla di un terzo della
+   propria larghezza: a fine ciclo la seconda copia si trova esattamente dove
+   stava la prima, quindi il loop riparte senza stacco. Tre copie e non due
+   perché a larghezza desktop due non bastano a coprire il contenitore, e per un
+   fotogramma si vedrebbe il vuoto in coda.
+   Velocità: circa 22px al secondo. È lento di proposito — stessa logica del fade
+   di pagina, il tempo lento comunica solidità. */
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-33.3333%, 0, 0); }
+}
+.marquee-track { animation: marquee 45s linear infinite; will-change: transform; }
+/* Al passaggio del mouse si ferma: se un logo interessa, dev'essere possibile
+   guardarlo fermo invece di inseguirlo. */
+.marquee:hover .marquee-track { animation-play-state: paused; }
+/* Sfumatura ai bordi: senza, i loghi entrano ed escono con un taglio netto e
+   il movimento sembra un difetto invece che una scelta. */
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 1.5rem, #000 calc(100% - 1.5rem), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 1.5rem, #000 calc(100% - 1.5rem), transparent);
+}
+/* Sul largo la sfumatura può permettersi più spazio; sotto i 768px la fascia è
+   larga poco più di 300px e due sfumature da 3rem se ne mangerebbero un terzo. */
+@media (min-width: 768px) {
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 3rem, #000 calc(100% - 3rem), transparent);
+    mask-image: linear-gradient(to right, transparent, #000 3rem, #000 calc(100% - 3rem), transparent);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  /* Niente movimento: resta la sola copia leggibile, che va a capo se serve.
+     width auto annulla il w-max del nastro, altrimenti resterebbe largo quanto
+     le tre copie. Il ritorno a capo va chiesto all'elenco e non al nastro: i
+     figli del nastro sono le copie, e una copia sola non ha nulla con cui
+     andare a capo — a spezzarsi devono essere le voci dentro l'elenco, che
+     perde anche lo shrink-0 e lo spazio di giunzione, ormai inutile. */
+  .marquee-track { animation: none; width: auto; }
+  .marquee-track > [aria-hidden="true"] { display: none; }
+  .marquee-track > ul { flex-wrap: wrap; flex-shrink: 1; row-gap: 1rem; padding-right: 0; }
+  .marquee-mask { -webkit-mask-image: none; mask-image: none; }
+}
+
 /* ===== PROSE LEGALE ===== */
 .prose-legal { color: var(--text-2); font-size: 1rem; line-height: 1.7; }
 .prose-legal h2 { font-family: var(--font-space-grotesk); color: var(--text); font-weight: 600; letter-spacing: -0.02em; font-size: 1.5rem; margin: 2.4rem 0 0.8rem; }

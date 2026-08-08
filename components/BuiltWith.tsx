@@ -1,12 +1,13 @@
 // Fascia sotto la hero: su cosa gira il lavoro, non chi ci ha scelto.
 //
-// Due righe, non una, e la distinzione è di sostanza. Gli strumenti li usiamo e
-// basta. I modelli invece sono l'oggetto stesso della consulenza: la mappa in
-// /servizi dice che scegliamo caso per caso tra frontiera e privato, quindi
-// mostrarne uno solo — o metterli sotto "Powered by" insieme all'hosting —
-// leggerebbe come una fedeltà a un fornitore e smentirebbe la riga sopra.
-// Messi tutti e tre, con il locale accanto ai due di frontiera, la fascia
-// diventa la prova visiva della neutralità invece che la sua contraddizione.
+// Una riga sola che scorre in continuo da destra a sinistra. L'ordine tiene
+// insieme prima gli strumenti e poi i modelli, ma in un nastro che gira è una
+// comodità di lettura, non una gerarchia.
+//
+// I tre modelli ci stanno tutti e tre di proposito: due di frontiera più il
+// motore locale sono le due opzioni della mappa in /servizi. Se un giorno ne
+// resta uno solo, va tolto anche l'altro — un fornitore solo in questa fascia
+// smetterebbe di dire "scegliamo" e comincerebbe a dire "usiamo questo".
 //
 // I marchi vengono da Simple Icons (simpleicons.org), percorsi SVG monocromatici
 // rilasciati in CC0 — sono liberi da usare. I marchi in sé restano però di
@@ -14,7 +15,7 @@
 // usiamo davvero, e non devono mai suggerire una partnership o un patrocinio.
 //
 // Ogni voce deve essere vera: si aggiunge solo ciò che si usa davvero.
-const STRUMENTI = [
+const VOCI = [
   {
     nome: "Next.js",
     d: "M18.665 21.978C16.758 23.255 14.465 24 12 24 5.377 24 0 18.623 0 12S5.377 0 12 0s12 5.377 12 12c0 3.583-1.574 6.801-4.067 9.001L9.219 7.2H7.2v9.596h1.615V9.251l9.85 12.727Zm-3.332-8.533 1.6 2.061V7.2h-1.6v6.245Z",
@@ -31,11 +32,6 @@ const STRUMENTI = [
     nome: "Railway",
     d: "M.113 10.27A13.026 13.026 0 000 11.48h18.23c-.064-.125-.15-.237-.235-.347-3.117-4.027-4.793-3.677-7.19-3.78-.8-.034-1.34-.048-4.524-.048-1.704 0-3.555.005-5.358.01-.234.63-.459 1.24-.567 1.737h9.342v1.216H.113v.002zm18.26 2.426H.009c.02.326.05.645.094.961h16.955c.754 0 1.179-.429 1.315-.96zm-17.318 4.28s2.81 6.902 10.93 7.024c4.855 0 9.027-2.883 10.92-7.024H1.056zM11.988 0C7.5 0 3.593 2.466 1.531 6.108l4.75-.005v-.002c3.71 0 3.849.016 4.573.047l.448.016c1.563.052 3.485.22 4.996 1.364.82.621 2.007 1.99 2.712 2.965.654.902.842 1.94.396 2.934-.408.914-1.289 1.458-2.353 1.458H.391s.099.42.249.886h22.748A12.026 12.026 0 0024 12.005C24 5.377 18.621 0 11.988 0z",
   },
-];
-
-// Due di frontiera più il motore con cui girano i modelli locali: l'elenco è
-// l'argomento. Se un giorno ne resta uno solo, questa riga va tolta.
-const MODELLI = [
   {
     nome: "Anthropic",
     d: "M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z",
@@ -50,36 +46,49 @@ const MODELLI = [
   },
 ];
 
-type Voce = { nome: string; d: string };
-
-// Il nome resta accanto al marchio: da soli i loghi sono illeggibili per chi non
-// è tecnico, che è buona parte di chi decide.
-function Riga({ etichetta, voci }: { etichetta: string; voci: Voce[] }) {
+// Una copia della lista. Il nastro ne contiene tre: la prima è quella vera, le
+// altre due servono solo a chiudere il giro senza stacchi e restano nascoste
+// ai lettori di schermo, che altrimenti leggerebbero tutto tre volte.
+// pr-14 sull'elenco: senza, fra l'ultima voce di una copia e la prima della
+// successiva mancherebbe lo spazio e la giunzione si vedrebbe.
+function Copia({ nascosta }: { nascosta?: boolean }) {
   return (
-    <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-10">
-      <p className="font-mono text-[0.68rem] tracking-[0.14em] uppercase text-fg-muted shrink-0 md:w-[104px]">
-        {etichetta}
-      </p>
-      <ul className="flex flex-wrap items-center gap-x-8 gap-y-4 md:gap-x-10 text-fg-muted">
-        {voci.map((v) => (
-          <li key={v.nome} className="flex items-center gap-2.5">
-            <svg viewBox="0 0 24 24" className="h-[19px] w-[19px] shrink-0" fill="currentColor" aria-hidden="true">
-              <path d={v.d} />
-            </svg>
-            <span className="text-[0.95rem] tracking-[-0.01em]">{v.nome}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul
+      className="flex shrink-0 items-center gap-x-14 pr-14"
+      aria-hidden={nascosta ? "true" : undefined}
+    >
+      {VOCI.map((v) => (
+        <li key={v.nome} className="flex items-center gap-3">
+          <svg viewBox="0 0 24 24" className="h-[30px] w-[30px] shrink-0" fill="currentColor" aria-hidden="true">
+            <path d={v.d} />
+          </svg>
+          {/* Il nome resta accanto al marchio: da soli n8n e Ollama sono
+              illeggibili per chi non è tecnico, che è buona parte di chi decide. */}
+          <span className="text-[1.05rem] tracking-[-0.01em] whitespace-nowrap">{v.nome}</span>
+        </li>
+      ))}
+    </ul>
   );
 }
 
 export function BuiltWith() {
   return (
     <section className="border-b border-border">
-      <div className="mx-auto max-w-content px-6 md:px-10 py-10 md:py-12 flex flex-col gap-6 md:gap-5">
-        <Riga etichetta="Powered by" voci={STRUMENTI} />
-        <Riga etichetta="Modelli" voci={MODELLI} />
+      <div className="mx-auto max-w-content px-6 md:px-10 py-10 md:py-12">
+        <div className="flex flex-col md:flex-row md:items-center gap-5 md:gap-10">
+          <p className="font-mono text-[0.68rem] tracking-[0.14em] uppercase text-fg-muted shrink-0">
+            Powered by
+          </p>
+          {/* min-w-0: senza, la colonna flex si dimensiona sul nastro (largo
+              tre volte la lista) e allarga la pagina invece di ritagliarlo. */}
+          <div className="marquee marquee-mask min-w-0 flex-1 overflow-hidden">
+            <div className="marquee-track flex w-max text-fg-muted">
+              <Copia />
+              <Copia nascosta />
+              <Copia nascosta />
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
