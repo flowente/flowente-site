@@ -35,7 +35,6 @@ export default function ChiSiamo() {
           eyebrow="Chi siamo"
           title="L'AI non è il punto di partenza."
           text="Flowente è uno studio di AI applicata. Quasi tutti i progetti partono dalla tecnologia e finiscono in una dimostrazione; noi partiamo dal processo che costa più tempo e finiamo quando lo strumento è in uso tutti i giorni. In mezzo c'è la scelta di cosa serve davvero — ed è lì che sta il mestiere."
-          align="left"
         />
 
         {/* Perché esiste */}

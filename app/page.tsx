@@ -1,5 +1,6 @@
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
+import { BuiltWith } from "@/components/BuiltWith";
 import { FeatureSection } from "@/components/FeatureSection";
 import { ProcessSection } from "@/components/ProcessSection";
 import { ServiceCards } from "@/components/ServiceCards";
@@ -15,6 +16,7 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
+        <BuiltWith />
         <ProcessSection />
         <FeatureSection
           title={<>L&apos;AI è già in azienda. Le regole no.</>}
