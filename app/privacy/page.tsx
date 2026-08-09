@@ -29,8 +29,9 @@ export default function Privacy() {
           <strong>Dati dal form contatti:</strong> nome, email, azienda (facoltativa) e il messaggio che scrivi.
         </li>
         <li>
-          <strong>Dati di navigazione (aggregati/anonimi):</strong> raccolti tramite uno strumento di analytics
-          rispettoso della privacy. Non ti profiliamo e non ti identifichiamo tramite questi dati.
+          <strong>Dati di navigazione:</strong> al momento il sito non usa alcuno strumento di statistica. Se ne
+          attiveremo uno, raccoglierà dati aggregati e anonimi, aggiorneremo questa pagina e te lo chiederemo prima di
+          attivarlo. Non ti profiliamo e non ti identifichiamo.
         </li>
       </ul>
       <p>Non raccogliamo categorie particolari di dati e non chiediamo più informazioni di quelle necessarie a risponderti.</p>
@@ -42,23 +43,42 @@ export default function Privacy() {
           precontrattuali su tua richiesta e/o legittimo interesse (art. 6.1.b / 6.1.f GDPR).
         </li>
         <li>
-          <strong>Migliorare il sito</strong> tramite statistiche aggregate e anonime. Base giuridica: legittimo
-          interesse (art. 6.1.f GDPR).
+          <strong>Migliorare il sito</strong> tramite statistiche aggregate e anonime, quando saranno attive. Base
+          giuridica: il tuo consenso (art. 6.1.a GDPR), revocabile in ogni momento dal comando “Preferenze cookie” in
+          fondo alla pagina.
         </li>
       </ul>
       <p>Non usiamo i tuoi dati per newsletter o marketing, se non con un tuo consenso separato ed esplicito.</p>
 
       <h2>Con chi li condividiamo</h2>
       <p>
-        I dati non vengono venduti né ceduti. Possono essere trattati da fornitori tecnici in qualità di responsabili del
-        trattamento: hosting/deploy [Railway / provider, regione], invio email [Resend / provider, regione], analytics
-        [Plausible / Umami / provider, regione]. [Indicare eventuali trasferimenti extra-UE e relative garanzie.]
+        I dati non vengono venduti né ceduti. Possono essere trattati da fornitori tecnici in qualità di responsabili
+        del trattamento:
+      </p>
+      <ul>
+        <li>
+          <strong>Hosting e deploy:</strong> Railway, con i server nella regione europea (Francoforte, Germania).
+        </li>
+        <li>
+          <strong>Invio delle email del form:</strong> Resend, con i server in Irlanda.
+        </li>
+      </ul>
+      <p>
+        Entrambi i fornitori sono società con sede negli Stati Uniti. I dati restano archiviati sui server europei
+        indicati, ma l&apos;assistenza e l&apos;amministrazione dei sistemi possono comportare un accesso dagli Stati
+        Uniti: in tal caso si tratta di un trasferimento extra-UE.
+      </p>
+      <p className="muted">
+        Da completare: indicare per ciascun fornitore la garanzia applicata al trasferimento — clausole contrattuali
+        standard e/o adesione all&apos;EU-US Data Privacy Framework — verificandola sull&apos;accordo sul trattamento
+        dei dati (DPA) del fornitore e sull&apos;elenco ufficiale dei soggetti certificati. Non riportare una garanzia
+        senza averla verificata: è la dichiarazione più facile da contestare.
       </p>
 
       <h2>Per quanto tempo li conserviamo</h2>
       <p>
         Conserviamo i messaggi ricevuti dal form per il tempo necessario a gestire la richiesta e gli eventuali contatti
-        successivi, e comunque non oltre [es. 24 mesi] dall&apos;ultimo contatto, salvo obblighi di legge.
+        successivi, e comunque non oltre 24 mesi dall&apos;ultimo contatto, salvo obblighi di legge.
       </p>
 
       <h2>I tuoi diritti</h2>

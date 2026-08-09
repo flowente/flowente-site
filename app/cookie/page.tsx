@@ -9,10 +9,7 @@ export const metadata: Metadata = {
 export default function Cookie() {
   return (
     <LegalPage title="Cookie Policy" updated="[gg mese 2026]">
-      <p className="muted">
-        Bozza da validare e da compilare con i cookie realmente presenti dopo il build. Sostituire i campi tra parentesi
-        quadre.
-      </p>
+      <p className="muted">Bozza da validare. Il contenuto rispecchia ciò che il sito fa davvero oggi.</p>
 
       <h2>In breve</h2>
       <p>
@@ -22,8 +19,9 @@ export default function Cookie() {
 
       <h2>Cookie tecnici (necessari)</h2>
       <p>
-        Usiamo solo i cookie/tecnologie necessari a far funzionare il sito (es. preferenze di base, sicurezza). Non
-        richiedono consenso.
+        Oggi il sito <strong>non installa cookie</strong>. L&apos;unica cosa che salviamo nel tuo browser è la scelta
+        che fai sul banner: senza, dovremmo richiedertela a ogni pagina. Conservare la tua decisione è necessario al
+        funzionamento e non richiede a sua volta consenso.
       </p>
       <table>
         <thead>
@@ -36,22 +34,23 @@ export default function Cookie() {
         </thead>
         <tbody>
           <tr>
-            <td>[es. preferenze]</td>
-            <td>Ricordare impostazioni di base</td>
-            <td>[sessione / X mesi]</td>
-            <td>Tecnico</td>
+            <td>flowente:consenso</td>
+            <td>Ricordare se hai accettato o rifiutato le statistiche</td>
+            <td>Finché non la cancelli o non cambi scelta</td>
+            <td>Archiviazione locale (non è un cookie, non viene inviata al server)</td>
           </tr>
         </tbody>
       </table>
-      <p className="muted">
-        Compila la tabella con i cookie realmente presenti dopo il build. Se non ce ne sono, dichiaralo.
-      </p>
 
       <h2>Statistiche (analytics)</h2>
       <p>
-        Per capire cosa funziona nel sito usiamo [Plausible / Umami / …], uno strumento di analytics rispettoso della
-        privacy (senza cookie, con IP anonimizzati, dati aggregati). In questa configurazione, di norma, non è necessario
-        un banner di consenso. [Da confermare in base al tool e alla configurazione effettiva.]
+        Al momento <strong>non è attivo alcuno strumento di statistica</strong>. Il banner c&apos;è già perché quando ne
+        attiveremo uno partirà solo dopo il tuo consenso, e mai prima. Quando succederà, aggiorneremo questa pagina con
+        il nome del fornitore, cosa raccoglie e dove tiene i dati.
+      </p>
+      <p>
+        Puoi cambiare idea in qualsiasi momento con il comando <strong>Preferenze cookie</strong> in fondo a ogni
+        pagina. Rifiutare è facile quanto accettare: stesso posto, un clic.
       </p>
 
       <h2>Niente cookie di marketing/terze parti</h2>
