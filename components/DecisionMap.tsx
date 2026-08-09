@@ -10,7 +10,7 @@ const ROWS: Row[] = [
   },
   {
     when: "Dati sensibili, o soggetti a vincoli",
-    use: "Modello privato, sui tuoi server",
+    use: "Modello LLM privato, sui tuoi server",
     why: "Le domande e i documenti non escono. È l'unico modo per esserne certi.",
   },
   {

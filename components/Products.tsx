@@ -28,7 +28,7 @@ const PRODUCTS: Product[] = [
     text: "Risposte prese dai tuoi archivi invece che dalla memoria del modello, con il documento di origine sempre risalibile.",
   },
   {
-    title: "Modello privato",
+    title: "Modello LLM privato",
     text: "Il modello installato sui tuoi server. Domande, documenti e risposte non escono dal perimetro aziendale.",
   },
 ];
