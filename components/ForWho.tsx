@@ -1,4 +1,4 @@
-const COLS = ["PMI e manifattura", "Studi professionali", "E-commerce", "Scale-up"];
+const COLS = ["PMI e manifattura", "Studi professionali", "E-commerce", "Palestre", "Scale-up"];
 
 // Onesto: al posto di testimonianze finte, mostriamo per chi lavoriamo.
 export function ForWho() {
@@ -11,9 +11,13 @@ export function ForWho() {
             Organizzazioni con processi definiti e dati da proteggere.
           </h2>
         </div>
-        <div className="grid gap-6 md:gap-0 md:grid-cols-4">
+        {/* Cinque colonne solo da lg in su: a 768px lo spazio per voce scende a
+            135px e "PMI e manifattura" e "Studi professionali" vanno a capo
+            mentre "Palestre" e "Scale-up" restano su una riga — la fila esce
+            sfilacciata, e "E-commerce" si spezza sul trattino. */}
+        <div className="grid gap-6 lg:gap-0 lg:grid-cols-5">
           {COLS.map((c, i) => (
-            <div key={c} className={`md:px-6 ${i > 0 ? "md:border-l md:border-border" : "md:pl-0"}`}>
+            <div key={c} className={`lg:px-4 ${i > 0 ? "lg:border-l lg:border-border" : "lg:pl-0"}`}>
               <div className="font-display font-semibold text-[1.05rem]">{c}</div>
             </div>
           ))}

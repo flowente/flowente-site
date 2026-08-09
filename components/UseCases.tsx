@@ -7,29 +7,31 @@ type Case = { label: string; title: string; text: string; img: string };
 // Quando arrivano gli scatti veri basta cambiare l'estensione qui sotto (.svg -> .jpg).
 // Brief di scatto: CONTENT.md §13. Le foto sono d'ambiente, mai di clienti:
 // per questo l'alt resta vuoto e nessun nome o azienda va mai associato.
+// I nomi dei file non corrispondono più ai titoli: erano stati scelti sui casi
+// precedenti. Si sistemano quando arrivano gli scatti veri.
 const CASES: Case[] = [
   {
-    label: "Archivio",
-    title: "Cercare dentro anni di documenti.",
-    text: "Pratiche, contratti e relazioni in cartelle che nessuno riesce più a percorrere. Si fa una domanda in italiano e la risposta arriva con il riferimento al documento da cui è presa — così è verificabile.",
+    label: "Dati storici",
+    title: "Agente di ricerca sui dati storici aziendali.",
+    text: "Anni di commesse, preventivi e ordini in sistemi che ormai nessuno interroga. Si chiede in italiano — quanto ha reso quella linea, quali clienti sono fermi da un anno — e la risposta arriva con il riferimento al dato da cui è presa.",
     img: "/media/casi/01-archivio.svg",
   },
   {
-    label: "Documenti in entrata",
-    title: "Leggere e smistare quello che arriva.",
-    text: "Fatture, ordini, certificati che arrivano via mail e vengono ricopiati a mano in un gestionale. Il modello legge ed estrae i campi; quello di cui non è sicuro lo mette in coda a una persona invece di indovinare.",
+    label: "Centralino",
+    title: "Centralino automatizzato con calendario clienti.",
+    text: "Le chiamate che arrivano fuori orario o mentre in reparto non può rispondere nessuno. L'agente capisce la richiesta, propone gli orari liberi e fissa l'appuntamento in agenda; se la richiesta esce dal seminato, passa la chiamata a una persona.",
     img: "/media/casi/02-documenti.svg",
   },
   {
-    label: "Prime stesure",
-    title: "Partire da una bozza invece che dal foglio bianco.",
-    text: "Documenti che nascono sempre dagli stessi blocchi. La prima versione la prepara il modello, sui vostri modelli e sui vostri dati. La revisione e la firma restano a chi di dovere.",
+    label: "Rendicontazione",
+    title: "Skills e plugin di rendicontazione periodica.",
+    text: "Il rapporto che qualcuno rimette insieme a mano ogni mese. Serve a vedere dove va il budget, dove il lavoro si ferma e quali canali di acquisizione rendono meno di quanto costano — le tre cose che di solito si scoprono tardi.",
     img: "/media/casi/03-stesure.svg",
   },
   {
-    label: "Risposte interne",
-    title: "Rispondere a domande che hanno già una risposta.",
-    text: "Le stesse domande che tornano ogni settimana, quando la risposta è già scritta da qualche parte. Il modello la trova e cita la fonte; quando la domanda esce dal seminato, passa a una persona.",
+    label: "Costi di esercizio",
+    title: "Un modello aziendale con le skills che tagliano i costi.",
+    text: "Le skills fissano il modo in cui si fanno le richieste: il modello riceve ogni volta solo il contesto che serve, invece dell'archivio intero. A parità di lavoro svolto, il costo per richiesta scende in modo netto.",
     img: "/media/casi/04-risposte.jpg",
   },
 ];
@@ -41,7 +43,7 @@ export function UseCases() {
         <div className="max-w-[620px] mb-12">
           <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted">Casi d&apos;uso</p>
           <h2 className="mt-4 font-display font-semibold tracking-[-0.03em] text-[clamp(2rem,4vw,3rem)] leading-[1.02]">
-            Quattro esempi concreti.
+            Quattro casi concreti.
           </h2>
           <p className="text-fg-2 text-[1.06rem] mt-5">
             Non sono clienti: sono i problemi che ci troviamo davanti più spesso. Quando avremo lavori da raccontare,

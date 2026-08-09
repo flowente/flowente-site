@@ -29,6 +29,15 @@ const ROWS: Row[] = [
     why: "Nessuna installazione, si paga a consumo.",
   },
   {
+    when: "Il problema è la costanza dei risultati, non la riservatezza",
+    use: "Skills e plugin",
+    why: "Non serve un modello privato: si standardizza il processo, e le risposte escono sempre nella stessa forma.",
+  },
+  // Le ultime due righe dicono entrambe "ti serve meno di quanto pensi", in
+  // ordine crescente: prima "non ti serve un server tuo", poi "non ti serve
+  // niente". La mappa chiude sul rifiuto, che è la cosa che chi vende una sola
+  // soluzione non può scrivere.
+  {
     when: "Il processo non è chiaro, o i dati non ci sono",
     use: "Niente AI",
     why: "Prima si sistema il processo. Te lo diciamo, e non partiamo.",
