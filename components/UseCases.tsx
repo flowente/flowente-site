@@ -1,7 +1,11 @@
 type Case = { label: string; title: string; text: string; img: string };
 
-// Onesto: non sono clienti, sono i problemi che incontriamo più spesso.
-// Nessun numero, nessun nome. Si sostituiscono con lavori veri appena ci sono.
+// Il titolo dice "Case Study" per scelta dell'autore, ma i contenuti restano
+// esempi di applicazione: nessun cliente, nessun nome, nessun numero, nessun
+// risultato dichiarato. Finché è così la sezione non afferma nulla di falso.
+// Il limite da non passare è quello: aggiungere una percentuale o il nome di
+// un'azienda trasforma l'insieme in una dichiarazione su lavori mai svolti.
+// Si sostituiscono con lavori veri appena ci sono.
 //
 // FOTO — i file in /public/media/casi sono SEGNAPOSTO.
 // Quando arrivano gli scatti veri basta cambiare l'estensione qui sotto (.svg -> .jpg).
@@ -43,11 +47,10 @@ export function UseCases() {
         <div className="max-w-[620px] mb-12">
           <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted">Casi d&apos;uso</p>
           <h2 className="mt-4 font-display font-semibold tracking-[-0.03em] text-[clamp(2rem,4vw,3rem)] leading-[1.02]">
-            Quattro casi concreti.
+            Case Study.
           </h2>
           <p className="text-fg-2 text-[1.06rem] mt-5">
-            Non sono clienti: sono i problemi che ci troviamo davanti più spesso. Quando avremo lavori da raccontare,
-            questi lasceranno il posto a quelli.
+            Esempi concreti di applicazione dei nostri prodotti, sui processi in cui intervengono più spesso.
           </p>
         </div>
 
