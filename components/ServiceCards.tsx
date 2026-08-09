@@ -43,8 +43,14 @@ export function ServiceCards() {
         <div className="grid gap-5 md:grid-cols-3">
           {ITEMS.map((it) => (
             <div key={it.label} className="rounded-[16px] border border-border bg-surface p-7 flex flex-col">
-              <div className="h-[96px] flex items-center justify-start">
-                <MarkBadge mark={it.mark} shape={it.shape} boxW={120} boxH={92} shapeSize={72} markW={116} markH={80} />
+              {/* La forma deve leggersi come sfondo del segno, quindi va tenuta più
+                  grande. Attenzione ai due rapporti nascosti: il triangolo occupa
+                  l'82% del proprio box in larghezza e il 76% in altezza, e il segno
+                  a sua volta non riempie il viewBox. Con shapeSize 72 e markW 116 il
+                  triangolo rendeva 59×55 contro un lucchetto di 63×69 — cioè la
+                  forma era la più piccola dei due. */}
+              <div className="h-[104px] flex items-center justify-start">
+                <MarkBadge mark={it.mark} shape={it.shape} boxW={120} boxH={100} shapeSize={96} markW={92} markH={63} />
               </div>
               <div className="font-mono text-[0.68rem] uppercase tracking-wide text-accent mt-2">{it.label}</div>
               <h3 className="font-display font-semibold text-[1.2rem] tracking-[-0.01em] mt-2">{it.lead}</h3>
