@@ -21,7 +21,7 @@ export function Hero() {
           </p>
           <div className="mt-8 flex gap-3 flex-wrap">
             <Button href="/contatti" size="lg">Prenota una call</Button>
-            <Button href="/metodo" variant="ghost" size="lg">Il metodo</Button>
+            <Button href="/servizi" variant="ghost" size="lg">Servizi</Button>
           </div>
         </div>
         {/* Il video sta qui e il segno è sceso in "Come lavoriamo": scambiati fra
