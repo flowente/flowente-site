@@ -3,6 +3,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { FeatureSection } from "@/components/FeatureSection";
+import { Products } from "@/components/Products";
 import { DecisionMap } from "@/components/DecisionMap";
 import { UseCases } from "@/components/UseCases";
 import { CodeBlock, C, K } from "@/components/CodeBlock";
@@ -26,6 +27,7 @@ export default function Servizi() {
           text="L'intervento parte dai requisiti — riservatezza dei dati, volumi, latenza accettabile, costo di esercizio — e arriva al sistema in produzione. Quando i dati non possono uscire, l'infrastruttura resta interna."
           ctaLabel="Prenota una call"
         />
+        <Products />
         <DecisionMap />
         <FeatureSection
           eyebrow="Advisory"
