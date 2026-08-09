@@ -25,7 +25,7 @@ const ITEMS: Item[] = [
     lead: "Tenere i dati dentro l'azienda.",
     text: "Installiamo il modello sui tuoi server, o su un cloud privato europeo. Le domande e i documenti non passano da servizi esterni.",
     note: "Per chi tratta dati soggetti a GDPR, EU AI Act o vincoli di riservatezza.",
-    mark: marks.coil,
+    mark: marks.lucchetto,
     shape: "triangle",
   },
 ];

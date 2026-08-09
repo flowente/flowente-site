@@ -1,7 +1,9 @@
 import { Button } from "./Button";
-import { ProcessVideo } from "./ProcessVideo";
+import { MarkBadge } from "./MarkBadge";
+import { marks } from "@/lib/marks";
 
-// Sezione "Come lavoriamo": copy a sinistra, illustrazione a linea (ProcessPath) a destra.
+// Sezione "Come lavoriamo": copy a sinistra, segno sulla griglia a puntini a destra.
+// Il video è salito nella hero: i due si sono scambiati di posto, cornice compresa.
 export function ProcessSection() {
   return (
     <section className="border-b border-border">
@@ -26,8 +28,8 @@ export function ProcessSection() {
           </div>
         </div>
 
-        <div className="rounded-[20px] bg-surface-2 overflow-hidden aspect-square w-full max-w-[440px] md:justify-self-end">
-          <ProcessVideo className="h-full w-full object-cover" />
+        <div className="relative h-[300px] md:h-[340px] flex items-center justify-center rounded-xl dot-grid">
+          <MarkBadge mark={marks.coil} shape="square" boxW={340} boxH={230} shapeSize={190} markW={340} markH={230} rotate={6} />
         </div>
       </div>
     </section>

@@ -38,4 +38,24 @@ export const marks: Record<string, Mark> = {
     viewBox: "0 0 120 80",
     draw: (f) => <path className="mark-stroke" filter={`url(#${f})`} d="M20,58 C50,18 75,70 108,44" />,
   },
+  // Lucchetto: corpo, staffa a doppia linea, buco della serratura.
+  // Stesso viewBox di flusso/onda/freccia (120x80) perché è quello che tiene lo
+  // spessore del tratto uguale agli altri segni: la stroke-width è in unità del
+  // viewBox, quindi un box più grande a parità di resa dà una linea più sottile.
+  // Le linee restano pulite: a sporcarle è il filtro dei fotogrammi.
+  lucchetto: {
+    viewBox: "0 0 120 80",
+    draw: (f) => (
+      <g filter={`url(#${f})`}>
+        <path
+          className="mark-stroke"
+          d="M36,38 L84,38 Q90,38 90,44 L90,68 Q90,74 84,74 L36,74 Q30,74 30,68 L30,44 Q30,38 36,38 Z"
+        />
+        <path className="mark-stroke" d="M39,40 L39,26 Q39,10 60,10 Q81,10 81,26 L81,40" />
+        <path className="mark-stroke" d="M50,40 L50,26 Q50,20 60,20 Q70,20 70,26 L70,40" />
+        <circle className="mark-stroke" cx="60" cy="51" r="5.5" />
+        <path className="mark-stroke" d="M56.5,55 L53,67 L67,67 L63.5,55" />
+      </g>
+    ),
+  },
 };

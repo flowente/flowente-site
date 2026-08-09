@@ -1,6 +1,5 @@
 import { Button } from "./Button";
-import { MarkBadge } from "./MarkBadge";
-import { marks } from "@/lib/marks";
+import { ProcessVideo } from "./ProcessVideo";
 
 export function Hero() {
   return (
@@ -25,8 +24,10 @@ export function Hero() {
             <Button href="/metodo" variant="ghost" size="lg">Il metodo</Button>
           </div>
         </div>
-        <div className="relative h-[300px] md:h-[340px] flex items-center justify-center rounded-xl dot-grid">
-          <MarkBadge mark={marks.coil} shape="square" boxW={340} boxH={230} shapeSize={190} markW={340} markH={230} rotate={6} />
+        {/* Il video sta qui e il segno è sceso in "Come lavoriamo": scambiati fra
+            le due sezioni, ognuno con la cornice che aveva. */}
+        <div className="rounded-[20px] bg-surface-2 overflow-hidden aspect-square w-full max-w-[440px] md:justify-self-end">
+          <ProcessVideo className="h-full w-full object-cover" />
         </div>
       </div>
     </section>
