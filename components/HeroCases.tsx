@@ -17,9 +17,12 @@ const PILA: Caso[] = [CASI[1], CASI[2], CASI[3]];
 // Sotto md rotazione e sfalsamento sono ridotti: la rotazione allarga l'ingombro
 // di circa l'altezza per il seno dell'angolo, e su una scheda alta 420px bastavano
 // 3,5 gradi per portare la scheda in fondo a filo del bordo dello schermo.
+// Lo sfalsamento verticale conta più di quello orizzontale: è dal bordo basso che
+// sbuca la fascia bianca del testo, ed è quella a far capire che dietro ci sono
+// altre schede e non un cartoncino. A 20 e 10 pixel non si leggeva.
 const STRATI = [
-  "absolute inset-0 translate-x-2.5 translate-y-3.5 rotate-[2deg] md:translate-x-4 md:translate-y-5 md:rotate-[3.5deg]",
-  "absolute inset-0 translate-x-1.5 translate-y-2 rotate-[1deg] md:translate-x-2 md:translate-y-2.5 md:rotate-[1.8deg]",
+  "absolute inset-0 translate-x-3 translate-y-6 rotate-[2deg] md:translate-x-5 md:translate-y-11 md:rotate-[3.5deg]",
+  "absolute inset-0 translate-x-1.5 translate-y-3 rotate-[1deg] md:translate-x-2.5 md:translate-y-[22px] md:rotate-[1.8deg]",
   "relative block -rotate-[1deg] md:-rotate-[1.6deg] shadow-[0_12px_44px_rgba(11,11,12,0.10)]",
 ];
 

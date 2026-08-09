@@ -38,6 +38,20 @@ export const marks: Record<string, Mark> = {
     viewBox: "0 0 120 80",
     draw: (f) => <path className="mark-stroke" filter={`url(#${f})`} d="M20,58 C50,18 75,70 108,44" />,
   },
+  // Freccia curva che conduce l'occhio da sinistra a destra, verso le schede
+  // nella hero. Punta in alto a destra: la coda parte bassa e sale, così il gesto
+  // finisce dove sta la scheda invece di puntare nel vuoto.
+  // La punta e' costruita come due barbe che tornano indietro dall'apice lungo la
+  // tangente della curva, altrimenti con linejoin round sembrerebbe uno scarabocchio.
+  frecciaCurva: {
+    viewBox: "0 0 200 90",
+    draw: (f) => (
+      <g filter={`url(#${f})`}>
+        <path className="mark-stroke" d="M8,16 C38,2 52,40 92,50 C126,58 148,72 178,52" />
+        <path className="mark-stroke" d="M160,54 L178,52 L169,68" />
+      </g>
+    ),
+  },
   // Lucchetto: corpo, staffa a doppia linea, buco della serratura.
   // Stesso viewBox di flusso/onda/freccia (120x80) perché è quello che tiene lo
   // spessore del tratto uguale agli altri segni: la stroke-width è in unità del
