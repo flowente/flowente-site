@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import posthog from "posthog-js";
 import { Button } from "./Button";
 
 type Status = "idle" | "sending" | "ok" | "error";
@@ -29,6 +30,7 @@ export function ContactForm() {
         body: JSON.stringify(data),
       });
       if (!res.ok) throw new Error("bad");
+      posthog.capture("contact_form_submitted", { contact_method: "website_form" });
       setStatus("ok");
       form.reset();
     } catch {
