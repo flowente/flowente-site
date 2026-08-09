@@ -74,8 +74,8 @@ export function DecisionMap() {
 
         <p className="text-fg-2 text-[1.02rem] mt-10 max-w-[620px]">
           Quasi ogni progetto reale è misto: modello di frontiera dove serve ragionamento, modello interno dove ci sono
-          i dati da proteggere. Progettare quel mix è la parte del lavoro che conta di più. E resta fuori quello che
-          deve restare fuori: l&apos;AI prende il lavoro ripetitivo, le decisioni restano a chi le sa prendere.
+          i dati da proteggere. Progettare quel mix è la parte del lavoro che conta di più. L&apos;AI prende il lavoro
+          ripetitivo, le decisioni restano a chi le sa prendere.
         </p>
       </div>
     </section>
