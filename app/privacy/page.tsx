@@ -29,9 +29,9 @@ export default function Privacy() {
           <strong>Dati dal form contatti:</strong> nome, email, azienda (facoltativa) e il messaggio che scrivi.
         </li>
         <li>
-          <strong>Dati di navigazione:</strong> al momento il sito non usa alcuno strumento di statistica. Se ne
-          attiveremo uno, raccoglierà dati aggregati e anonimi, aggiorneremo questa pagina e te lo chiederemo prima di
-          attivarlo. Non ti profiliamo e non ti identifichiamo.
+          <strong>Dati di navigazione:</strong> quali pagine vengono aperte e in che ordine, raccolti con PostHog{" "}
+          <strong>solo se acconsenti</strong>. Non registriamo i singoli clic e non creiamo profili di visitatori
+          anonimi. Se rifiuti, PostHog non viene nemmeno scaricato dal tuo browser.
         </li>
       </ul>
       <p>Non raccogliamo categorie particolari di dati e non chiediamo più informazioni di quelle necessarie a risponderti.</p>
@@ -62,9 +62,13 @@ export default function Privacy() {
         <li>
           <strong>Invio delle email del form:</strong> Resend, con i server in Irlanda.
         </li>
+        <li>
+          <strong>Statistiche del sito:</strong> PostHog, sull&apos;infrastruttura europea (EU Cloud). Interviene solo
+          dopo il tuo consenso.
+        </li>
       </ul>
       <p>
-        Entrambi i fornitori sono società con sede negli Stati Uniti. I dati restano archiviati sui server europei
+        Tutti e tre i fornitori sono società con sede negli Stati Uniti. I dati restano archiviati sui server europei
         indicati, ma l&apos;assistenza e l&apos;amministrazione dei sistemi possono comportare un accesso dagli Stati
         Uniti: in tal caso si tratta di un trasferimento extra-UE.
       </p>
@@ -78,7 +82,7 @@ export default function Privacy() {
       <h2>Per quanto tempo li conserviamo</h2>
       <p>
         Conserviamo i messaggi ricevuti dal form per il tempo necessario a gestire la richiesta e gli eventuali contatti
-        successivi, e comunque non oltre 24 mesi dall&apos;ultimo contatto, salvo obblighi di legge.
+        successivi, e comunque non oltre 36 mesi dall&apos;ultimo contatto, salvo obblighi di legge.
       </p>
 
       <h2>I tuoi diritti</h2>

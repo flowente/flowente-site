@@ -44,9 +44,35 @@ export default function Cookie() {
 
       <h2>Statistiche (analytics)</h2>
       <p>
-        Al momento <strong>non è attivo alcuno strumento di statistica</strong>. Il banner c&apos;è già perché quando ne
-        attiveremo uno partirà solo dopo il tuo consenso, e mai prima. Quando succederà, aggiorneremo questa pagina con
-        il nome del fornitore, cosa raccoglie e dove tiene i dati.
+        Per capire quali pagine servono davvero usiamo <strong>PostHog</strong>, sull&apos;infrastruttura europea. Parte
+        solo se accetti: finché non lo fai, lo script di PostHog non viene nemmeno scaricato dal tuo browser — quindi
+        nessun cookie e nessun indirizzo IP raggiungono il fornitore.
+      </p>
+      <p>
+        Se accetti, PostHog installa i propri cookie per riconoscere le visite dello stesso browser e non contarle più
+        volte. Non registriamo i singoli clic e non creiamo profili di visitatori anonimi.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Finalità</th>
+            <th>Durata</th>
+            <th>Tipo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ph_… (PostHog)</td>
+            <td>Distinguere le visite dello stesso browser nelle statistiche</td>
+            <td>Fino a 12 mesi</td>
+            <td>Statistico — solo con il tuo consenso</td>
+          </tr>
+        </tbody>
+      </table>
+      <p className="muted">
+        Da verificare alla prima attivazione: nomi e durate esatti dei cookie impostati da PostHog nella configurazione
+        effettivamente usata, leggendoli dal browser e non dalla documentazione.
       </p>
       <p>
         Puoi cambiare idea in qualsiasi momento con il comando <strong>Preferenze cookie</strong> in fondo a ogni

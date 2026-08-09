@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SvgFilters } from "@/components/SvgFilters";
 import { PageTransition } from "@/components/PageTransition";
 import { CookieBanner } from "@/components/CookieBanner";
+import { Analytics } from "@/components/Analytics";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <PageTransition />
         {children}
         <CookieBanner />
+        <Analytics />
       </body>
     </html>
   );
