@@ -1,4 +1,5 @@
 import { Logo } from "./Logo";
+import { CookiePrefs } from "./CookiePrefs";
 
 const COLS = [
   {
@@ -62,8 +63,9 @@ export function Footer() {
           ))}
         </div>
         <div className="flex justify-between items-center mt-[52px] pt-[22px] border-t border-border font-mono text-[0.7rem] text-fg-muted flex-wrap gap-3">
-          <span>© 2026 FLOWENTE · MILANO · P.IVA […]</span>
-          <span>Il lavoro che scorre</span>
+          {/* P.IVA da rimettere qui quando ci sarà: "· P.IVA 01234567890". */}
+          <span>© 2026 FLOWENTE · MILANO</span>
+          <CookiePrefs />
         </div>
       </div>
     </footer>

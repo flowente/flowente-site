@@ -15,8 +15,12 @@ export default function Privacy() {
 
       <h2>Titolare del trattamento</h2>
       <p>
-        Il titolare del trattamento è [Nome e cognome / Ragione sociale], con sede in [indirizzo], P.IVA […], email{" "}
+        Il titolare del trattamento è Flowente, contattabile all&apos;indirizzo{" "}
         <a href="mailto:ciao@flowente.com">ciao@flowente.com</a>.
+      </p>
+      <p className="muted">
+        Da completare con ragione sociale, sede e P.IVA appena disponibili: l&apos;identificazione del titolare è un
+        obbligo dell&apos;art. 13 GDPR, e il nome commerciale da solo non lo soddisfa.
       </p>
 
       <h2>Quali dati raccogliamo</h2>

@@ -131,6 +131,13 @@ body {
   .marquee-mask { -webkit-mask-image: none; mask-image: none; }
 }
 
+/* ===== BANNER COOKIE ===== */
+/* Entra piano e senza scivolare da sotto: la richiesta non deve sembrare un
+   popup pubblicitario. Stesso tempo lento del resto del sito. */
+.cookie-banner { animation: bannerIn .9s ease-out both; }
+@keyframes bannerIn { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .cookie-banner { animation: none; } }
+
 /* ===== PROSE LEGALE ===== */
 .prose-legal { color: var(--text-2); font-size: 1rem; line-height: 1.7; }
 .prose-legal h2 { font-family: var(--font-space-grotesk); color: var(--text); font-weight: 600; letter-spacing: -0.02em; font-size: 1.5rem; margin: 2.4rem 0 0.8rem; }
