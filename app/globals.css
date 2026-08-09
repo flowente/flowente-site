@@ -131,6 +131,14 @@ body {
   .marquee-mask { -webkit-mask-image: none; mask-image: none; }
 }
 
+/* ===== PILA DI SCHEDE NELLA HERO ===== */
+/* Micro-zoom come i bottoni: nessun cambio di colore, nessuno spostamento in Y.
+   Un filo più lenta della .btn perché l'elemento è grande e alla stessa velocità
+   sembrerebbe uno scatto. */
+.hero-cases { transition: transform .28s ease; }
+.hero-cases:hover { transform: scale(1.02); }
+@media (prefers-reduced-motion: reduce) { .hero-cases { transition: none; } .hero-cases:hover { transform: none; } }
+
 /* ===== BANNER COOKIE ===== */
 /* Entra piano e senza scivolare da sotto: la richiesta non deve sembrare un
    popup pubblicitario. Stesso tempo lento del resto del sito. */

@@ -1,5 +1,6 @@
 import { Button } from "./Button";
-import { ProcessVideo } from "./ProcessVideo";
+import { HeroCases } from "./HeroCases";
+import { ANCORA_CASI } from "@/lib/casi";
 
 export function Hero() {
   return (
@@ -17,18 +18,23 @@ export function Hero() {
           </h1>
           <p className="mt-7 max-w-[440px] text-fg-2 text-[1.05rem]">
             Scegliamo modello e infrastruttura adatti al caso d&apos;uso e li portiamo in produzione. Anche sui tuoi
-            server, se i dati non devono uscire.
+            server.
           </p>
+          {/* Indica la pila di schede a destra. La freccia resta ferma al passaggio
+              del mouse: il movimento della hero è già tutto nella pila. */}
+          <a
+            href={ANCORA_CASI}
+            className="mt-4 inline-flex items-center gap-2 text-fg text-[0.98rem] font-medium hover:underline underline-offset-4"
+          >
+            Scopri i nostri lavori
+            <span aria-hidden="true">→</span>
+          </a>
           <div className="mt-8 flex gap-3 flex-wrap">
             <Button href="/contatti" size="lg">Prenota una call</Button>
             <Button href="/servizi" variant="ghost" size="lg">Servizi</Button>
           </div>
         </div>
-        {/* Il video sta qui e il segno è sceso in "Come lavoriamo": scambiati fra
-            le due sezioni, ognuno con la cornice che aveva. */}
-        <div className="rounded-[20px] bg-surface-2 overflow-hidden aspect-square w-full max-w-[440px] md:justify-self-end">
-          <ProcessVideo className="h-full w-full object-cover" />
-        </div>
+        <HeroCases />
       </div>
     </section>
   );
