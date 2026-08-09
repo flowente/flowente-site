@@ -9,7 +9,7 @@ type Product = { title: string; text: string };
 const PRODUCTS: Product[] = [
   {
     title: "Applicativi su misura",
-    text: "L'applicazione che serve al lavoro, collegata ai dati e ai programmi già in uso. Il modello che ci sta sotto resta sostituibile.",
+    text: "L'applicazione che serve al lavoro, collegata ai dati e ai programmi già in uso. Il modello di AI alla base è sostituibile.",
   },
   {
     title: "Agenti",
@@ -17,19 +17,19 @@ const PRODUCTS: Product[] = [
   },
   {
     title: "Skills",
-    text: "Competenze specifiche aggiunte all'assistente — il tuo metodo, i tuoi documenti, il tuo modo di scrivere. Smette di rispondere in generale.",
+    text: "Competenze specifiche aggiunte all'assistente — il tuo metodo, i tuoi documenti, il tuo modo di scrivere.",
   },
   {
     title: "Plugin",
-    text: "Estensioni per gli strumenti che il team apre già ogni giorno, così l'AI sta dentro il lavoro invece che in una scheda del browser a parte.",
+    text: "Estensioni per gli strumenti che il team utilizza quotidianamente; l'AI è integrata attraverso istruzioni ripetibili e dal risultato consistente.",
   },
   {
     title: "Ricerca sui documenti",
-    text: "Risposte prese dai tuoi archivi invece che dalla memoria del modello, con il documento di origine sempre risalibile.",
+    text: "Risposte alle interrogazioni, ottenute dalla ricerca negli archivi e nei file messi a disposizione.",
   },
   {
     title: "Modello LLM privato",
-    text: "Il modello installato sui tuoi server. Domande, documenti e risposte non escono dal perimetro aziendale.",
+    text: "Il modello installato sui tuoi server. Domande, documenti e risposte restano nel dominio privato dell'azienda.",
   },
 ];
 
