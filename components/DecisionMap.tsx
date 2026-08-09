@@ -6,32 +6,32 @@ const ROWS: Row[] = [
   {
     when: "Ragionamento complesso, analisi, lavoro difficile",
     use: "Modello di frontiera, via API",
-    why: "Su questo i modelli grandi restano superiori. Non ti vendiamo un server per fare quello che fanno meglio loro.",
+    why: "Sui compiti di ragionamento i modelli di frontiera restano avanti: un modello interno costerebbe di più e renderebbe meno.",
   },
   {
     when: "Dati sensibili, o soggetti a vincoli",
     use: "Modello LLM privato, sui tuoi server",
-    why: "Le domande e i documenti non escono. È l'unico modo per esserne certi.",
+    why: "Richieste e documenti non lasciano la rete aziendale. È l'unica garanzia verificabile.",
   },
   {
     when: "Volumi alti su un compito ripetitivo e circoscritto",
     use: "Modello piccolo, installato",
-    why: "Su scala il costo di ogni singola operazione scende molto.",
+    why: "A volumi alti il costo per richiesta scende sotto quello delle API.",
   },
   {
     when: "Serve una risposta immediata, sempre disponibile",
     use: "Modello locale",
-    why: "Niente rete, niente code, nessun limite di chiamate.",
+    why: "Nessuna latenza di rete, nessuna coda, nessun limite di chiamate.",
   },
   {
     when: "Una prova rapida, su pochi volumi",
     use: "Modello di frontiera, via API",
-    why: "Nessuna installazione, si paga a consumo.",
+    why: "Nessuna infrastruttura da allestire, si paga a consumo.",
   },
   {
     when: "Il problema è la costanza dei risultati, non la riservatezza",
     use: "Skills e plugin",
-    why: "Non serve un modello privato: si standardizza il processo, e le risposte escono sempre nella stessa forma.",
+    why: "Non serve un modello dedicato: si fissano le istruzioni, e l'output esce sempre nello stesso formato.",
   },
   // Le ultime due righe dicono entrambe "ti serve meno di quanto pensi", in
   // ordine crescente: prima "non ti serve un server tuo", poi "non ti serve
@@ -40,7 +40,7 @@ const ROWS: Row[] = [
   {
     when: "Il processo non è chiaro, o i dati non ci sono",
     use: "Niente AI",
-    why: "Prima si sistema il processo. Te lo diciamo, e non partiamo.",
+    why: "Il primo intervento è sul processo, non sul modello. Lo diciamo, e non partiamo.",
   },
 ];
 
@@ -54,8 +54,8 @@ export function DecisionMap() {
             Quando conviene cosa.
           </h2>
           <p className="text-fg-2 text-[1.06rem] mt-5">
-            Non esiste un modello giusto per tutto. Questo è il criterio con cui scegliamo, per intero: lo pubblichiamo
-            perché è la parte del lavoro che vale di più.
+            Non esiste un modello adatto a tutto. Questo è il criterio con cui scegliamo, pubblicato per intero: la
+            selezione è la parte del lavoro che incide di più sul risultato.
           </p>
         </div>
 
@@ -73,9 +73,9 @@ export function DecisionMap() {
         </div>
 
         <p className="text-fg-2 text-[1.02rem] mt-10 max-w-[620px]">
-          Quasi ogni progetto reale è misto: modello di frontiera dove serve ragionamento, modello interno dove ci sono
-          i dati da proteggere. Progettare quel mix è la parte del lavoro che conta di più. L&apos;AI prende il lavoro
-          ripetitivo, le decisioni restano a chi le sa prendere.
+          Quasi ogni sistema reale è ibrido: modello di frontiera dove serve ragionamento, modello interno dove ci sono
+          dati da proteggere. Progettare quel bilanciamento è la parte che incide di più sul costo e sulla qualità. Gli
+          agenti eseguono, le decisioni restano alle persone.
         </p>
       </div>
     </section>

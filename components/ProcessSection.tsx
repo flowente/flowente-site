@@ -19,7 +19,7 @@ export function ProcessSection() {
             produzione.
           </h2>
           <p className="mt-5 max-w-[420px] text-fg-2 text-[1.06rem]">
-            Ogni progetto parte da un caso d&apos;uso e si chiude quando lo strumento è in uso quotidiano.
+            Analisi del processo, prototipo con criteri di successo definiti prima, messa in produzione.
           </p>
           <div className="mt-6">
             <Button variant="ghost" href="/servizi#la-scelta">

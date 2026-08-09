@@ -1,9 +1,9 @@
 type Step = { n: string; title: string; text: string };
 
 const STEPS: Step[] = [
-  { n: "1", title: "Analisi", text: "Si parte dal processo che richiede più lavoro manuale, non dalla tecnologia disponibile." },
+  { n: "1", title: "Analisi", text: "Si parte dal processo con più lavoro manuale e se ne misura il costo attuale in ore." },
   { n: "2", title: "Prototipo", text: "Una verifica circoscritta, con i criteri di successo definiti prima di iniziare." },
-  { n: "3", title: "Produzione", text: "Messa in esercizio sui sistemi in uso, con i controlli di accesso e sicurezza necessari." },
+  { n: "3", title: "Produzione", text: "Messa in esercizio sui sistemi in uso, con i controlli di accesso e i log necessari." },
 ];
 
 type Props = { eyebrow?: string; title?: string };

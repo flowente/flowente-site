@@ -19,8 +19,8 @@ export function Hero() {
             <span className="text-fg-muted font-normal">nel</span> flusso.
           </h1>
           <p className="mt-7 max-w-[440px] text-fg-2 text-[1.05rem]">
-            Scegliamo modello e infrastruttura adatti al caso d&apos;uso e li portiamo in produzione. Anche sui tuoi
-            server.
+            Progettiamo agenti e applicazioni su LLM e li mettiamo in produzione. Il modello si sceglie sul compito:
+            via API o installato sui tuoi server.
           </p>
           {/* Indica la pila di schede a destra. La freccia resta ferma al passaggio
               del mouse: il movimento della hero è già tutto nella pila. */}

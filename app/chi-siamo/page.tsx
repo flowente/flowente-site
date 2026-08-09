@@ -11,10 +11,13 @@ export const metadata: Metadata = {
 };
 
 const CREDO = [
-  { t: "Il lavoro deve scorrere.", d: "Nessuno dovrebbe perdere tempo, dati o serenità per usare l'AI." },
+  {
+    t: "Il lavoro deve scorrere.",
+    d: "Uno strumento che richiede più attenzione di quanta ne fa risparmiare non è finito.",
+  },
   {
     t: "Lo strumento adatto al compito.",
-    d: "A volte è un modello di frontiera, a volte uno piccolo installato in azienda. La bravura sta nello scegliere, non nel vendere sempre la stessa cosa.",
+    d: "A volte è un LLM di frontiera, a volte un modello piccolo installato in azienda. Il valore sta nella selezione, non nel vendere sempre la stessa architettura.",
   },
   {
     t: "Precedenza ai dati.",
@@ -22,7 +25,7 @@ const CREDO = [
   },
   {
     t: "Onestà tecnica.",
-    d: "Diciamo anche quando l'AI non è la risposta. È il modo più veloce per fidarsi.",
+    d: "Diciamo anche quando l'AI non è la risposta. È la verifica più rapida della competenza di un fornitore.",
   },
 ];
 
@@ -34,7 +37,7 @@ export default function ChiSiamo() {
         <PageHero
           eyebrow="Chi siamo"
           title="L'AI non è il punto di partenza."
-          text="Flowente è uno studio di AI applicata. Quasi tutti i progetti partono dalla tecnologia e finiscono in una dimostrazione; noi partiamo dal processo che costa più tempo e finiamo quando lo strumento è in uso tutti i giorni. In mezzo c'è la scelta di cosa serve davvero — ed è lì che sta il mestiere."
+          text="Flowente è uno studio di AI applicata. Quasi tutti i progetti partono dalla tecnologia e finiscono in una dimostrazione; noi partiamo dal processo che costa più ore e finiamo con il sistema in esercizio. In mezzo c'è la selezione del modello e dell'architettura — ed è lì che sta il mestiere."
         />
 
         {/* Perché esiste */}
@@ -89,9 +92,9 @@ export default function ChiSiamo() {
                 Come lavoriamo con te.
               </h2>
               <p className="text-fg-2 text-[1.02rem] mt-5 max-w-[440px]">
-                Un solo interlocutore dall&apos;analisi alla messa online: niente rimbalzi tra reparti. Partiamo dal
-                processo che si inceppa, proviamo una soluzione circoscritta e la portiamo dove serve, con i controlli
-                al posto giusto.
+                Un solo interlocutore dall&apos;analisi alla messa in produzione, senza passaggi di consegne tra
+                reparti. Si parte dal processo che si inceppa, si verifica su un perimetro ristretto e si estende solo
+                dopo che i criteri fissati all&apos;inizio sono stati raggiunti.
               </p>
             </div>
             <div>
@@ -99,9 +102,9 @@ export default function ChiSiamo() {
                 Su cosa lavoriamo.
               </h2>
               <p className="text-fg-2 text-[1.02rem] mt-5 max-w-[440px]">
-                Progettazione e sviluppo di applicazioni, integrazione con i sistemi e gli archivi già in uso,
-                automazione dei passaggi manuali, scelta e messa in produzione dei modelli — di frontiera via API o
-                installati nel perimetro aziendale, con la ricerca sui documenti del cliente.
+                Progettazione e sviluppo di applicazioni, agenti che eseguono procedure end-to-end, integrazione con i
+                sistemi e gli archivi già in uso, selezione e messa in produzione degli LLM — di frontiera via API o
+                installati nel perimetro aziendale — con la ricerca semantica sui documenti del cliente.
               </p>
             </div>
           </div>

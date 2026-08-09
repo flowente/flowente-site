@@ -20,7 +20,7 @@ export default function Home() {
         <ProcessSection />
         <FeatureSection
           title={<>L&apos;AI è già in azienda. Le regole no.</>}
-          text="Le persone hanno cominciato da sole: documenti incollati dentro un chatbot, e nessuno che abbia deciso cosa si può fare e cosa no. Il progetto serio invece non parte, perché in azienda manca chi sappia scegliere. È lo stesso problema visto da due lati — l'AI non è entrata nel lavoro, ci è passata accanto."
+          text="Le persone hanno cominciato da sole: documenti aziendali incollati dentro un chatbot pubblico, senza che nessuno abbia deciso cosa si può fare e cosa no. Il progetto strutturato invece non parte, perché manca chi sappia scegliere fra le opzioni. È lo stesso problema visto da due lati: manca il criterio, non lo strumento."
           ctaLabel="Quando conviene cosa"
           ctaHref="/servizi#la-scelta"
           mark={marks.onde}

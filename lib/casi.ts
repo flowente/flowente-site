@@ -26,7 +26,7 @@ export const CASI: Caso[] = [
   {
     label: "Centralino",
     title: "Centralino automatizzato con calendario clienti.",
-    text: "Le chiamate che arrivano fuori orario o mentre in reparto non può rispondere nessuno. L'agente capisce la richiesta, propone gli orari liberi e fissa l'appuntamento in agenda; se la richiesta esce dal seminato, passa la chiamata a una persona.",
+    text: "Le chiamate che arrivano fuori orario o mentre in reparto non può rispondere nessuno. L'agente riconosce la richiesta, propone gli orari liberi e scrive l'appuntamento in agenda; fuori dai casi previsti, passa la chiamata a una persona.",
     img: "/media/casi/02-documenti.svg",
   },
   {

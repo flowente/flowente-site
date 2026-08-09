@@ -12,10 +12,10 @@ export const metadata: Metadata = {
 };
 
 const LAYERS = [
-  { n: "Interfaccia", t: "L'applicazione con cui lavorano le persone. Progettata perché si usi senza istruzioni." },
+  { n: "Interfaccia", t: "L'applicazione con cui lavorano le persone, progettata per essere usata senza formazione." },
   { n: "Dati", t: "Il collegamento a quello che avete già: archivi, gestionale, posta, strumenti interni." },
-  { n: "Automazione", t: "I passaggi che prima erano manuali, eseguiti in ordine e con i controlli al posto giusto." },
-  { n: "Modello", t: "Chiamato via API. È la parte sostituibile: si cambia senza rifare il resto." },
+  { n: "Agenti", t: "I passaggi prima manuali, eseguiti in sequenza, con i controlli e i punti di approvazione." },
+  { n: "Modello", t: "L'LLM, chiamato via API. È la parte sostituibile: si cambia senza rifare il resto." },
 ];
 
 const NOT_FOR = [
@@ -45,7 +45,7 @@ export default function Metodo() {
         <PageHero
           eyebrow="Il metodo"
           title="Prima capire, poi costruire."
-          text="Nessun progetto parte dalla tecnologia. Parte dal processo che oggi costa più tempo, e si chiude quando lo strumento è in uso tutti i giorni."
+          text="Nessun progetto parte dalla tecnologia. Parte dal processo che oggi costa più ore, e si chiude con il sistema in esercizio sui vostri strumenti e misurato sui criteri fissati all'inizio."
           ctaLabel="Prenota una call"
         />
 
@@ -72,9 +72,9 @@ export default function Metodo() {
                 </div>
               ))}
               <p className="text-fg-2 text-[1rem] mt-8 max-w-[520px]">
-                Il modello è chiamato via API, non incastrato dentro l&apos;applicazione. Se domani conviene cambiarlo —
-                da un modello di frontiera a uno installato da voi, o il contrario — si cambia quello. Il resto resta in
-                piedi.
+                Il modello è chiamato via API, non cablato dentro l&apos;applicazione. Se domani conviene cambiarlo — da
+                un modello di frontiera a uno installato da voi, o il contrario — si sostituisce quel livello. Interfaccia,
+                dati e agenti restano invariati.
               </p>
             </div>
           </div>
@@ -89,7 +89,7 @@ export default function Metodo() {
                 Quando conviene dirsi di no.
               </h2>
               <p className="text-fg-2 text-[1.06rem] mt-5">
-                Scriverlo prima fa risparmiare tempo a tutti e due.
+                Dichiararlo prima evita a entrambi settimane di lavoro senza esito.
               </p>
             </div>
             <div className="grid gap-x-10 gap-y-9 md:grid-cols-2">

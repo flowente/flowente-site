@@ -32,14 +32,14 @@ export default function Servizi() {
         <FeatureSection
           eyebrow="Advisory"
           title="Prima la scelta, poi lo sviluppo."
-          text="Partiamo dal processo e dai suoi vincoli: quali dati tratta, quanto volume, quanto può aspettare chi lo usa, quanto può costare. Poi confrontiamo i modelli candidati sul compito reale — non su una classifica generale — e indichiamo quale usare, dove farlo girare e a quale costo. Se non conviene farlo, lo diciamo prima."
+          text="Partiamo dal processo e dai suoi vincoli: quali dati tratta, quale volume di richieste, quale latenza è accettabile, quale costo di esercizio è sostenibile. Poi confrontiamo i modelli candidati sul compito reale — non su una classifica generale — e indichiamo quale usare, dove eseguirlo e a quale costo. Se non conviene, lo diciamo prima."
           note="Cosa ricevi: la scelta motivata — quale modello, su quale infrastruttura, con quale architettura — e cosa serve per partire."
           mark={marks.onda}
           shape="circle"
           code={
             <CodeBlock
               label="La scelta, in pratica"
-              caption="Quasi nessun progetto usa un modello solo. La parte del lavoro che conta di più è questa: decidere cosa mandare dove, e sapere perché."
+              caption="Quasi nessun sistema usa un modello solo. La parte che incide di più è questa: instradare ogni compito verso il modello adatto, con un criterio documentato."
             >
 {``}<C># Un modello per tipo di lavoro, non uno per tutto</C>{`
 `}<K>if</K>{` dati_sensibili(compito):
@@ -55,8 +55,8 @@ export default function Servizi() {
           reverse
           eyebrow="Sviluppo software"
           title="Costruiamo, colleghiamo, mettiamo online."
-          text="Progettiamo e sviluppiamo l'applicazione, la colleghiamo ai dati e ai programmi già in uso — gestionale, archivi, posta, strumenti interni — e la portiamo in produzione. Ci occupiamo anche delle parti che di solito fanno fallire i progetti: cosa succede quando il modello sbaglia, chi può vedere cosa, quanto costa tenerlo acceso."
-          note="Cosa ricevi: un'applicazione che funziona, collegata ai tuoi dati, con il modello sostituibile senza rifare il lavoro."
+          text="Progettiamo e sviluppiamo l'applicazione e gli agenti che la muovono, li colleghiamo ai dati e ai programmi già in uso — gestionale, archivi, posta, strumenti interni — e li portiamo in produzione. Ci occupiamo anche delle parti che di solito fanno fallire i progetti: cosa succede quando il modello sbaglia, chi può vedere cosa, quanto costa l'esercizio."
+          note="Cosa ricevi: l'applicazione in produzione, collegata ai tuoi dati, con il modello sostituibile senza rifare il resto."
           mark={marks.flusso}
           shape="square"
           code={
