@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "./Button";
 import { traccia } from "@/lib/traccia";
 import { statistichePermesse } from "@/lib/consenso";
@@ -15,19 +15,31 @@ const inputCls =
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const iniziato = useRef(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   // Serve a sapere quanti aprono il form e non lo finiscono: senza questo evento
   // il funnel salta dalla visita all'invio e la parte che si perde resta invisibile.
+  //
+  // Listener nativo e non onInput sul <form>: misurato in produzione, con la prop
+  // di React l'evento non partiva. React tratta input e change dei campi di modulo
+  // con un percorso dedicato, e sull'elemento contenitore non risultava affidabile.
+  // addEventListener intercetta la propagazione e basta.
   //
   // Il consenso si controlla PRIMA di segnare che è partito. Il banner sta in
   // fondo alla pagina: capita spesso che si cominci a scrivere e si accetti dopo,
   // e marcando il flag al primo tocco l'evento andrebbe perso per sempre. Così
   // invece riparte al tocco successivo, quando il consenso c'è.
-  function onFirstInput() {
-    if (iniziato.current || !statistichePermesse()) return;
-    iniziato.current = true;
-    traccia("form_started", { form: "contatti" });
-  }
+  useEffect(() => {
+    const el = formRef.current;
+    if (!el) return;
+    const alPrimoTocco = () => {
+      if (iniziato.current || !statistichePermesse()) return;
+      iniziato.current = true;
+      traccia("form_started", { form: "contatti" });
+    };
+    el.addEventListener("input", alPrimoTocco);
+    return () => el.removeEventListener("input", alPrimoTocco);
+  }, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -66,7 +78,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} onInput={onFirstInput} className="space-y-4" noValidate>
+    <form ref={formRef} onSubmit={onSubmit} className="space-y-4" noValidate>
       {/* honeypot anti-spam (nascosto) */}
       <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
