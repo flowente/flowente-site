@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Button } from "./Button";
+import { traccia } from "@/lib/traccia";
+import { statistichePermesse } from "@/lib/consenso";
 
 type Status = "idle" | "sending" | "ok" | "error";
 
@@ -12,6 +14,20 @@ const inputCls =
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
+  const iniziato = useRef(false);
+
+  // Serve a sapere quanti aprono il form e non lo finiscono: senza questo evento
+  // il funnel salta dalla visita all'invio e la parte che si perde resta invisibile.
+  //
+  // Il consenso si controlla PRIMA di segnare che è partito. Il banner sta in
+  // fondo alla pagina: capita spesso che si cominci a scrivere e si accetti dopo,
+  // e marcando il flag al primo tocco l'evento andrebbe perso per sempre. Così
+  // invece riparte al tocco successivo, quando il consenso c'è.
+  function onFirstInput() {
+    if (iniziato.current || !statistichePermesse()) return;
+    iniziato.current = true;
+    traccia("form_started", { form: "contatti" });
+  }
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -30,9 +46,13 @@ export function ContactForm() {
       });
       if (!res.ok) throw new Error("bad");
       setStatus("ok");
+      // Solo il fatto che un contatto sia arrivato, e se ha indicato un'azienda.
+      // Nessun nome, nessuna email, nessun testo: quelli vanno all'API e basta.
+      traccia("lead_submitted", { form: "contatti", con_azienda: Boolean(data.company) });
       form.reset();
     } catch {
       setStatus("error");
+      traccia("form_failed", { form: "contatti" });
     }
   }
 
@@ -46,7 +66,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4" noValidate>
+    <form onSubmit={onSubmit} onInput={onFirstInput} className="space-y-4" noValidate>
       {/* honeypot anti-spam (nascosto) */}
       <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
