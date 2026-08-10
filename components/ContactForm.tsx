@@ -31,6 +31,7 @@ export function ContactForm() {
       if (!res.ok) throw new Error("bad");
       setStatus("ok");
       form.reset();
+      void import("posthog-js").then(({ default: posthog }) => posthog.capture("contact_form_submitted"));
     } catch {
       setStatus("error");
     }
