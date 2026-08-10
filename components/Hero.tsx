@@ -22,8 +22,8 @@ export function Hero() {
             <span className="text-fg-muted font-normal">nel</span> flusso.
           </h1>
           <p className="mt-7 max-w-[440px] text-fg-2 text-[1.05rem]">
-            Progettiamo agenti e applicazioni su LLM e li mettiamo in produzione. Il modello si sceglie sul compito:
-            via API o installato sui tuoi server.
+            Costruiamo agenti e applicazioni AI su misura per il tuo business. L&apos;intelligenza artificiale può
+            sembrare complessa e rischiosa: noi abbattiamo questa barriera rendendola concreta e controllata.
           </p>
           {/* Indica la pila di schede a destra. La freccia resta ferma al passaggio
               del mouse: il movimento della hero è già tutto nella pila. */}
