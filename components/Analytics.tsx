@@ -69,11 +69,16 @@ export function Analytics() {
         // i web vitals — misurato sul sito in linea. La registrazione delle
         // sessioni cattura DOM e interazioni, cioè molto più di "quali pagine
         // vengono aperte", che è quanto dichiarano la privacy e la cookie policy.
-        // Questi flag sono la garanzia lato codice; vanno spenti anche nelle
-        // impostazioni del progetto, altrimenti tornano al primo che le riaccende.
+        // I primi tre reggono: verificato sul sito in linea, dopo il consenso non
+        // vengono più scaricati né il recorder né i sondaggi né i web vitals.
         disable_session_recording: true,
         disable_surveys: true,
         capture_performance: false,
+        // Questo invece NON basta: misurato, dead-clicks-autocapture.js si carica
+        // lo stesso. Nella catena di controllo della libreria il valore booleano
+        // non chiude la strada alla configurazione remota, che vince. Si spegne
+        // solo dalle impostazioni del progetto PostHog. Il flag resta perché
+        // esprime l'intento e potrà valere in una versione futura, ma non contarci.
         capture_dead_clicks: false,
       });
       attivo.current = true;
