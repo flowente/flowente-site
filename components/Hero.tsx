@@ -7,7 +7,12 @@ export function Hero() {
     <section className="border-b border-border">
       <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24 grid gap-10 items-center md:grid-cols-[1.05fr_0.95fr]">
         <div>
-          <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted mb-6">Studio di AI applicata</p>
+          <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted mb-6">
+            Full stack AI studio ·{" "}
+            <a href="/conformita" className="underline underline-offset-4 decoration-border hover:text-fg transition-colors">
+              AI Act &amp; GDPR compliant
+            </a>
+          </p>
           <h1
             className="font-display font-semibold tracking-[-0.045em]"
             style={{ fontSize: "clamp(3.4rem, 8.5vw, 6.4rem)", lineHeight: 0.9 }}
