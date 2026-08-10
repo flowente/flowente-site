@@ -32,7 +32,7 @@ export default function Servizi() {
         <FeatureSection
           eyebrow="Advisory"
           title="Prima la scelta, poi lo sviluppo."
-          text="Partiamo dal processo e dai suoi vincoli: quali dati tratta, quale volume di richieste, quale latenza è accettabile, quale costo di esercizio è sostenibile. Poi confrontiamo i modelli candidati sul compito reale — non su una classifica generale — e indichiamo quale usare, dove eseguirlo e a quale costo. Se non conviene, lo diciamo prima."
+          text="Partiamo dal processo e dai suoi vincoli: quali dati tratta, quale volume di richieste, quale latenza è accettabile, quale costo di esercizio è sostenibile."
           note="Cosa ricevi: la scelta motivata — quale modello, su quale infrastruttura, con quale architettura — e cosa serve per partire."
           mark={marks.onda}
           shape="circle"
@@ -54,7 +54,7 @@ export default function Servizi() {
         <FeatureSection
           reverse
           eyebrow="Sviluppo software"
-          title="Costruiamo, colleghiamo, mettiamo online."
+          title="Collegamento a dati e sistemi proprietari."
           text="Progettiamo e sviluppiamo l'applicazione e gli agenti che la muovono, li colleghiamo ai dati e ai programmi già in uso — gestionale, archivi, posta, strumenti interni — e li portiamo in produzione. Ci occupiamo anche delle parti che di solito fanno fallire i progetti: cosa succede quando il modello sbaglia, chi può vedere cosa, quanto costa l'esercizio."
           note="Cosa ricevi: l'applicazione in produzione, collegata ai tuoi dati, con il modello sostituibile senza rifare il resto."
           mark={marks.flusso}
@@ -75,8 +75,8 @@ export default function Servizi() {
         />
         <FeatureSection
           eyebrow="AI privata"
-          title="Il modello gira dove stanno i dati."
-          text="Quando i dati non possono uscire — GDPR, Schrems II sui trasferimenti fuori dall'Unione, EU AI Act, o un contratto che hai firmato — installiamo il modello sui server dell'azienda o su un cloud privato in Europa. Le domande, i documenti e le risposte restano lì: nessun servizio esterno li riceve e nessuno li usa per addestrare altro."
+          title="Modelli addestrati su misura."
+          text="Quando si trattano dati interni, il modello viene installato sui server aziendali. Il servizio e i risultati restano sulla rete interna: il dato non esce, ed è la risposta più diretta ai vincoli che lo impongono — GDPR, Schrems II sui trasferimenti fuori dall'Unione, EU AI Act. Nessun servizio esterno riceve le richieste, nessuno le usa per addestrare altro."
           note="Cosa ricevi: il modello installato sulla tua infrastruttura, con i controlli di accesso e la ricerca sui tuoi documenti."
           mark={marks.coil}
           shape="triangle"
