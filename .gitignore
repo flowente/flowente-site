@@ -8,3 +8,9 @@ npm-debug.log*
 .env*
 next-env.d.ts
 tsconfig.tsbuildinfo
+# File di chiavi tenuti nella cartella del progetto. I segreti stanno nelle
+# Variables di Railway: qui servono solo come promemoria e non vanno versionati.
+*KEY*.txt
+*key*.txt
+*.pem
+*secret*

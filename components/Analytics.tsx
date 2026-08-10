@@ -63,6 +63,18 @@ export function Analytics() {
         // raccogliere meno del necessario è un obbligo prima che una scelta.
         autocapture: false,
         person_profiles: "identified_only",
+        // Spegnere autocapture non basta: PostHog scarica la sua configurazione
+        // dal progetto e attiva quello che è acceso lì. In produzione stava
+        // caricando la registrazione delle sessioni, i sondaggi, i dead click e
+        // i web vitals — misurato sul sito in linea. La registrazione delle
+        // sessioni cattura DOM e interazioni, cioè molto più di "quali pagine
+        // vengono aperte", che è quanto dichiarano la privacy e la cookie policy.
+        // Questi flag sono la garanzia lato codice; vanno spenti anche nelle
+        // impostazioni del progetto, altrimenti tornano al primo che le riaccende.
+        disable_session_recording: true,
+        disable_surveys: true,
+        capture_performance: false,
+        capture_dead_clicks: false,
       });
       attivo.current = true;
       posthog.capture("$pageview");
