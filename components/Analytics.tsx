@@ -74,6 +74,12 @@ export function Analytics() {
         disable_session_recording: true,
         disable_surveys: true,
         capture_performance: false,
+        // rageclick e heatmap registrano i clic: il primo per frequenza, la
+        // seconda per posizione sulla pagina. Entrambi sono letti dalla libreria
+        // come semplice booleano di configurazione, quindi qui si spengono davvero
+        // — a differenza di capture_dead_clicks qui sotto.
+        rageclick: false,
+        capture_heatmaps: false,
         // Questo invece NON basta: misurato, dead-clicks-autocapture.js si carica
         // lo stesso. Nella catena di controllo della libreria il valore booleano
         // non chiude la strada alla configurazione remota, che vince. Si spegne
