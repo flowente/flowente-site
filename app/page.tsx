@@ -19,8 +19,8 @@ export default function Home() {
         <BuiltWith />
         <ProcessSection />
         <FeatureSection
-          title={<>L&apos;AI è già in azienda. Le regole no.</>}
-          text="Le persone hanno cominciato da sole: documenti aziendali incollati dentro un chatbot pubblico, senza che nessuno abbia deciso cosa si può fare e cosa no. Il progetto strutturato invece non parte, perché manca chi sappia scegliere fra le opzioni. È lo stesso problema visto da due lati: manca il criterio, non lo strumento."
+          title={<>Il freno non è la tecnologia.</>}
+          text="Dove l'AI non entra, raramente il motivo è il costo o la maturità degli strumenti: è non sapere da dove si comincia, cosa si può affidare a un modello e cosa va lasciato alle persone. È una barriera di competenza, e si abbatte spiegando."
           ctaLabel="Quando conviene cosa"
           ctaHref="/servizi#la-scelta"
           mark={marks.onde}
