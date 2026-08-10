@@ -21,7 +21,7 @@ export default function Home() {
         <FeatureSection
           title={<>Il freno è la competenza.</>}
           text="Dove l'AI non entra, raramente il motivo è il costo o la maturità degli strumenti: è non sapere da dove si comincia, cosa si può affidare a un modello e cosa va lasciato alle persone. È una barriera che si abbatte spiegando."
-          ctaLabel="Quando conviene cosa"
+          ctaLabel="Il criterio di scelta"
           ctaHref="/servizi#la-scelta"
           mark={marks.onde}
           shape="square"

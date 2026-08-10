@@ -51,7 +51,7 @@ export function DecisionMap() {
         <div className="max-w-[620px] mb-12">
           <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted">La scelta</p>
           <h2 className="mt-4 font-display font-semibold tracking-[-0.03em] text-[clamp(2rem,4vw,3rem)] leading-[1.02]">
-            Quando conviene cosa.
+            Quale soluzione, per quale vincolo.
           </h2>
           <p className="text-fg-2 text-[1.06rem] mt-5">
             Non esiste un modello adatto a tutto. Questo è il criterio con cui scegliamo, pubblicato per intero: la
