@@ -22,8 +22,8 @@ Il progetto è pronto: `npm run build` è verde, lo `start` si aggancia alla `$P
    | Variabile | Valore |
    |---|---|
    | `RESEND_API_KEY` | la chiave API di Resend |
-   | `CONTACT_TO` | `ciao@flowente.com` (dove ricevi i messaggi) |
-   | `CONTACT_FROM` | mittente verificato su Resend, es. `Flowente <ciao@flowente.com>` |
+   | `CONTACT_TO` | `hello@flowente.com` (dove ricevi i messaggi) |
+   | `CONTACT_FROM` | mittente verificato su Resend, es. `Flowente <hello@flowente.com>` |
    > Senza queste, il form risponde comunque ma **non invia** (logga soltanto). Con Formspree, cambia `app/api/contact/route.ts` di conseguenza.
 
 4. **Dominio** (Railway → *Settings → Networking → Custom Domain*):

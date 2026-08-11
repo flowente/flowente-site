@@ -130,8 +130,8 @@ export function ContactForm() {
       {status === "error" && (
         <p className="text-[0.88rem] text-fg-2">
           Serve il consenso, oppure qualcosa non ha funzionato. Riprova, oppure scrivici a{" "}
-          <a href="mailto:ciao@flowente.com" className="underline hover:text-fg">
-            ciao@flowente.com
+          <a href="mailto:hello@flowente.com" className="underline hover:text-fg">
+            hello@flowente.com
           </a>
           .
         </p>
@@ -142,8 +142,8 @@ export function ContactForm() {
           {status === "sending" ? "Invio…" : "Invia"}
         </Button>
         <p className="text-fg-muted text-[0.82rem] mt-4 max-w-[440px]">
-          Rispondiamo entro un giorno lavorativo. I dati inseriti sono usati esclusivamente per rispondere alla
-          richiesta: nessuna newsletter, nessuna cessione a terzi.
+          Ti risponderemo entro un giorno lavorativo. Useremo i dati inviati solo per ricontattarti in merito alla tua
+          richiesta.
         </p>
       </div>
     </form>

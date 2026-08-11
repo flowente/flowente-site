@@ -5,8 +5,8 @@ export const runtime = "nodejs";
 // Invio del form contatti — provider-agnostico.
 // Configura queste env per l'invio reale (es. su Railway):
 //   RESEND_API_KEY   = chiave API Resend
-//   CONTACT_TO       = email che riceve i messaggi (es. ciao@flowente.com)
-//   CONTACT_FROM     = mittente verificato su Resend (es. "Flowente <ciao@flowente.com>")
+//   CONTACT_TO       = email che riceve i messaggi (es. hello@flowente.com)
+//   CONTACT_FROM     = mittente verificato su Resend (es. "Flowente <hello@flowente.com>")
 // Senza queste env il messaggio viene solo loggato lato server (utile in sviluppo).
 
 type Payload = {

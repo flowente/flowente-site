@@ -16,7 +16,7 @@ export default function Privacy() {
       <h2>Titolare del trattamento</h2>
       <p>
         Il titolare del trattamento è Flowente, contattabile all&apos;indirizzo{" "}
-        <a href="mailto:ciao@flowente.com">ciao@flowente.com</a>.
+        <a href="mailto:hello@flowente.com">hello@flowente.com</a>.
       </p>
       <p className="muted">
         Da completare con ragione sociale, sede e P.IVA appena disponibili: l&apos;identificazione del titolare è un
@@ -88,7 +88,7 @@ export default function Privacy() {
       <h2>I tuoi diritti</h2>
       <p>
         Puoi chiedere accesso, rettifica, cancellazione, limitazione o portabilità dei tuoi dati, e opporti al
-        trattamento basato sul legittimo interesse, scrivendo a <a href="mailto:ciao@flowente.com">ciao@flowente.com</a>.
+        trattamento basato sul legittimo interesse, scrivendo a <a href="mailto:hello@flowente.com">hello@flowente.com</a>.
         Hai diritto di proporre reclamo al Garante per la protezione dei dati personali (www.garanteprivacy.it).
       </p>
 
