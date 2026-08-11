@@ -7,27 +7,8 @@ import { CtaBand } from "@/components/CtaBand";
 export const metadata: Metadata = {
   title: "Chi siamo — Flowente",
   description:
-    "Studio di AI applicata. Quasi tutti i progetti di AI partono dalla tecnologia e finiscono in una dimostrazione: noi partiamo dal processo e finiamo quando lo strumento è in uso.",
+    "Portiamo l'AI dentro il lavoro quotidiano delle aziende. Non partiamo dalla tecnologia da mostrare, ma dai processi che fanno perdere tempo.",
 };
-
-const CREDO = [
-  {
-    t: "Il lavoro deve scorrere.",
-    d: "Uno strumento che richiede più attenzione di quanta ne fa risparmiare non è finito.",
-  },
-  {
-    t: "Lo strumento adatto al compito.",
-    d: "A volte è un LLM di frontiera, a volte un modello piccolo installato in azienda. Il valore sta nella selezione, non nel vendere sempre la stessa architettura.",
-  },
-  {
-    t: "Precedenza ai dati.",
-    d: "Se possono restare nel perimetro del cliente, ci restano. La sicurezza è un requisito di progetto, non una verifica finale.",
-  },
-  {
-    t: "Onestà tecnica.",
-    d: "Diciamo anche quando l'AI non è la risposta. È la verifica più rapida della competenza di un fornitore.",
-  },
-];
 
 export default function ChiSiamo() {
   return (
@@ -36,9 +17,27 @@ export default function ChiSiamo() {
       <main>
         <PageHero
           eyebrow="Chi siamo"
-          title="L'AI non è il punto di partenza."
-          text="Flowente è uno studio di AI applicata. Quasi tutti i progetti partono dalla tecnologia e finiscono in una dimostrazione; noi partiamo dal processo che costa più ore e finiamo con il sistema in esercizio. In mezzo c'è la selezione del modello e dell'architettura — ed è lì che sta il mestiere."
+          title="AI applicata ai processi reali."
+          text="Flowente nasce per portare l'intelligenza artificiale dentro il lavoro quotidiano delle aziende, in modo semplice e concreto. Non partiamo dalla tecnologia da mostrare, ma dai processi che fanno perdere tempo, creano complessità o frenano la crescita."
         />
+
+        {/* In cosa crediamo */}
+        <section className="border-b border-border">
+          <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24 grid md:grid-cols-[0.9fr_1.1fr] gap-10">
+            <div>
+              <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted">Manifesto</p>
+              <h2 className="mt-4 font-display font-semibold tracking-[-0.03em] text-[clamp(1.8rem,3.4vw,2.6rem)] leading-[1.04]">
+                In cosa crediamo.
+              </h2>
+            </div>
+            <p className="max-w-[560px] text-fg-2 text-[1.06rem]">
+              Crediamo che l&apos;intelligenza artificiale debba essere uno strumento pratico, non una promessa astratta
+              o una tecnologia per pochi. Per questo partiamo sempre da come un&apos;azienda lavora oggi: strumenti,
+              file, abitudini, vincoli e obiettivi. Innovare per noi non significa complicare, ma semplificare ciò che
+              ogni giorno richiede tempo, attenzione e coordinamento.
+            </p>
+          </div>
+        </section>
 
         {/* Perché esiste */}
         <section className="border-b border-border">
@@ -61,28 +60,8 @@ export default function ChiSiamo() {
           </div>
         </section>
 
-        {/* In cosa crediamo */}
-        <section className="border-b border-border">
-          <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24">
-            <div className="max-w-[560px] mb-12">
-              <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted">Manifesto</p>
-              <h2 className="mt-4 font-display font-semibold tracking-[-0.03em] text-[clamp(2rem,4vw,3rem)] leading-[1.02]">
-                In cosa crediamo.
-              </h2>
-            </div>
-            <div className="grid gap-x-10 gap-y-10 md:grid-cols-2">
-              {CREDO.map((c, i) => (
-                <div key={i} className="flex gap-5">
-                  <div className="font-mono text-accent text-[0.9rem] pt-1">{String(i + 1).padStart(2, "0")}</div>
-                  <div>
-                    <h3 className="font-display font-semibold text-[1.25rem] tracking-[-0.02em]">{c.t}</h3>
-                    <p className="text-fg-2 text-[0.98rem] mt-2 max-w-[420px]">{c.d}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* La griglia numerata "In cosa crediamo" stava qui ed è stata tolta: il
+            concetto è già espresso per intero nella sezione dedicata più in alto. */}
 
         {/* Come lavoriamo + competenze */}
         <section className="border-b border-border">
@@ -111,8 +90,8 @@ export default function ChiSiamo() {
         </section>
 
         <CtaBand
-          title="Valutiamo il tuo caso."
-          text="Un primo confronto di trenta minuti per definire ambito, vincoli e fattibilità."
+          title="Hai un processo da semplificare?"
+          text="Partiamo da un confronto semplice. Ci racconti come lavori oggi, analizziamo insieme vincoli e possibilità, e vediamo se l'AI può davvero darti una mano."
           ctaLabel="Parliamone"
         />
       </main>
