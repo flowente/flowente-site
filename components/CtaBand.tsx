@@ -11,7 +11,7 @@ type Props = {
 
 // CTA band: banda scura (ink-950, testo paper), l'unico "blocco pieno" della pagina.
 // I MarkBadge sbordano dagli angoli, marks in paper (vedi .cta-dark in globals.css).
-export function CtaBand({ title, text, ctaLabel = "Prenota una call", ctaHref = "/contatti" }: Props) {
+export function CtaBand({ title, text, ctaLabel = "Parliamone", ctaHref = "/contatti" }: Props) {
   return (
     <section className="border-b border-border">
       <div className="mx-auto max-w-content px-6 md:px-10 py-16 md:py-24">

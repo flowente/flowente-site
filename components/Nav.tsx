@@ -45,7 +45,7 @@ export function Nav() {
           {/* Sotto i 360px (iPhone SE e simili) marchio + bottone + menu non ci stanno:
               il bottone esce dalla barra. Lì vive dentro il menu, dove non si perde. */}
           <span className="hidden min-[360px]:block">
-            <Button variant="primary" href="/contatti">Prenota una call</Button>
+            <Button variant="primary" href="/contatti">Parliamone</Button>
           </span>
           {/* Su telefono i link della nav non ci stanno: senza questo il sito non è navigabile. */}
           <button
@@ -82,7 +82,7 @@ export function Nav() {
             ))}
             <li className="py-4">
               <Button variant="primary" href="/contatti" className="w-full justify-center">
-                Prenota una call
+                Parliamone
               </Button>
             </li>
           </ul>

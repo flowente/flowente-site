@@ -58,8 +58,10 @@ body {
   padding: 12px 22px; border-radius: 8px; border: 1px solid transparent;
   cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
   transition: transform .18s ease; text-decoration: none;
-  /* Senza questo "Prenota una call" andava a capo su due righe nella barra
-     in alto a 375px, arrivando a toccare il marchio. */
+  /* Senza questo l'etichetta della barra in alto andava a capo su due righe a
+     375px, arrivando a toccare il marchio. Valeva con "Prenota una call"; con
+     "Parliamone" c'è più margine, ma la regola resta a protezione della prossima
+     etichetta più lunga. */
   white-space: nowrap;
 }
 @media (max-width: 420px) {
