@@ -2,9 +2,11 @@
 // sono liberi, i marchi restano dei rispettivi titolari e qui identificano i
 // profili dello studio.
 //
-// href a null = profilo non ancora comunicato: la voce NON viene disegnata.
-// Un'icona che porta a "#" è un link morto, e su un sito in linea è peggio di
-// un'icona che manca. Appena arriva l'indirizzo, basta scriverlo qui.
+// href a null = profilo non ancora comunicato. Il segno si disegna lo stesso, ma
+// come elemento inerte: niente <a>, niente href="#". Un link che non porta da
+// nessuna parte è peggio di un'icona che non si clicca, perché promette una
+// destinazione e non la mantiene. Appena arriva l'indirizzo, basta scriverlo qui
+// e l'icona diventa cliccabile da sola.
 type Profilo = { nome: string; href: string | null; d: string };
 
 export const PROFILI: Profilo[] = [
@@ -25,29 +27,39 @@ export const PROFILI: Profilo[] = [
   },
 ];
 
-export function Social({ className = "" }: { className?: string }) {
-  const attivi = PROFILI.filter((p) => p.href);
-  if (attivi.length === 0) return null;
+// 40px di area toccabile: l'icona ne occupa 18, il resto è margine per il dito.
+// Sotto i 24px un bersaglio è fuori norma.
+const AREA = "flex h-10 w-10 -m-2 items-center justify-center text-fg-2";
 
+export function Social({ className = "" }: { className?: string }) {
   return (
-    <ul className={`flex items-center gap-4 ${className}`}>
-      {attivi.map((p) => (
-        <li key={p.nome}>
-          <a
-            href={p.href as string}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Flowente su ${p.nome}`}
-            // 40px di area toccabile: l'icona ne occupa 18, il resto è margine
-            // per il dito. Sotto i 24px un bersaglio è fuori norma.
-            className="flex h-10 w-10 -m-2 items-center justify-center text-fg-2 hover:text-fg transition-colors"
-          >
-            <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="currentColor" aria-hidden="true">
-              <path d={p.d} />
-            </svg>
-          </a>
-        </li>
-      ))}
+    <ul className={`flex items-center gap-3 ${className}`}>
+      {PROFILI.map((p) => {
+        const segno = (
+          <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="currentColor" aria-hidden="true">
+            <path d={p.d} />
+          </svg>
+        );
+        return (
+          <li key={p.nome}>
+            {p.href ? (
+              <a
+                href={p.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Flowente su ${p.nome}`}
+                className={`${AREA} hover:text-fg transition-colors`}
+              >
+                {segno}
+              </a>
+            ) : (
+              <span className={AREA} aria-label={p.nome} role="img">
+                {segno}
+              </span>
+            )}
+          </li>
+        );
+      })}
     </ul>
   );
 }

@@ -9,9 +9,9 @@ const COLS = [
     h: "Cosa facciamo",
     links: [
       { label: "Automazioni AI", href: "/servizi" },
-      { label: "Assistenti su misura", href: "/servizi" },
+      { label: "Assistenti AI", href: "/servizi" },
       { label: "AI privata", href: "/servizi" },
-      { label: "Integrazione nei processi", href: "/servizi" },
+      { label: "Integrazione", href: "/servizi" },
     ],
   },
   {
