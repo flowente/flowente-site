@@ -13,8 +13,8 @@ const COLS = [
   {
     h: "Naviga",
     links: [
-      { label: "Servizi", href: "/servizi" },
-      { label: "Metodo", href: "/metodo" },
+      { label: "Soluzioni", href: "/servizi" },
+      { label: "Come lavoriamo", href: "/metodo" },
       { label: "Casi d'uso", href: "/servizi#casi-duso" },
       { label: "Chi siamo", href: "/chi-siamo" },
       { label: "Contatti", href: "/contatti" },

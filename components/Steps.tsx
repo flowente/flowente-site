@@ -1,9 +1,21 @@
 type Step = { n: string; title: string; text: string };
 
 const STEPS: Step[] = [
-  { n: "1", title: "Analisi", text: "Si parte dal processo con più lavoro manuale e se ne misura il costo attuale in ore." },
-  { n: "2", title: "Prototipo", text: "Una verifica circoscritta, con i criteri di successo definiti prima di iniziare." },
-  { n: "3", title: "Produzione", text: "Messa in esercizio sui sistemi in uso, con i controlli di accesso e i log necessari." },
+  {
+    n: "1",
+    title: "Capire il tuo contesto",
+    text: "Osserviamo strumenti, file e attività quotidiane per capire dove si perde tempo e dove l'AI può aiutare davvero.",
+  },
+  {
+    n: "2",
+    title: "Prototipo rapido e concreto",
+    text: "Trasformiamo le esigenze in una prima soluzione funzionante. L'obiettivo è vedere qualcosa che funziona in poco tempo.",
+  },
+  {
+    n: "3",
+    title: "Portarlo nel quotidiano",
+    text: "Testiamo, miglioriamo e integriamo la soluzione nel flusso di lavoro reale, con piccoli aggiustamenti finché non diventa semplice e utile.",
+  },
 ];
 
 type Props = { eyebrow?: string; title?: string };

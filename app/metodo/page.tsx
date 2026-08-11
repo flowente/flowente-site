@@ -6,17 +6,10 @@ import { Steps } from "@/components/Steps";
 import { CtaBand } from "@/components/CtaBand";
 
 export const metadata: Metadata = {
-  title: "Metodo — Flowente",
+  title: "Come lavoriamo — Flowente",
   description:
-    "Come lavoriamo: analisi del processo, prototipo con criteri di successo definiti, messa in produzione. E com'è fatto quello che consegniamo.",
+    "Partiamo da come lavori oggi, individuiamo dove l'AI genera valore e costruiamo soluzioni semplici, testabili e integrate nei tuoi processi.",
 };
-
-const LAYERS = [
-  { n: "Interfaccia", t: "L'applicazione con cui lavorano le persone, progettata per essere usata senza formazione." },
-  { n: "Dati", t: "Il collegamento a quello che avete già: archivi, gestionale, posta, strumenti interni." },
-  { n: "Agenti", t: "I passaggi prima manuali, eseguiti in sequenza, con i controlli e i punti di approvazione." },
-  { n: "Modello", t: "L'LLM, chiamato via API. È la parte sostituibile: si cambia senza rifare il resto." },
-];
 
 const NOT_FOR = [
   {
@@ -37,48 +30,25 @@ const NOT_FOR = [
   },
 ];
 
-export default function Metodo() {
+export default function ComeLavoriamo() {
   return (
     <>
       <Nav />
       <main>
         <PageHero
-          eyebrow="Il metodo"
-          title="Prima capire, poi costruire."
-          text="Nessun progetto parte dalla tecnologia. Parte dal processo che oggi costa più ore, e si chiude con il sistema in esercizio sui vostri strumenti e misurato sui criteri fissati all'inizio."
-          ctaLabel="Prenota una call"
+          eyebrow="Come lavoriamo"
+          title="Dall'analisi alla soluzione pronta all'uso."
+          text="Partiamo da come lavori oggi, individuiamo dove l'AI può davvero generare valore e costruiamo insieme soluzioni semplici, testabili e integrate nei tuoi processi."
+          ctaLabel="Parliamone"
         />
 
         <Steps eyebrow="Le fasi" title="Tre fasi, in quest'ordine." />
 
-        {/* Come è fatto quello che consegniamo */}
-        <section className="border-b border-border">
-          <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24 grid md:grid-cols-[0.9fr_1.1fr] gap-10 md:gap-14">
-            <div>
-              <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted">Cosa consegniamo</p>
-              <h2 className="mt-4 font-display font-semibold tracking-[-0.03em] text-[clamp(1.8rem,3.4vw,2.6rem)] leading-[1.04]">
-                Com&apos;è fatto quello che resta a te.
-              </h2>
-              <p className="text-fg-2 text-[1.02rem] mt-5 max-w-[420px]">
-                Quasi sempre la stessa struttura, adattata al caso. La parte che cambia più spesso è l&apos;ultima — ed
-                è fatta apposta per poter cambiare.
-              </p>
-            </div>
-            <div className="border-t border-border">
-              {LAYERS.map((l) => (
-                <div key={l.n} className="grid gap-1 md:grid-cols-[150px_1fr] md:gap-8 py-5 border-b border-border">
-                  <p className="font-mono text-[0.78rem] uppercase tracking-wide text-accent md:pt-1">{l.n}</p>
-                  <p className="text-fg-2 text-[0.98rem]">{l.t}</p>
-                </div>
-              ))}
-              <p className="text-fg-2 text-[1rem] mt-8 max-w-[520px]">
-                Il modello è chiamato via API, non cablato dentro l&apos;applicazione. Se domani conviene cambiarlo — da
-                un modello di frontiera a uno installato da voi, o il contrario — si sostituisce quel livello. Interfaccia,
-                dati e agenti restano invariati.
-              </p>
-            </div>
-          </div>
-        </section>
+        {/* La sezione sui quattro livelli di quello che consegniamo è stata tolta:
+            descriveva un'architettura precisa — interfaccia, dati, agenti, modello —
+            e il documento chiede di non vincolare il prodotto a una struttura che
+            può ancora cambiare. Al suo posto andranno gli esempi visivi di skill
+            reali, quando ci saranno. */}
 
         {/* Per chi non è adatto */}
         <section className="border-b border-border">

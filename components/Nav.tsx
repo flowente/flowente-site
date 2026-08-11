@@ -5,9 +5,11 @@ import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
 import { Button } from "./Button";
 
+// Le etichette cambiano, gli indirizzi no: rinominare anche le rotte
+// significherebbe rompere ogni link già condiviso, e il sito è appena online.
 const LINKS = [
-  { label: "Servizi", href: "/servizi" },
-  { label: "Metodo", href: "/metodo" },
+  { label: "Soluzioni", href: "/servizi" },
+  { label: "Come lavoriamo", href: "/metodo" },
   { label: "Chi siamo", href: "/chi-siamo" },
   { label: "Contatti", href: "/contatti" },
 ];
