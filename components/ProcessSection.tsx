@@ -1,9 +1,10 @@
 import { Button } from "./Button";
 import { ProcessVideo } from "./ProcessVideo";
 
-// Sezione "Come lavoriamo": copy a sinistra, il video hand-drawn a destra.
-// Il video è tornato qui perché nella hero ha preso il suo posto la pila di
-// schede dei case study.
+// I tre passi non sono una scala di prodotti ma le fasi del rapporto: si capisce,
+// si verifica su qualcosa di piccolo, si estende. Stanno in riga sotto il testo.
+const PERCORSO = ["Comprendiamo", "Validiamo", "Evolviamo"];
+
 export function ProcessSection() {
   return (
     <section className="border-b border-border">
@@ -14,16 +15,31 @@ export function ProcessSection() {
             className="mt-4 font-display font-semibold tracking-[-0.03em]"
             style={{ fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 1.02 }}
           >
-            Dal prototipo alla
+            Un percorso,
             <br />
-            produzione.
+            non un progetto.
           </h2>
-          <p className="mt-5 max-w-[420px] text-fg-2 text-[1.06rem]">
-            Analisi del processo, prototipo con criteri di successo definiti prima, messa in produzione.
+          <p className="mt-5 max-w-[440px] text-fg-2 text-[1.06rem]">
+            Ogni azienda parte da un punto diverso. Per questo iniziamo da un&apos;esigenza concreta, validiamo il
+            valore e costruiamo un sistema che cresce con te.
           </p>
-          <div className="mt-6">
-            <Button variant="ghost" href="/servizi#la-scelta">
-              Come scegliamo
+
+          <ul className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[0.78rem] uppercase tracking-[0.1em]">
+            {PERCORSO.map((passo, i) => (
+              <li key={passo} className="flex items-center gap-3">
+                <span className="text-fg">{passo}</span>
+                {i < PERCORSO.length - 1 && (
+                  <span className="text-fg-muted" aria-hidden="true">
+                    →
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-7">
+            <Button variant="ghost" href="/metodo">
+              Scopri il nostro metodo
             </Button>
           </div>
         </div>

@@ -11,7 +11,7 @@ export function UseCases() {
             Case Study.
           </h2>
           <p className="text-fg-2 text-[1.06rem] mt-5">
-            Esempi concreti di applicazione dei nostri prodotti, sui processi in cui intervengono più spesso.
+            Esempi reali di come i nostri sistemi migliorano i processi aziendali.
           </p>
         </div>
 

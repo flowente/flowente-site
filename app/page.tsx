@@ -19,10 +19,11 @@ export default function Home() {
         <BuiltWith />
         <ProcessSection />
         <FeatureSection
-          title={<>Il freno è la competenza.</>}
-          text="Dove l'AI non entra, raramente il motivo è il costo o la maturità degli strumenti: è non sapere da dove si comincia, cosa si può affidare a un modello e cosa va lasciato alle persone. È una barriera che si abbatte spiegando."
-          ctaLabel="Il criterio di scelta"
-          ctaHref="/servizi#la-scelta"
+          eyebrow="Perché le aziende si fermano"
+          title={<>Il problema non è l&apos;AI, è sapere da dove iniziare.</>}
+          text="Le aziende non rinunciano all'intelligenza artificiale perché la tecnologia è troppo complessa. Si fermano perché è difficile capire da dove partire, quali processi automatizzare e come ottenere risultati concreti senza stravolgere il modo di lavorare."
+          ctaLabel="Scopri da dove iniziare"
+          ctaHref="/metodo"
           mark={marks.onde}
           shape="square"
         />
@@ -32,6 +33,7 @@ export default function Home() {
         <CtaBand
           title="Valutiamo il tuo caso."
           text="Un primo confronto di trenta minuti per definire ambito, vincoli e fattibilità."
+          ctaLabel="Parliamone"
         />
       </main>
       <Footer />

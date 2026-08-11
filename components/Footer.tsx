@@ -5,7 +5,6 @@ const COLS = [
   {
     h: "Cosa facciamo",
     links: [
-      { label: "La scelta", href: "/servizi#la-scelta" },
       { label: "Advisory", href: "/servizi" },
       { label: "Sviluppo software", href: "/servizi" },
       { label: "AI privata", href: "/servizi" },

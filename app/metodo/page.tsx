@@ -109,6 +109,7 @@ export default function Metodo() {
         <CtaBand
           title="Valutiamo il tuo caso."
           text="Un primo confronto di trenta minuti per definire ambito, vincoli e fattibilità."
+          ctaLabel="Parliamone"
         />
       </main>
       <Footer />

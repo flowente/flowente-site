@@ -1,6 +1,12 @@
-const COLS = ["PMI e manifattura", "Studi professionali", "E-commerce", "Palestre", "Scale-up"];
+// Problemi, non settori: chi legge si riconosce in quello che gli succede, non
+// nella categoria merceologica in cui qualcuno lo ha messo.
+const VOCI = [
+  "Automatizzare il lavoro ripetitivo",
+  "Rendere accessibile la conoscenza aziendale",
+  "Integrare l'AI nei processi esistenti",
+  "Proteggere dati e proprietà intellettuale",
+];
 
-// Onesto: al posto di testimonianze finte, mostriamo per chi lavoriamo.
 export function ForWho() {
   return (
     <section className="border-b border-border">
@@ -8,17 +14,13 @@ export function ForWho() {
         <div className="max-w-[620px] mb-11">
           <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted">Per chi</p>
           <h2 className="mt-4 font-display font-semibold tracking-[-0.03em] text-[clamp(2rem,4vw,3rem)] leading-[1.02]">
-            Organizzazioni con processi definiti e dati da proteggere.
+            Dove creiamo impatto.
           </h2>
         </div>
-        {/* Cinque colonne solo da lg in su: a 768px lo spazio per voce scende a
-            135px e "PMI e manifattura" e "Studi professionali" vanno a capo
-            mentre "Palestre" e "Scale-up" restano su una riga — la fila esce
-            sfilacciata, e "E-commerce" si spezza sul trattino. */}
-        <div className="grid gap-6 lg:gap-0 lg:grid-cols-5">
-          {COLS.map((c, i) => (
-            <div key={c} className={`lg:px-4 ${i > 0 ? "lg:border-l lg:border-border" : "lg:pl-0"}`}>
-              <div className="font-display font-semibold text-[1.05rem]">{c}</div>
+        <div className="grid gap-6 md:gap-0 md:grid-cols-4">
+          {VOCI.map((v, i) => (
+            <div key={v} className={`md:px-6 ${i > 0 ? "md:border-l md:border-border" : "md:pl-0"}`}>
+              <div className="font-display font-semibold text-[1.05rem] max-w-[220px]">{v}</div>
             </div>
           ))}
         </div>

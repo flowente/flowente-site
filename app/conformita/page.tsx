@@ -181,6 +181,7 @@ export default function Conformita() {
         <CtaBand
           title="Partiamo dai vincoli, non dopo."
           text="Se il processo tratta dati personali o ricade fra i sistemi ad alto rischio, è la prima cosa da guardare."
+          ctaLabel="Parliamone"
         />
       </main>
       <Footer />
