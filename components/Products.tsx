@@ -1,90 +1,14 @@
 import { Button } from "./Button";
 import { MarkBadge } from "./MarkBadge";
-import { marks } from "@/lib/marks";
-import type { Mark } from "@/lib/marks";
-import type { ShapeKind } from "./AccentShape";
-
-// prezzo a null = non si espone una cifra e si rimanda al contatto: sul terzo
-// prodotto la spesa dipende dall'infrastruttura, e un numero secco sarebbe una
-// promessa che nessuno può mantenere senza aver visto i server.
-type Prezzo = { importo: string; cadenza: string };
-type Prodotto = {
-  nome: string;
-  descrizione: string;
-  prezzo: Prezzo | null;
-  esempi: string[];
-  cta: string;
-  mark: Mark;
-  shape: ShapeKind;
-};
+import { PRODOTTI, percorso } from "@/lib/prodotti";
 
 // Tre prodotti distinti e indipendenti. Nessuna scheda è messa in evidenza — né
 // bordo più marcato né etichetta "consigliato": nei listini a livelli serve a
 // indicare il piano da comprare, ma qui non c'è una scala e suggerirne una
 // direbbe il contrario di quello che i prodotti sono.
 //
-// I segni riprendono quelli delle schede in home: onda per l'automazione, flusso
-// per la piattaforma, lucchetto per l'infrastruttura privata. Chi arriva dalla
-// home ritrova lo stesso segno sullo stesso argomento.
-const PRODOTTI: Prodotto[] = [
-  {
-    nome: "Quick Automation",
-    descrizione:
-      "Automatizza attività ripetitive e passaggi manuali tra strumenti, eliminando lavoro operativo che si ripete ogni settimana.",
-    prezzo: { importo: "€199", cadenza: "al mese" },
-    esempi: [
-      "Email marketing automation",
-      "Weekly report automatici",
-      "P&L automation",
-      "WhatsApp automation",
-      "Follow-up automatici",
-      "Aggiornamento CRM e database",
-    ],
-    cta: "Scopri Quick Automation",
-    mark: marks.onda,
-    shape: "circle",
-  },
-  {
-    nome: "Business Platform",
-    descrizione:
-      "Costruisce piattaforme e agenti operativi su misura per gestire dati, clienti e flussi in un ambiente unico.",
-    prezzo: { importo: "€499", cadenza: "al mese" },
-    esempi: [
-      "CRM su misura",
-      "Dashboard operative",
-      "Portale clienti",
-      "Marketing agent",
-      "Sales agent",
-      "Content creation agent",
-      "Workflow e approvazioni interne",
-    ],
-    cta: "Esplora Business Platform",
-    mark: marks.flusso,
-    shape: "square",
-  },
-  {
-    nome: "Private AI Infrastructure",
-    descrizione:
-      "Infrastruttura AI privata per usare modelli e dati aziendali con controllo, sicurezza e governance.",
-    prezzo: null,
-    esempi: [
-      "LLM privati",
-      "Knowledge base aziendale protetta",
-      "Controllo accessi e permessi",
-      "Data governance",
-      "Integrazione con sistemi interni",
-      "Monitoring e compliance",
-      "Deploy sicuro di modelli",
-    ],
-    // "Scala con Private AI Infrastructure" misura 248px contro i 245 disponibili
-    // nel bottone a 1280: andava a capo per tre pixel, e sotto quella larghezza
-    // il divario cresce. Accorciato all'ultima parola che sta su una riga sola;
-    // il nome del prodotto e' comunque scritto sopra, in grande.
-    cta: "Scala con Private AI",
-    mark: marks.lucchetto,
-    shape: "triangle",
-  },
-];
+// I dati stanno in lib/prodotti.ts: li condivide con le pagine di dettaglio e
+// con la tendina della barra in alto.
 
 // Spunta disegnata a mano libera ma ferma: qui non serve il tremolio dei Flow
 // Mark, che a venti ripetizioni diventerebbe rumore. Resta un tocco di accento.
@@ -114,7 +38,7 @@ export function Products() {
         <div className="grid gap-5 md:grid-cols-3">
           {PRODOTTI.map((p) => (
             <div
-              key={p.nome}
+              key={p.slug}
               className="rounded-[16px] border border-border bg-surface flex flex-col overflow-hidden"
             >
               <div className="p-7 flex flex-col">
@@ -122,16 +46,14 @@ export function Products() {
                   <MarkBadge mark={p.mark} shape={p.shape} boxW={120} boxH={100} shapeSize={96} markW={92} markH={63} />
                 </div>
                 <h3 className="font-display font-semibold text-[1.35rem] tracking-[-0.02em] mt-2">{p.nome}</h3>
-                {/* Altezze minime su descrizione e area del bottone: senza, il
-                    filetto cadrebbe a un'altezza diversa in ogni scheda, perché le
-                    descrizioni hanno lunghezze diverse e l'ultima azione va a capo
-                    su due righe. Sono i due punti che tengono allineate le tre
-                    schede senza costringere il testo a essere della stessa misura. */}
-                <p className="text-fg-2 text-[0.96rem] mt-3 min-h-[6.75rem]">{p.descrizione}</p>
 
-                {/* Il blocco del prezzo ha un'altezza minima come gli altri: la
-                    cifra e il rimando al contatto hanno ingombri diversi, e senza
-                    questo il filetto tornerebbe a cadere a tre altezze diverse. */}
+                {/* Altezze minime su descrizione, prezzo e area del bottone: senza,
+                    il filetto cadrebbe a un'altezza diversa in ogni scheda, perché
+                    i tre contenuti hanno ingombri diversi. Sono i tre punti che
+                    tengono allineate le schede senza obbligare i testi a essere
+                    della stessa misura. */}
+                <p className="text-fg-2 text-[0.96rem] mt-3 min-h-[5.25rem]">{p.descrizione}</p>
+
                 <div className="mt-6 min-h-[52px] flex items-baseline gap-2.5">
                   {p.prezzo ? (
                     <>
@@ -155,12 +77,9 @@ export function Products() {
 
                 <div className="mt-6 min-h-[64px]">
                   {/* !whitespace-normal: .btn impone nowrap per la barra in alto, e
-                      qui "Approfondisci Private AI Infrastructure" sfonderebbe la
-                      scheda. La regola di .btn vince sulle utility, serve il bang. */}
-                  <Button
-                    href="/contatti"
-                    className="w-full justify-center text-center !whitespace-normal"
-                  >
+                      un'etichetta lunga sfonderebbe la scheda. La regola di .btn
+                      vince sulle utility, serve il bang. */}
+                  <Button href={percorso(p.slug)} className="w-full justify-center text-center !whitespace-normal">
                     {p.cta}
                   </Button>
                 </div>

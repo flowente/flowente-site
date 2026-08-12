@@ -133,6 +133,13 @@ body {
   .marquee-mask { -webkit-mask-image: none; mask-image: none; }
 }
 
+/* ===== TENDINA DELLA BARRA IN ALTO ===== */
+/* Stessa animazione del cambio pagina — pageIn, stessa curva — con la durata di
+   un'interfaccia. La pagina prende 1.4s perché è un cambio di contesto; un menu
+   che ci mette lo stesso tempo sembra rotto, non calmo. */
+.tendina { animation: pageIn .45s ease-out both; }
+@media (prefers-reduced-motion: reduce) { .tendina { animation: none; } }
+
 /* ===== PILA DI SCHEDE NELLA HERO ===== */
 /* Micro-zoom come i bottoni: nessun cambio di colore, nessuno spostamento in Y.
    Un filo più lenta della .btn perché l'elemento è grande e alla stessa velocità

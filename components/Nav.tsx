@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
 import { Button } from "./Button";
+import { PRODOTTI, percorso } from "@/lib/prodotti";
 
 // Le etichette cambiano, gli indirizzi no: rinominare anche le rotte
-// significherebbe rompere ogni link già condiviso, e il sito è appena online.
+// significherebbe rompere ogni link già condiviso.
 const LINKS = [
   { label: "Soluzioni", href: "/servizi" },
   { label: "Come lavoriamo", href: "/metodo" },
@@ -14,18 +15,55 @@ const LINKS = [
   { label: "Contatti", href: "/contatti" },
 ];
 
+// Spessore 1.5 come i tratti del pulsante menu, colore ereditato dal link: la
+// freccia deve leggersi come parte della scritta, non come un'icona aggiunta.
+function Freccia({ aperta }: { aperta: boolean }) {
+  return (
+    <svg
+      viewBox="0 0 10 6"
+      className="h-[6px] w-[10px] transition-transform duration-200"
+      style={{ transform: aperta ? "rotate(180deg)" : "none" }}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M1 1l4 4 4-4" />
+    </svg>
+  );
+}
+
 export function Nav() {
   const [aperto, setAperto] = useState(false);
+  const [tendina, setTendina] = useState(false);
   const pathname = usePathname();
+  const zonaTendina = useRef<HTMLDivElement>(null);
 
-  // Il menu si chiude quando la pagina cambia e con Esc.
-  useEffect(() => setAperto(false), [pathname]);
+  // Menu e tendina si chiudono quando la pagina cambia.
   useEffect(() => {
-    if (!aperto) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setAperto(false);
+    setAperto(false);
+    setTendina(false);
+  }, [pathname]);
+
+  // Esc chiude quello che è aperto; un clic fuori chiude la tendina.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setAperto(false);
+      setTendina(false);
+    };
+    const onClick = (e: MouseEvent) => {
+      if (!zonaTendina.current?.contains(e.target as Node)) setTendina(false);
+    };
     document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [aperto]);
+    document.addEventListener("click", onClick);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("click", onClick);
+    };
+  }, []);
 
   return (
     <header
@@ -34,13 +72,55 @@ export function Nav() {
     >
       <div className="mx-auto max-w-content px-6 md:px-10 h-[66px] flex items-center justify-between">
         <Logo className="text-[1.1rem] md:text-[1.25rem]" href="/" />
-        <nav className="hidden md:flex gap-7 text-[0.9rem] text-fg-2">
-          {LINKS.map((l) => (
-            <a key={l.href} className="hover:text-fg transition-colors" href={l.href}>
-              {l.label}
-            </a>
-          ))}
+
+        <nav className="hidden md:flex gap-7 text-[0.9rem] text-fg-2 items-center">
+          {LINKS.map((l) =>
+            l.label === "Soluzioni" ? (
+              <div key={l.href} className="relative" ref={zonaTendina}>
+                <button
+                  type="button"
+                  onClick={() => setTendina((v) => !v)}
+                  aria-expanded={tendina}
+                  aria-controls="tendina-soluzioni"
+                  className="flex items-center gap-1.5 hover:text-fg transition-colors"
+                >
+                  {l.label}
+                  <Freccia aperta={tendina} />
+                </button>
+
+                {tendina && (
+                  <div
+                    id="tendina-soluzioni"
+                    className="tendina absolute left-0 top-[calc(100%+14px)] w-[280px] rounded-[14px] border border-border bg-surface p-2 shadow-[0_10px_36px_rgba(11,11,12,0.10)]"
+                  >
+                    <a
+                      href={l.href}
+                      className="block rounded-[10px] px-3 py-2.5 text-[0.9rem] text-fg-2 hover:bg-surface-2 hover:text-fg transition-colors"
+                    >
+                      Tutte le soluzioni
+                    </a>
+                    <div className="my-1 border-t border-border" />
+                    {PRODOTTI.map((p) => (
+                      <a
+                        key={p.slug}
+                        href={percorso(p.slug)}
+                        className="block rounded-[10px] px-3 py-2.5 hover:bg-surface-2 transition-colors"
+                      >
+                        <span className="block text-[0.9rem] text-fg">{p.nome}</span>
+                        <span className="block text-[0.8rem] text-fg-muted mt-0.5">{p.sottotitolo}</span>
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <a key={l.href} className="hover:text-fg transition-colors" href={l.href}>
+                {l.label}
+              </a>
+            )
+          )}
         </nav>
+
         <div className="flex gap-2.5 items-center">
           {/* Sotto i 360px (iPhone SE e simili) marchio + bottone + menu non ci stanno:
               il bottone esce dalla barra. Lì vive dentro il menu, dove non si perde. */}
@@ -71,13 +151,29 @@ export function Nav() {
       </div>
 
       {aperto && (
-        <nav id="menu-mobile" className="md:hidden border-t border-border">
+        <nav id="menu-mobile" className="tendina md:hidden border-t border-border">
           <ul className="mx-auto max-w-content px-6 py-2">
             {LINKS.map((l) => (
               <li key={l.href} className="border-b border-border">
                 <a href={l.href} className="block py-4 text-[1.05rem] text-fg-2 hover:text-fg transition-colors">
                   {l.label}
                 </a>
+                {/* Su telefono i prodotti stanno sotto "Soluzioni", rientrati:
+                    una tendina dentro un menu già aperto sarebbe un livello di troppo. */}
+                {l.label === "Soluzioni" && (
+                  <ul className="pb-3 pl-4">
+                    {PRODOTTI.map((p) => (
+                      <li key={p.slug}>
+                        <a
+                          href={percorso(p.slug)}
+                          className="block py-2.5 text-[0.95rem] text-fg-muted hover:text-fg transition-colors"
+                        >
+                          {p.nome}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
             ))}
             <li className="py-4">
