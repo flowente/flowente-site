@@ -32,8 +32,11 @@ export default function PaginaProdotto({ params }: Props) {
     <>
       <Nav />
       <main>
-        <section className="border-b border-border">
-          <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24 grid gap-10 items-center md:grid-cols-[1.1fr_0.9fr]">
+        {/* Niente filetto sotto la hero: i punti sono la continuazione di quello
+            che il titolo ha appena detto, e una riga in mezzo li faceva leggere
+            come un capitolo a parte. */}
+        <section>
+          <div className="mx-auto max-w-content px-6 md:px-10 pt-20 md:pt-24 pb-10 md:pb-12 grid gap-10 items-center md:grid-cols-[1.1fr_0.9fr]">
             <div>
               <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted mb-5">Soluzioni</p>
               <h1 className="font-display font-semibold tracking-[-0.035em] text-[clamp(2.4rem,5.4vw,3.8rem)] leading-[1]">
@@ -82,13 +85,14 @@ export default function PaginaProdotto({ params }: Props) {
             comprende e come si vede applicato. Un bordo li farebbe leggere come
             due argomenti diversi. */}
         <section className="border-b border-border">
-          <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24">
-            {/* In colonna, uno sotto l'altro: con sei o sette voci la griglia a
-                tre colonne obbligava a leggere a zigzag per capire l'elenco. */}
-            <ul className="space-y-3">
+          <div className="mx-auto max-w-content px-6 md:px-10 pb-20 md:pb-24">
+            {/* In colonna e con lo stesso passo della scheda in /servizi: stesso
+                spazio fra le voci, stesso spazio fra spunta e testo. Sono lo
+                stesso elenco visto in due posti, e devono avere lo stesso ritmo. */}
+            <ul className="space-y-2.5">
               {p.esempi.map((e) => (
-                <li key={e} className="flex gap-3 text-[1.02rem] text-fg-2">
-                  <Spunta className="mt-[6px]" />
+                <li key={e} className="flex gap-2.5 text-[1rem] text-fg-2">
+                  <Spunta className="mt-[5px]" />
                   <span>{e}</span>
                 </li>
               ))}
