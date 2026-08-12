@@ -59,8 +59,12 @@ export function CookieBanner() {
             Il sito usa i cookie necessari a funzionare. Per le statistiche d&apos;uso — quali pagine vengono lette, in
             forma aggregata — serve il tuo consenso.
           </p>
+          {/* Stessa variante per accettare e rifiutare, non una piena e una a
+              filetto: il consenso non è libero se una delle due strade è più
+              invitante dell'altra. Prima "Accetta tutto" era il bottone pieno e
+              "Rifiuta" quello a filetto — stessa dimensione, ma non stesso peso. */}
           <div className="mt-5 flex flex-wrap items-center gap-3">
-            <button type="button" className="btn btn-primary" onClick={() => decidi(true)}>
+            <button type="button" className="btn btn-ghost" onClick={() => decidi(true)}>
               Accetta tutto
             </button>
             <button type="button" className="btn btn-ghost" onClick={() => decidi(false)}>

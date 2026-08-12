@@ -18,9 +18,16 @@ export default function Privacy() {
         Il titolare del trattamento è Flowente, contattabile all&apos;indirizzo{" "}
         <a href="mailto:hello@flowente.com">hello@flowente.com</a>.
       </p>
+      <p>
+        Non è stato nominato un Responsabile della protezione dei dati (DPO): non ricorrono i presupposti
+        dell&apos;art. 37 GDPR, che lo rende obbligatorio per le autorità pubbliche e per chi tratta dati su larga scala
+        o categorie particolari come attività principale. Per qualsiasi questione sui dati personali il riferimento è
+        l&apos;indirizzo qui sopra.
+      </p>
       <p className="muted">
         Da completare con ragione sociale, sede e P.IVA appena disponibili: l&apos;identificazione del titolare è un
-        obbligo dell&apos;art. 13 GDPR, e il nome commerciale da solo non lo soddisfa.
+        obbligo dell&apos;art. 13 GDPR, e il nome commerciale da solo non lo soddisfa. Da confermare con un
+        professionista anche la valutazione sul DPO qui sopra.
       </p>
 
       <h2>Quali dati raccogliamo</h2>
@@ -57,18 +64,38 @@ export default function Privacy() {
       </p>
       <ul>
         <li>
-          <strong>Hosting e deploy:</strong> Railway, con i server nella regione europea (Francoforte, Germania).
+          <strong>Hosting e deploy:</strong> Railway, con i server nella regione europea (Francoforte, Germania).{" "}
+          <a href="https://railway.com/legal/privacy" target="_blank" rel="noopener noreferrer">
+            Informativa
+          </a>
+          .
         </li>
         <li>
-          <strong>Invio delle email del form:</strong> Resend, con i server in Irlanda.
+          <strong>Invio delle email del form:</strong> Resend, con i server in Irlanda.{" "}
+          <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">
+            Informativa
+          </a>
+          .
         </li>
         <li>
           <strong>Statistiche del sito:</strong> PostHog, sull&apos;infrastruttura europea (EU Cloud). Interviene solo
-          dopo il tuo consenso.
+          dopo il tuo consenso.{" "}
+          <a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">
+            Informativa
+          </a>
+          .
+        </li>
+        <li>
+          <strong>Caratteri tipografici:</strong> Google Fonts. Il browser li scarica dai server di Google, che riceve
+          il tuo indirizzo IP; non installa cookie e non serve a profilarti.{" "}
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+            Informativa
+          </a>
+          .
         </li>
       </ul>
       <p>
-        Tutti e tre i fornitori sono società con sede negli Stati Uniti. I dati restano archiviati sui server europei
+        Tutti e quattro i fornitori sono società con sede negli Stati Uniti. I dati restano archiviati sui server europei
         indicati, ma l&apos;assistenza e l&apos;amministrazione dei sistemi possono comportare un accesso dagli Stati
         Uniti: in tal caso si tratta di un trasferimento extra-UE.
       </p>

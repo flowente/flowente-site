@@ -79,6 +79,67 @@ export default function Cookie() {
         pagina. Rifiutare è facile quanto accettare: stesso posto, un clic.
       </p>
 
+      <h2>Font del sito</h2>
+      <p>
+        I caratteri tipografici sono serviti da <strong>Google Fonts</strong>. Per scaricarli, il tuo browser si collega
+        ai server di Google, che in quel momento riceve il tuo indirizzo IP. Google Fonts non installa cookie e non
+        serve a profilarti, ma è un collegamento a un fornitore esterno che avviene su ogni pagina, prima di qualunque
+        consenso, perché senza i caratteri il sito non sarebbe leggibile.
+      </p>
+
+      <h2>Terze parti</h2>
+      <p>
+        Questi sono i soggetti esterni che possono installare cookie, riceverli o accedere a dati tramite il sito, con
+        il link alla loro informativa.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Fornitore</th>
+            <th>Cosa fa</th>
+            <th>Informativa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>PostHog</td>
+            <td>Statistiche d&apos;uso, solo con il tuo consenso</td>
+            <td>
+              <a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">
+                posthog.com/privacy
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Google (Fonts)</td>
+            <td>Caratteri tipografici; nessun cookie, riceve l&apos;indirizzo IP</td>
+            <td>
+              <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+                policies.google.com/privacy
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Railway</td>
+            <td>Hosting del sito; nessun cookie</td>
+            <td>
+              <a href="https://railway.com/legal/privacy" target="_blank" rel="noopener noreferrer">
+                railway.com/legal/privacy
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Resend</td>
+            <td>Invio delle email del modulo contatti; nessun cookie</td>
+            <td>
+              <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">
+                resend.com/legal/privacy-policy
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
       <h2>Niente cookie di marketing/terze parti</h2>
       <p>
         Non usiamo cookie pubblicitari, pixel di social network o strumenti di profilazione. Se in futuro cambierà,
