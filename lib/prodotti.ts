@@ -27,7 +27,6 @@ export type Prodotto = {
   // Riga breve per la tendina della barra: là lo spazio è quello di un menu, e
   // la descrizione lunga occuperebbe quattro righe per voce.
   sottotitolo: string;
-  perChi: string;
   prezzo: Prezzo | null;
   caso: Caso;
   esempi: string[];
@@ -45,8 +44,6 @@ export const PRODOTTI: Prodotto[] = [
       // implicito in "ripetitive", ed era la parola che faceva la quarta riga.
       "Automatizza attività ripetitive e passaggi tra strumenti, togliendo il lavoro che si ripete ogni settimana.",
     sottotitolo: "Automazioni e agenti, senza cambiare strumenti",
-    perChi:
-      "Per aziende che vogliono automatizzare attività specifiche in modo rapido, senza cambiare gli strumenti che già usano.",
     prezzo: { importo: "€199", cadenza: "al mese" },
     caso: {
       titolo: "Skills e plugin di rendicontazione periodica.",
@@ -72,7 +69,6 @@ export const PRODOTTI: Prodotto[] = [
     descrizione:
       "Costruisce piattaforme e agenti operativi su misura per gestire dati, clienti e flussi in un ambiente unico.",
     sottotitolo: "Un unico ambiente per processi e dati",
-    perChi: "Per chi vuole centralizzare processi, documenti e conoscenza in un unico ambiente intelligente.",
     prezzo: { importo: "€499", cadenza: "al mese" },
     caso: {
       titolo: "Agente di ricerca sui dati storici aziendali.",
@@ -98,7 +94,6 @@ export const PRODOTTI: Prodotto[] = [
     descrizione:
       "Infrastruttura AI privata per usare modelli e dati aziendali con controllo, sicurezza e governance.",
     sottotitolo: "Modelli e dati sui tuoi server",
-    perChi: "Per chi ha bisogno di massimo controllo su dati, sicurezza e personalizzazione.",
     prezzo: null,
     caso: {
       titolo: "Un modello aziendale con le skills che tagliano i costi.",

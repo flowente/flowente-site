@@ -1,5 +1,6 @@
 import { Button } from "./Button";
 import { MarkBadge } from "./MarkBadge";
+import { Spunta } from "./Spunta";
 import { PRODOTTI, percorso } from "@/lib/prodotti";
 
 // Tre prodotti distinti e indipendenti. Nessuna scheda è messa in evidenza — né
@@ -9,23 +10,6 @@ import { PRODOTTI, percorso } from "@/lib/prodotti";
 //
 // I dati stanno in lib/prodotti.ts: li condivide con le pagine di dettaglio e
 // con la tendina della barra in alto.
-
-// Spunta disegnata a mano libera ma ferma: qui non serve il tremolio dei Flow
-// Mark, che a venti ripetizioni diventerebbe rumore. Resta un tocco di accento.
-function Spunta() {
-  return (
-    <svg viewBox="0 0 16 16" className="h-[14px] w-[14px] mt-[5px] shrink-0 text-accent" aria-hidden="true">
-      <path
-        d="M2.5 8.6 6 12l7.5-8.4"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 export function Products() {
   return (
@@ -89,7 +73,7 @@ export function Products() {
                 <ul className="space-y-2.5">
                   {p.esempi.map((e) => (
                     <li key={e} className="flex gap-2.5 text-[0.94rem] text-fg-2">
-                      <Spunta />
+                      <Spunta className="mt-[5px]" />
                       <span>{e}</span>
                     </li>
                   ))}

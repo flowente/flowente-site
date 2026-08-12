@@ -1,4 +1,10 @@
 import { CASI, ANCORA_CASI, type Caso } from "@/lib/casi";
+import { VideoMuto } from "./VideoMuto";
+
+// Prova in corso: nella scheda in evidenza, al posto della fotografia, il video
+// del caso. Muto e in ciclo, come elemento grafico. Se non convince o pesa
+// troppo, si toglie questa costante e torna l'immagine.
+const VIDEO_IN_EVIDENZA = "/media/testimonianze/quick-automation.mp4";
 
 // Pila di schede nella hero: tre case study veri, sfalsati e ruotati, di cui uno
 // in evidenza. Dietro non ci sono sagome vuote ma le schede effettive — anche se
@@ -43,9 +49,17 @@ export function HeroCases() {
           aria-hidden={i < evidenza ? "true" : undefined}
           className={`rounded-[18px] border border-border bg-surface overflow-hidden ${STRATI[i]}`}
         >
-          {/* Immagine d'ambiente, non un cliente: alt vuoto per non attribuirle
-              un'identità. Il rapporto sta sull'immagine, non sul contenitore. */}
-          <img src={caso.img} alt="" className="block w-full aspect-[3/2] object-cover" />
+          {i === evidenza ? (
+            <VideoMuto
+              src={VIDEO_IN_EVIDENZA}
+              className="block w-full aspect-[3/2] object-cover"
+              etichetta={caso.title}
+            />
+          ) : (
+            // Immagine d'ambiente, non un cliente: alt vuoto per non attribuirle
+            // un'identità. Il rapporto sta sull'immagine, non sul contenitore.
+            <img src={caso.img} alt="" className="block w-full aspect-[3/2] object-cover" />
+          )}
           <span className="block p-6">
             <span className="block font-mono text-[0.66rem] uppercase tracking-wide text-accent">{caso.label}</span>
             <span className="block font-display font-semibold text-[1.12rem] tracking-[-0.015em] mt-2.5">

@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/Button";
 import { MarkBadge } from "@/components/MarkBadge";
 import { CtaBand } from "@/components/CtaBand";
+import { Spunta } from "@/components/Spunta";
 import { PRODOTTI } from "@/lib/prodotti";
 
 type Props = { params: { prodotto: string } };
@@ -72,17 +73,9 @@ export default function PaginaProdotto({ params }: Props) {
           </div>
         </section>
 
-        <section className="border-b border-border">
-          <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24 grid md:grid-cols-[0.9fr_1.1fr] gap-10">
-            <div>
-              <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted">Per chi è</p>
-              <h2 className="mt-4 font-display font-semibold tracking-[-0.03em] text-[clamp(1.8rem,3.4vw,2.6rem)] leading-[1.04]">
-                Quando è la scelta giusta.
-              </h2>
-            </div>
-            <p className="max-w-[560px] text-fg-2 text-[1.06rem]">{p.perChi}</p>
-          </div>
-        </section>
+        {/* Qui stava "Quando è la scelta giusta" con il per-chi. Tolta la sezione,
+            il campo perChi non serviva più a nessuno ed è uscito da lib/prodotti.ts:
+            la tendina della barra usa "sottotitolo", che è un'altra cosa. */}
 
         {/* I punti della scheda e il caso collegato stanno nella stessa sezione,
             senza filetto in mezzo: sono due parti dello stesso discorso — cosa
@@ -90,12 +83,12 @@ export default function PaginaProdotto({ params }: Props) {
             due argomenti diversi. */}
         <section className="border-b border-border">
           <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24">
-            <ul className="grid gap-x-10 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
+            {/* In colonna, uno sotto l'altro: con sei o sette voci la griglia a
+                tre colonne obbligava a leggere a zigzag per capire l'elenco. */}
+            <ul className="space-y-3">
               {p.esempi.map((e) => (
-                <li key={e} className="flex gap-2.5 text-[1rem] text-fg-2">
-                  <span aria-hidden="true" className="text-accent shrink-0 select-none">
-                    —
-                  </span>
+                <li key={e} className="flex gap-3 text-[1.02rem] text-fg-2">
+                  <Spunta className="mt-[6px]" />
                   <span>{e}</span>
                 </li>
               ))}
