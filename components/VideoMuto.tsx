@@ -3,7 +3,18 @@
 import { useEffect, useRef } from "react";
 import type { CSSProperties } from "react";
 
-type Props = { src: string; webm?: string; poster?: string; className?: string; style?: CSSProperties; etichetta: string };
+type Props = {
+  src: string;
+  webm?: string;
+  poster?: string;
+  className?: string;
+  style?: CSSProperties;
+  etichetta: string;
+  // Quando è false il video sta fermo e non viene nemmeno scaricato. Serve alle
+  // pile di schede: solo quella in testa deve riprodurre, altrimenti si
+  // scaricherebbero tutti i file insieme al primo caricamento della pagina.
+  attivo?: boolean;
+};
 
 // Video muto in ciclo continuo, usato come elemento grafico.
 //
@@ -12,7 +23,7 @@ type Props = { src: string; webm?: string; poster?: string; className?: string; 
 // chiesto di non vedere animazioni. La riproduzione parte da qui, solo se il
 // movimento è ammesso; altrimenti resta il poster. Se lo script non gira, si
 // vede il poster — degrado accettabile.
-export function VideoMuto({ src, webm, poster, className = "", style, etichetta }: Props) {
+export function VideoMuto({ src, webm, poster, className = "", style, etichetta, attivo = true }: Props) {
   const ref = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -21,9 +32,8 @@ export function VideoMuto({ src, webm, poster, className = "", style, etichetta 
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     const sync = () => {
-      if (mq.matches) {
+      if (mq.matches || !attivo) {
         el.pause();
-        el.currentTime = 0;
       } else {
         // play() rifiuta se il browser blocca la riproduzione: non è un errore
         // da propagare, resta semplicemente il poster.
@@ -34,7 +44,7 @@ export function VideoMuto({ src, webm, poster, className = "", style, etichetta 
     sync();
     mq.addEventListener("change", sync);
     return () => mq.removeEventListener("change", sync);
-  }, []);
+  }, [attivo]);
 
   return (
     <video
@@ -44,7 +54,9 @@ export function VideoMuto({ src, webm, poster, className = "", style, etichetta 
       muted
       loop
       playsInline
-      preload="metadata"
+      // "none" finché la scheda non arriva in testa: è la differenza fra
+      // scaricare un file all'apertura della pagina e scaricarlo quando serve.
+      preload={attivo ? "metadata" : "none"}
       poster={poster}
       aria-label={etichetta}
     >
