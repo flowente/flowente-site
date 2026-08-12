@@ -76,30 +76,30 @@ export function Nav() {
         <nav className="hidden md:flex gap-7 text-[0.9rem] text-fg-2 items-center">
           {LINKS.map((l) =>
             l.label === "Soluzioni" ? (
-              <div key={l.href} className="relative" ref={zonaTendina}>
+              // L'etichetta è un link e la freccia un comando a sé: chi clicca
+              // "Soluzioni" vuole andare alla pagina, chi clicca la freccia vuole
+              // vedere cosa c'è dentro. Un unico bersaglio che fa entrambe le cose
+              // costringe a indovinare quale delle due succederà.
+              <div key={l.href} className="relative flex items-center gap-1.5" ref={zonaTendina}>
+                <a href={l.href} className="hover:text-fg transition-colors">
+                  {l.label}
+                </a>
                 <button
                   type="button"
                   onClick={() => setTendina((v) => !v)}
                   aria-expanded={tendina}
                   aria-controls="tendina-soluzioni"
-                  className="flex items-center gap-1.5 hover:text-fg transition-colors"
+                  aria-label={tendina ? "Chiudi l'elenco dei prodotti" : "Mostra i prodotti"}
+                  className="flex h-6 w-5 items-center justify-center hover:text-fg transition-colors"
                 >
-                  {l.label}
                   <Freccia aperta={tendina} />
                 </button>
 
                 {tendina && (
                   <div
                     id="tendina-soluzioni"
-                    className="tendina absolute left-0 top-[calc(100%+14px)] w-[280px] rounded-[14px] border border-border bg-surface p-2 shadow-[0_10px_36px_rgba(11,11,12,0.10)]"
+                    className="tendina absolute left-0 top-[calc(100%+22px)] w-[280px] rounded-[14px] border border-border bg-surface p-2 shadow-[0_10px_36px_rgba(11,11,12,0.10)]"
                   >
-                    <a
-                      href={l.href}
-                      className="block rounded-[10px] px-3 py-2.5 text-[0.9rem] text-fg-2 hover:bg-surface-2 hover:text-fg transition-colors"
-                    >
-                      Tutte le soluzioni
-                    </a>
-                    <div className="my-1 border-t border-border" />
                     {PRODOTTI.map((p) => (
                       <a
                         key={p.slug}

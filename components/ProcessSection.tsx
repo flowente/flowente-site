@@ -1,10 +1,6 @@
 import { Button } from "./Button";
 import { ProcessVideo } from "./ProcessVideo";
 
-// I tre passi non sono una scala di prodotti ma le fasi del rapporto: si capisce,
-// si verifica su qualcosa di piccolo, si estende. Stanno in riga sotto il testo.
-const PERCORSO = ["Comprendiamo", "Validiamo", "Evolviamo"];
-
 export function ProcessSection() {
   return (
     <section className="border-b border-border">
@@ -23,19 +19,6 @@ export function ProcessSection() {
             Ogni azienda parte da un punto diverso. Per questo iniziamo da un&apos;esigenza concreta, validiamo il
             valore e costruiamo un sistema che cresce con te.
           </p>
-
-          <ul className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[0.78rem] uppercase tracking-[0.1em]">
-            {PERCORSO.map((passo, i) => (
-              <li key={passo} className="flex items-center gap-3">
-                <span className="text-fg">{passo}</span>
-                {i < PERCORSO.length - 1 && (
-                  <span className="text-fg-muted" aria-hidden="true">
-                    →
-                  </span>
-                )}
-              </li>
-            ))}
-          </ul>
 
           <div className="mt-7">
             <Button variant="ghost" href="/metodo">

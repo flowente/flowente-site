@@ -4,9 +4,8 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/Button";
 import { MarkBadge } from "@/components/MarkBadge";
-import { Steps } from "@/components/Steps";
 import { CtaBand } from "@/components/CtaBand";
-import { PRODOTTI, percorso } from "@/lib/prodotti";
+import { PRODOTTI } from "@/lib/prodotti";
 
 type Props = { params: { prodotto: string } };
 
@@ -27,10 +26,6 @@ export function generateMetadata({ params }: Props): Metadata {
 export default function PaginaProdotto({ params }: Props) {
   const p = trova(params.prodotto);
   if (!p) notFound();
-
-  // Gli altri due, per il rimando in fondo: chi arriva qui da una ricerca deve
-  // poter vedere che esistono le alternative senza tornare indietro.
-  const altri = PRODOTTI.filter((x) => x.slug !== p.slug);
 
   return (
     <>
@@ -89,48 +84,8 @@ export default function PaginaProdotto({ params }: Props) {
           </div>
         </section>
 
-        <section className="border-b border-border">
-          <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24">
-            <div className="max-w-[620px] mb-12">
-              <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted">Cosa include</p>
-              <h2 className="mt-4 font-display font-semibold tracking-[-0.03em] text-[clamp(2rem,4vw,3rem)] leading-[1.02]">
-                Cosa costruiamo.
-              </h2>
-            </div>
-            <ul className="grid gap-x-10 gap-y-4 sm:grid-cols-2 border-t border-border pt-6">
-              {p.esempi.map((e) => (
-                <li key={e} className="flex gap-3 text-[1.02rem] text-fg-2 border-b border-border pb-4">
-                  <span aria-hidden="true" className="text-accent shrink-0 select-none">
-                    —
-                  </span>
-                  <span>{e}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        {/* Le fasi sono le stesse per tutti i prodotti: il percorso non cambia in
-            base a cosa si costruisce, e riscriverlo tre volte lo farebbe divergere. */}
-        <Steps eyebrow="Come si parte" title="Tre fasi, in quest'ordine." />
-
-        <section className="border-b border-border">
-          <div className="mx-auto max-w-content px-6 md:px-10 py-16 md:py-20">
-            <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted mb-6">Gli altri prodotti</p>
-            <div className="grid gap-5 sm:grid-cols-2">
-              {altri.map((a) => (
-                <a
-                  key={a.slug}
-                  href={percorso(a.slug)}
-                  className="rounded-[16px] border border-border bg-surface p-7 hover:border-fg-muted transition-colors"
-                >
-                  <span className="block font-display font-semibold text-[1.2rem] tracking-[-0.02em]">{a.nome}</span>
-                  <span className="block text-fg-2 text-[0.96rem] mt-2">{a.descrizione}</span>
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* Qui stavano "cosa include", le tre fasi e il rimando agli altri due
+            prodotti. Tolte: la pagina resta hero, per-chi e chiamata all'azione. */}
 
         <CtaBand
           title="Valutiamo il tuo caso."
