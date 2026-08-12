@@ -84,8 +84,51 @@ export default function PaginaProdotto({ params }: Props) {
           </div>
         </section>
 
-        {/* Qui stavano "cosa include", le tre fasi e il rimando agli altri due
-            prodotti. Tolte: la pagina resta hero, per-chi e chiamata all'azione. */}
+        {/* I punti della scheda e il caso collegato stanno nella stessa sezione,
+            senza filetto in mezzo: sono due parti dello stesso discorso — cosa
+            comprende e come si vede applicato. Un bordo li farebbe leggere come
+            due argomenti diversi. */}
+        <section className="border-b border-border">
+          <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24">
+            <ul className="grid gap-x-10 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
+              {p.esempi.map((e) => (
+                <li key={e} className="flex gap-2.5 text-[1rem] text-fg-2">
+                  <span aria-hidden="true" className="text-accent shrink-0 select-none">
+                    —
+                  </span>
+                  <span>{e}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-16 md:mt-20 grid gap-10 md:gap-14 items-center md:grid-cols-2">
+              <div>
+                <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted">Case study</p>
+                <h2 className="mt-4 font-display font-semibold tracking-[-0.03em] text-[clamp(1.7rem,3.2vw,2.4rem)] leading-[1.04]">
+                  {p.caso.titolo}
+                </h2>
+                <p className="text-fg-2 text-[1.02rem] mt-5 max-w-[460px]">{p.caso.testo}</p>
+              </div>
+
+              {p.caso.video && (
+                // Nessun autoplay e preload dei soli metadati: è un video con
+                // parlato, si guarda se si sceglie di guardarlo, e finché non lo
+                // si fa dalla rete scendono pochi byte invece di due megabyte.
+                <div className="rounded-[20px] overflow-hidden border border-border bg-surface-2 md:justify-self-end w-full max-w-[520px]">
+                  <video
+                    className="block w-full h-auto"
+                    controls
+                    playsInline
+                    preload="metadata"
+                    aria-label={`Video del caso: ${p.caso.titolo}`}
+                  >
+                    <source src={p.caso.video} type="video/mp4" />
+                  </video>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
 
         <CtaBand
           title="Valutiamo il tuo caso."
