@@ -26,6 +26,16 @@ const POSIZIONI = [
   "translate-x-3 translate-y-6 rotate-[2deg] md:translate-x-5 md:translate-y-11 md:rotate-[3.5deg]",
 ];
 
+// Trasparenza per posizione: la scheda in testa è piena, le altre si spengono
+// via via. Serve a due cose. Dà profondità alla pila, e soprattutto copre lo
+// scatto: senza, la scheda uscente cambiava piano di colpo e si vedeva saltare.
+// È lo stesso fade del resto del sito — opacità che sale e scende, stessa idea
+// di pageIn — applicato allo scambio invece che al caricamento.
+// Non troppo spinta: le schede dietro si vedono per una striscia di sedici pixel
+// a destra e una quarantina in basso, e su fondo chiaro sotto il 60% smettono di
+// leggersi come carta. Sono tre numeri, si tarano guardando il risultato.
+const OPACITA = [1, 0.82, 0.62];
+
 export function HeroCases() {
   const [giro, setGiro] = useState(0);
   const [fermo, setFermo] = useState(false);
@@ -64,8 +74,19 @@ export function HeroCases() {
             // Le schede dietro restano fuori dalla lettura assistita: il nome del
             // link è già quello in testa, e leggerle tutte lo renderebbe illeggibile.
             aria-hidden={testa ? undefined : "true"}
-            style={{ zIndex: 30 - pos * 10, transitionDuration: `${SCAMBIO}ms` }}
-            className={`col-start-1 row-start-1 rounded-[18px] border border-border bg-surface overflow-hidden transition-transform ease-in-out ${
+            style={{
+              zIndex: 30 - pos * 10,
+              opacity: OPACITA[pos],
+              // Lo z-index cambia a metà scambio, non all'inizio. È un valore
+              // discreto — non si può interpolare — e cambiandolo subito la
+              // scheda uscente spariva dietro mentre era ancora al suo posto:
+              // era quello lo scatto. Ritardandolo, quando passa sotto si è già
+              // spostata e sbiadita, e il salto non si vede.
+              transition: `transform ${SCAMBIO}ms ease-in-out, opacity ${SCAMBIO}ms ease-in-out, z-index 0s linear ${
+                SCAMBIO / 2
+              }ms`,
+            }}
+            className={`col-start-1 row-start-1 rounded-[18px] border border-border bg-surface overflow-hidden ${
               POSIZIONI[pos]
             } ${testa ? "shadow-[0_12px_44px_rgba(11,11,12,0.10)]" : ""}`}
           >
