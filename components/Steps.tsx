@@ -13,7 +13,10 @@ const STEPS: Step[] = [
   },
   {
     n: "3",
-    title: "Inserirla nel flusso quotidiano",
+    // "Inserirla nel flusso quotidiano" misura 309px contro i 295 della colonna
+    // e andava a capo, unico dei tre. Questa versione ne misura 276 e tiene le
+    // due parole che portano il senso.
+    title: "Dentro il flusso quotidiano",
     text: "Testiamo, miglioriamo e integriamo la soluzione nel flusso di lavoro reale, con piccoli aggiustamenti finché non diventa semplice e utile.",
   },
 ];
