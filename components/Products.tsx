@@ -1,13 +1,19 @@
 import { Button } from "./Button";
+import { MarkBadge } from "./MarkBadge";
+import { marks } from "@/lib/marks";
+import type { Mark } from "@/lib/marks";
+import type { ShapeKind } from "./AccentShape";
 
-type Prodotto = { nome: string; descrizione: string; esempi: string[]; cta: string };
+type Prodotto = { nome: string; descrizione: string; esempi: string[]; cta: string; mark: Mark; shape: ShapeKind };
 
-// Tre prodotti distinti e indipendenti: non sono una scala obbligata e non vanno
-// presentati come livelli crescenti. Si entra da quello che serve.
+// Tre prodotti distinti e indipendenti. Nessuna scheda è messa in evidenza — né
+// bordo più marcato né etichetta "consigliato": nei listini a livelli serve a
+// indicare il piano da comprare, ma qui non c'è una scala e suggerirne una
+// direbbe il contrario di quello che i prodotti sono.
 //
-// La struttura è nome → cosa fa → esempi concreti → azione. L'elenco di esempi è
-// la parte che li rende prodotti e non categorie di servizio: senza, "automatizza
-// attività ripetitive" resta una frase che potrebbe scrivere chiunque.
+// I segni riprendono quelli delle schede in home: onda per l'automazione, flusso
+// per la piattaforma, lucchetto per l'infrastruttura privata. Chi arriva dalla
+// home ritrova lo stesso segno sullo stesso argomento.
 const PRODOTTI: Prodotto[] = [
   {
     nome: "Quick Automation",
@@ -22,6 +28,8 @@ const PRODOTTI: Prodotto[] = [
       "Aggiornamento CRM e database",
     ],
     cta: "Scopri Quick Automation",
+    mark: marks.onda,
+    shape: "circle",
   },
   {
     nome: "Business Platform",
@@ -37,6 +45,8 @@ const PRODOTTI: Prodotto[] = [
       "Workflow e approvazioni interne",
     ],
     cta: "Esplora Business Platform",
+    mark: marks.flusso,
+    shape: "square",
   },
   {
     nome: "Private AI Infrastructure",
@@ -52,8 +62,27 @@ const PRODOTTI: Prodotto[] = [
       "Deploy sicuro di modelli",
     ],
     cta: "Approfondisci Private AI Infrastructure",
+    mark: marks.lucchetto,
+    shape: "triangle",
   },
 ];
+
+// Spunta disegnata a mano libera ma ferma: qui non serve il tremolio dei Flow
+// Mark, che a venti ripetizioni diventerebbe rumore. Resta un tocco di accento.
+function Spunta() {
+  return (
+    <svg viewBox="0 0 16 16" className="h-[14px] w-[14px] mt-[5px] shrink-0 text-accent" aria-hidden="true">
+      <path
+        d="M2.5 8.6 6 12l7.5-8.4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 export function Products() {
   return (
@@ -61,32 +90,47 @@ export function Products() {
     // aria-label le dà un nome senza aggiungere testo alla pagina.
     <section className="border-b border-border" aria-label="I tre prodotti">
       <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24">
-        <div className="grid gap-12 md:gap-0 md:grid-cols-3">
-          {PRODOTTI.map((p, i) => (
+        {/* Niente items-start: le schede si allungano tutte all'altezza della più
+            alta, e l'elenco in fondo assorbe la differenza. */}
+        <div className="grid gap-5 md:grid-cols-3">
+          {PRODOTTI.map((p) => (
             <div
               key={p.nome}
-              className={`flex flex-col md:px-8 ${i === 0 ? "md:pl-0" : "md:border-l md:border-border"}`}
+              className="rounded-[16px] border border-border bg-surface flex flex-col overflow-hidden"
             >
-              <h3 className="font-display font-semibold text-[1.35rem] tracking-[-0.02em]">{p.nome}</h3>
-              <p className="text-fg-2 text-[0.98rem] mt-4">{p.descrizione}</p>
+              <div className="p-7 flex flex-col">
+                <div className="h-[104px] flex items-center justify-start">
+                  <MarkBadge mark={p.mark} shape={p.shape} boxW={120} boxH={100} shapeSize={96} markW={92} markH={63} />
+                </div>
+                <h3 className="font-display font-semibold text-[1.35rem] tracking-[-0.02em] mt-2">{p.nome}</h3>
+                {/* Altezze minime su descrizione e area del bottone: senza, il
+                    filetto cadrebbe a un'altezza diversa in ogni scheda, perché le
+                    descrizioni hanno lunghezze diverse e l'ultima azione va a capo
+                    su due righe. Sono i due punti che tengono allineate le tre
+                    schede senza costringere il testo a essere della stessa misura. */}
+                <p className="text-fg-2 text-[0.96rem] mt-3 min-h-[6.75rem]">{p.descrizione}</p>
+                <div className="mt-6 min-h-[64px]">
+                  {/* !whitespace-normal: .btn impone nowrap per la barra in alto, e
+                      qui "Approfondisci Private AI Infrastructure" sfonderebbe la
+                      scheda. La regola di .btn vince sulle utility, serve il bang. */}
+                  <Button
+                    href="/contatti"
+                    className="w-full justify-center text-center !whitespace-normal"
+                  >
+                    {p.cta}
+                  </Button>
+                </div>
+              </div>
 
-              <ul className="mt-6 space-y-2.5 grow">
-                {p.esempi.map((e) => (
-                  <li key={e} className="flex gap-3 text-[0.94rem] text-fg-2">
-                    {/* Trattino in accento: il colore vive su piccoli tocchi
-                        funzionali, e qui serve a far leggere l'elenco come elenco. */}
-                    <span aria-hidden="true" className="text-accent shrink-0 select-none">
-                      —
-                    </span>
-                    <span>{e}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-8">
-                <Button variant="ghost" href="/contatti">
-                  {p.cta}
-                </Button>
+              <div className="border-t border-border p-7 grow">
+                <ul className="space-y-2.5">
+                  {p.esempi.map((e) => (
+                    <li key={e} className="flex gap-2.5 text-[0.94rem] text-fg-2">
+                      <Spunta />
+                      <span>{e}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           ))}
