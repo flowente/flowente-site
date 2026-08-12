@@ -4,7 +4,19 @@ import { marks } from "@/lib/marks";
 import type { Mark } from "@/lib/marks";
 import type { ShapeKind } from "./AccentShape";
 
-type Prodotto = { nome: string; descrizione: string; esempi: string[]; cta: string; mark: Mark; shape: ShapeKind };
+// prezzo a null = non si espone una cifra e si rimanda al contatto: sul terzo
+// prodotto la spesa dipende dall'infrastruttura, e un numero secco sarebbe una
+// promessa che nessuno può mantenere senza aver visto i server.
+type Prezzo = { importo: string; cadenza: string };
+type Prodotto = {
+  nome: string;
+  descrizione: string;
+  prezzo: Prezzo | null;
+  esempi: string[];
+  cta: string;
+  mark: Mark;
+  shape: ShapeKind;
+};
 
 // Tre prodotti distinti e indipendenti. Nessuna scheda è messa in evidenza — né
 // bordo più marcato né etichetta "consigliato": nei listini a livelli serve a
@@ -19,6 +31,7 @@ const PRODOTTI: Prodotto[] = [
     nome: "Quick Automation",
     descrizione:
       "Automatizza attività ripetitive e passaggi manuali tra strumenti, eliminando lavoro operativo che si ripete ogni settimana.",
+    prezzo: { importo: "€199", cadenza: "al mese" },
     esempi: [
       "Email marketing automation",
       "Weekly report automatici",
@@ -35,6 +48,7 @@ const PRODOTTI: Prodotto[] = [
     nome: "Business Platform",
     descrizione:
       "Costruisce piattaforme e agenti operativi su misura per gestire dati, clienti e flussi in un ambiente unico.",
+    prezzo: { importo: "€499", cadenza: "al mese" },
     esempi: [
       "CRM su misura",
       "Dashboard operative",
@@ -52,6 +66,7 @@ const PRODOTTI: Prodotto[] = [
     nome: "Private AI Infrastructure",
     descrizione:
       "Infrastruttura AI privata per usare modelli e dati aziendali con controllo, sicurezza e governance.",
+    prezzo: null,
     esempi: [
       "LLM privati",
       "Knowledge base aziendale protetta",
@@ -61,7 +76,11 @@ const PRODOTTI: Prodotto[] = [
       "Monitoring e compliance",
       "Deploy sicuro di modelli",
     ],
-    cta: "Approfondisci Private AI Infrastructure",
+    // "Scala con Private AI Infrastructure" misura 248px contro i 245 disponibili
+    // nel bottone a 1280: andava a capo per tre pixel, e sotto quella larghezza
+    // il divario cresce. Accorciato all'ultima parola che sta su una riga sola;
+    // il nome del prodotto e' comunque scritto sopra, in grande.
+    cta: "Scala con Private AI",
     mark: marks.lucchetto,
     shape: "triangle",
   },
@@ -109,6 +128,31 @@ export function Products() {
                     su due righe. Sono i due punti che tengono allineate le tre
                     schede senza costringere il testo a essere della stessa misura. */}
                 <p className="text-fg-2 text-[0.96rem] mt-3 min-h-[6.75rem]">{p.descrizione}</p>
+
+                {/* Il blocco del prezzo ha un'altezza minima come gli altri: la
+                    cifra e il rimando al contatto hanno ingombri diversi, e senza
+                    questo il filetto tornerebbe a cadere a tre altezze diverse. */}
+                <div className="mt-6 min-h-[52px] flex items-baseline gap-2.5">
+                  {p.prezzo ? (
+                    <>
+                      <span className="font-display font-semibold text-[2.2rem] tracking-[-0.03em] leading-none">
+                        {p.prezzo.importo}
+                      </span>
+                      <span className="text-fg-muted text-[0.88rem]">{p.prezzo.cadenza}</span>
+                    </>
+                  ) : (
+                    // Nel corpo del testo, non nel corpo della cifra: qui non c'è un
+                    // numero da confrontare, e scriverlo grande fingerebbe che ci sia.
+                    <a
+                      href="/contatti"
+                      className="text-[1.05rem] text-fg underline underline-offset-4 hover:text-fg-muted transition-colors inline-flex items-center gap-2"
+                    >
+                      Contatta il team
+                      <span aria-hidden="true">→</span>
+                    </a>
+                  )}
+                </div>
+
                 <div className="mt-6 min-h-[64px]">
                   {/* !whitespace-normal: .btn impone nowrap per la barra in alto, e
                       qui "Approfondisci Private AI Infrastructure" sfonderebbe la
