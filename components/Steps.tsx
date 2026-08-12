@@ -13,7 +13,7 @@ const STEPS: Step[] = [
   },
   {
     n: "3",
-    title: "Portarlo nel quotidiano",
+    title: "Inserirla nel flusso quotidiano",
     text: "Testiamo, miglioriamo e integriamo la soluzione nel flusso di lavoro reale, con piccoli aggiustamenti finché non diventa semplice e utile.",
   },
 ];
