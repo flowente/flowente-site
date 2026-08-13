@@ -20,6 +20,7 @@ const COLS = [
       { label: "Soluzioni", href: "/servizi" },
       { label: "Case Study", href: "/servizi#casi-duso" },
       { label: "Come lavoriamo", href: "/metodo" },
+      { label: "Storie umane", href: "/storie" },
       { label: "Chi siamo", href: "/chi-siamo" },
       { label: "Contatti", href: "/contatti" },
     ],

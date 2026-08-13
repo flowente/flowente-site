@@ -11,6 +11,7 @@ import { PRODOTTI, percorso } from "@/lib/prodotti";
 const LINKS = [
   { label: "Soluzioni", href: "/servizi" },
   { label: "Come lavoriamo", href: "/metodo" },
+  { label: "Storie umane", href: "/storie" },
   { label: "Chi siamo", href: "/chi-siamo" },
   { label: "Contatti", href: "/contatti" },
 ];

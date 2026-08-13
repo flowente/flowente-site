@@ -7,7 +7,9 @@ type Props = {
   eyebrow?: string;
   title: React.ReactNode;
   text: string;
-  note?: string;
+  // ReactNode e non string: serve a poterci mettere il link alla fonte senza
+  // creare una seconda variante della sezione.
+  note?: React.ReactNode;
   ctaLabel?: string;
   ctaHref?: string;
   mark: Mark;
