@@ -18,9 +18,13 @@ type Props = {
   /* Quando c'è, prende il posto del segno decorativo: in quel riquadro una prova
      vale più di un'illustrazione. */
   code?: React.ReactNode;
+  /* Come code, ma per una fotografia. Il segno resta il default: si passa a
+     un'immagine solo dove c'è qualcosa di reale da mostrare. */
+  img?: string;
+  imgAlt?: string;
 };
 
-export function FeatureSection({ eyebrow, title, text, note, ctaLabel, ctaHref, mark, shape = "square", reverse, code }: Props) {
+export function FeatureSection({ eyebrow, title, text, note, ctaLabel, ctaHref, mark, shape = "square", reverse, code, img, imgAlt }: Props) {
   return (
     <section className="border-b border-border">
       <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24 grid gap-10 md:gap-14 items-center md:grid-cols-2">
@@ -48,6 +52,17 @@ export function FeatureSection({ eyebrow, title, text, note, ctaLabel, ctaHref, 
           // min-w-0: senza, la colonna della griglia si dimensiona sul contenuto
           // del <pre> e allarga la pagina invece di far scorrere il blocco.
           <div className={`min-w-0 ${reverse ? "md:order-1" : ""}`}>{code}</div>
+        ) : img ? (
+          // Stessa altezza e stesso raggio del riquadro del segno: cambia il
+          // contenuto, non l'impaginazione. object-cover perche' il riquadro ha
+          // un rapporto fisso e le fotografie no.
+          <div
+            className={`overflow-hidden rounded-[20px] bg-surface-2 h-[240px] md:h-[260px] ${
+              reverse ? "md:order-1" : ""
+            }`}
+          >
+            <img src={img} alt={imgAlt || ""} loading="lazy" className="h-full w-full object-cover" />
+          </div>
         ) : (
           <div
             className={`flex items-center justify-center rounded-[20px] bg-surface-2 h-[240px] md:h-[260px] ${

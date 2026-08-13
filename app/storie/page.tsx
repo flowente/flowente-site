@@ -9,8 +9,15 @@ import { marks } from "@/lib/marks";
 export const metadata: Metadata = {
   title: "Storie umane — Flowente",
   description:
-    "Storie documentate di intelligenza artificiale usata per risolvere problemi reali: proteine, vista, parola. Con la fonte accanto a ciascuna.",
+    "Le volte in cui uomo e intelligenza artificiale, insieme, hanno restituito qualcosa a qualcuno: la vista, la parola, il lavoro di una vita. Ogni storia con la sua fonte.",
 };
+
+// IMMAGINI — sono segnaposto, e il nome dei file lo dice apposta.
+// Non ritraggono nessuna delle persone o dei luoghi di cui si parla: sono lì per
+// dare alla pagina il suo peso visivo finché non ci saranno fotografie vere.
+// Per questo restano volutamente astratte e senza volti: una foto di una persona
+// accanto a una di queste storie verrebbe letta come il paziente, e non lo è.
+// Quando arriveranno immagini reali, si sostituiscono qui e si scrive l'alt.
 
 // REGOLA DI QUESTA PAGINA — non è negoziabile, ed è il motivo per cui la pagina
 // vale qualcosa invece di essere l'ennesimo elenco di meraviglie.
@@ -48,24 +55,25 @@ export default function Storie() {
       <main>
         <PageHero
           eyebrow="Storie umane"
-          title="Dove l'AI ha cambiato qualcosa."
-          text="Storie documentate di intelligenza artificiale usata per risolvere problemi veri. Non sono nostri lavori: sono i casi che teniamo d'occhio, ognuno con la sua fonte — perché su questo argomento circola molta approssimazione."
+          title="Quando uomo e AI collaborano per il bene comune."
+          text="Dell'intelligenza artificiale si parla quasi sempre con paura. Qui teniamo l'altra metà: le volte in cui qualcuno l'ha usata per ridare a una persona la vista, la parola, una possibilità. Non sono storie nostre — sono storie di altri, e ognuna porta la sua fonte."
         />
 
         <FeatureSection
           eyebrow="Ricerca"
-          title="Duecento milioni di proteine, aperte a tutti."
-          text="Per decenni scoprire la forma di una proteina è stato un lavoro da anni di laboratorio, e la forma è ciò che determina come funziona. AlphaFold ha previsto la struttura di quasi tutte le proteine conosciute e le ha messe in un archivio pubblico e gratuito: oltre duecento milioni, da più di un milione di organismi. Lo hanno usato più di due milioni di persone in centonovanta paesi, per lavori che vanno dalla resistenza agli antibiotici agli enzimi che degradano la plastica. Nel 2024 è arrivato il Nobel per la chimica."
+          title="Il lavoro di una vita, regalato a tutti."
+          text="Capire la forma di una proteina poteva costare a un ricercatore anni di laboratorio. AlphaFold le ha previste quasi tutte — duecento milioni — e invece di venderle le ha messe in un archivio gratuito, aperto a chiunque. Oggi lo usano due milioni di persone in centonovanta paesi. Nel 2024 è arrivato il Nobel."
           note={<Fonte href="https://www.nobelprize.org/prizes/chemistry/2024/press-release/" testo="Premio Nobel per la chimica 2024" />}
           mark={marks.coil}
           shape="circle"
+          img="/media/storie/segnaposto-forma.jpg"
         />
 
         <FeatureSection
           reverse
-          eyebrow="Salute"
-          title="Una diagnosi dove non c'è un oculista."
-          text="La retinopatia diabetica porta alla cecità, ed è quasi sempre evitabile se la si vede in tempo. Il problema è che serve un oculista, e in molti paesi non ce ne sono abbastanza. Un sistema addestrato a leggere le fotografie della retina è stato messo al lavoro dentro il programma di screening nazionale thailandese, su settemilaseicento pazienti in nove ambulatori di base. Ha riconosciuto i casi da mandare allo specialista nel 91,4% delle volte: più dei retinologi che rileggevano le stesse immagini, fermi all'84,8%."
+          eyebrow="Vista"
+          title="Accorgersene in tempo, dove non c'è un oculista."
+          text="La retinopatia diabetica porta alla cecità, e quasi sempre si potrebbe evitare: basta vederla per tempo. Ma serve un oculista, e in gran parte del mondo non c'è. In Thailandia un sistema che legge le fotografie della retina ha riconosciuto chi andava mandato allo specialista nel 91,4% delle volte. I retinologi che rileggevano le stesse immagini erano all'84,8%."
           note={
             <Fonte
               href="https://pubmed.ncbi.nlm.nih.gov/35272972/"
@@ -74,12 +82,13 @@ export default function Storie() {
           }
           mark={marks.onda}
           shape="square"
+          img="/media/storie/segnaposto-luce.jpg"
         />
 
         <FeatureSection
           eyebrow="Parola"
           title="Riavere la propria voce."
-          text="La SLA toglie la parola lasciando intatto il pensiero. A un uomo di quarantacinque anni che l'aveva persa sono stati impiantati duecentocinquantasei elettrodi sull'area del cervello che governa il linguaggio: un modello traduce quei segnali in testo mentre lui prova a parlare, e una copia digitale della sua voce di prima lo pronuncia. Nei successivi otto mesi ha tenuto un'accuratezza del 97,5% su un vocabolario di centoventicinquemila parole, conversando per oltre duecento ore. È una ricerca agli inizi, su un solo partecipante: non è una terapia disponibile, è la prova che si può fare."
+          text="La SLA gli aveva tolto la parola, non i pensieri. Duecentocinquantasei elettrodi leggono l'area del cervello che governa il linguaggio, un modello traduce, e a parlare è una copia della sua voce di prima. Per otto mesi ha conversato con i suoi con un'accuratezza del 97,5%. Un solo paziente, una ricerca appena cominciata: non è una cura, è una porta che si apre."
           note={
             <Fonte
               href="https://pubmed.ncbi.nlm.nih.gov/39141853/"
@@ -88,12 +97,15 @@ export default function Storie() {
           }
           mark={marks.flusso}
           shape="triangle"
+          img="/media/storie/segnaposto-voce.jpg"
         />
 
+        {/* La banda finale resta, ma qui non vende: dopo tre storie cosi' una
+            domanda sul processo aziendale suonerebbe fuori posto. */}
         <CtaBand
-          title="Hai un processo da semplificare?"
-          text="Partiamo da un confronto semplice. Ci racconti come lavori oggi, analizziamo insieme vincoli e possibilità, e vediamo se l'AI può davvero darti una mano."
-          ctaLabel="Parliamone"
+          title="Conosci una storia che meriterebbe di stare qui?"
+          text="Raccontacela. Cerchiamo casi documentati in cui l'AI ha fatto la differenza per qualcuno — la fonte poi la verifichiamo insieme."
+          ctaLabel="Scrivici"
         />
       </main>
       <Footer />
