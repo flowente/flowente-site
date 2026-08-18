@@ -22,7 +22,6 @@ const COLS = [
       { label: "Come lavoriamo", href: "/metodo" },
       { label: "Chi siamo", href: "/chi-siamo" },
       { label: "Contatti", href: "/contatti" },
-      { label: "Storie umane", href: "/storie" },
     ],
   },
   {

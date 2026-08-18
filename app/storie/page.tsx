@@ -6,7 +6,14 @@ import { FeatureSection } from "@/components/FeatureSection";
 import { CtaBand } from "@/components/CtaBand";
 import { marks } from "@/lib/marks";
 
+// PAGINA NASCOSTA — non e' in navbar ne' nel footer, e noindex la tiene fuori da
+// Google. L'indirizzo /storie continua a rispondere, cosi' si puo' guardare e
+// farla vedere a qualcuno mentre si decide cosa farne.
+// Per rimetterla online: togliere il blocco robots qui sotto e rimettere la voce
+// "Storie umane" -> /storie in LINKS (components/Nav.tsx) e nella colonna
+// "Naviga" (components/Footer.tsx).
 export const metadata: Metadata = {
+  robots: { index: false, follow: false },
   title: "Storie umane — Flowente",
   description:
     "Le volte in cui uomo e intelligenza artificiale, insieme, hanno restituito qualcosa a qualcuno: la vista, la parola, il lavoro di una vita. Ogni storia con la sua fonte.",

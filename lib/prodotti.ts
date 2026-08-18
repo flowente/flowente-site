@@ -5,9 +5,11 @@ import type { ShapeKind } from "@/components/AccentShape";
 // dettaglio e la tendina della barra in alto. Una copia sola evita che i tre
 // punti dicano cose diverse alla prossima revisione del copy.
 //
-// prezzo a null = non si espone una cifra e si rimanda al contatto: sul terzo
-// prodotto la spesa dipende dall'infrastruttura, e un numero secco sarebbe una
-// promessa che nessuno può mantenere senza aver visto i server.
+// prezzo a null = non si espone una cifra e la scheda mostra "Contatta il team".
+// Al momento vale per tutti e tre: il perimetro di un progetto cambia troppo da
+// cliente a cliente perché un numero in vetrina sia una promessa mantenibile.
+// Il tipo Prezzo e il ramo che lo stampa restano al loro posto: il giorno che un
+// listino c'è, si riempie questo campo e la scheda torna a mostrarlo da sola.
 export type Prezzo = { importo: string; cadenza: string };
 
 // Il caso collegato al prodotto. NON è una testimonianza: non c'è una frase fra
@@ -44,7 +46,7 @@ export const PRODOTTI: Prodotto[] = [
       // implicito in "ripetitive", ed era la parola che faceva la quarta riga.
       "Automatizza attività ripetitive e passaggi tra strumenti, togliendo il lavoro che si ripete ogni settimana.",
     sottotitolo: "Automazioni e agenti, senza cambiare strumenti",
-    prezzo: { importo: "€199", cadenza: "al mese" },
+    prezzo: null,
     caso: {
       titolo: "Skills e plugin di rendicontazione periodica.",
       testo:
@@ -69,7 +71,7 @@ export const PRODOTTI: Prodotto[] = [
     descrizione:
       "Costruisce piattaforme e agenti operativi su misura per gestire dati, clienti e flussi in un ambiente unico.",
     sottotitolo: "Un unico ambiente per processi e dati",
-    prezzo: { importo: "€499", cadenza: "al mese" },
+    prezzo: null,
     caso: {
       titolo: "Agente di ricerca sui dati storici aziendali.",
       testo:
