@@ -63,6 +63,28 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: "Switzer";
+  src: url("/fonts/Switzer-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Switzer";
+  src: url("/fonts/Switzer-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* INTERRUTTORE DELLA PROVA. Il display resta Erode in tutti e due i casi: a
+   cambiare e' solo il font del testo, che e' la scelta ancora aperta.
+   ?testo=switzer nell'indirizzo, e la pagina si ridisegna con Switzer.
+   Vive solo su questo ramo: se la prova si chiude, sparisce con lui. */
+html[data-testo="switzer"] {
+  --font-inter: "Switzer", -apple-system, "Segoe UI", Roboto, sans-serif;
+}
 [data-theme="dark"] {
   --bg: #0B0B0C;
   --surface: #141416;
