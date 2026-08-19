@@ -33,9 +33,8 @@ export function FeatureSection({ eyebrow, title, text, note, ctaLabel, ctaHref, 
     return (
       <section className="border-b border-border">
         <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24 flex flex-col items-center text-center">
-          <MarkBadge mark={mark} shape={shape} boxW={280} boxH={160} shapeSize={120} markW={250} markH={140} />
           {eyebrow && (
-            <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted mt-8">{eyebrow}</p>
+            <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted">{eyebrow}</p>
           )}
           {/* Piu' stretto del titolo a due colonne: al centro una riga lunga
               costringe l'occhio a tornare indietro ogni volta. */}
@@ -47,6 +46,12 @@ export function FeatureSection({ eyebrow, title, text, note, ctaLabel, ctaHref, 
           </h2>
           <p className="mt-5 max-w-[620px] text-fg-2 text-[1.06rem]">{text}</p>
           {note && <p className="mt-5 max-w-[620px] text-fg-muted text-[0.9rem]">{note}</p>}
+          {/* Il segno sta sotto il testo, non sopra il titolo: in cima faceva da
+              insegna e si leggeva prima delle parole, che sono quello che conta.
+              Qui chiude il blocco. */}
+          <div className="mt-10">
+            <MarkBadge mark={mark} shape={shape} boxW={280} boxH={160} shapeSize={120} markW={250} markH={140} />
+          </div>
           {ctaLabel && (
             <div className="mt-7">
               <Button variant="ghost" href={ctaHref || "#"}>{ctaLabel}</Button>
