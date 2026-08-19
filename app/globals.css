@@ -25,13 +25,25 @@
 }
 
 /* font-display: swap — il testo compare subito col fallback e cambia quando il
-   font e' pronto, invece di lasciare la pagina bianca. */
+   font e' pronto, invece di lasciare la pagina bianca.
+
+   size-adjust: 110% su Erode. A parita' di font-size le maiuscole di Erode sono
+   il 9% piu' basse di quelle di Space Grotesk (121 contro 133 su un corpo di
+   200px, misurato a schermo), mentre la larghezza della stessa frase e' identica
+   allo 0,3%. Nei titoli, che cominciano con la maiuscola, il testo sembrava
+   rimpicciolito. size-adjust scala i glifi dentro lo stesso em, quindi si
+   correggono tutti i titoli in un punto invece di ritoccare i clamp() sparsi in
+   una dozzina di file.
+
+   Il prezzo: la stessa frase diventa il 10% piu' larga, e i titoli che erano
+   stati sistemati per stare su una riga vanno ricontrollati. */
 @font-face {
   font-family: "Erode";
   src: url("/fonts/Erode-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+  size-adjust: 110%;
 }
 @font-face {
   /* Il peso del wordmark: Logo.tsx usa font-medium. Senza questo il browser
@@ -41,6 +53,7 @@
   font-weight: 500;
   font-style: normal;
   font-display: swap;
+  size-adjust: 110%;
 }
 @font-face {
   font-family: "Erode";
@@ -48,6 +61,7 @@
   font-weight: 600;
   font-style: normal;
   font-display: swap;
+  size-adjust: 110%;
 }
 @font-face {
   font-family: "Recia";
