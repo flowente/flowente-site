@@ -161,6 +161,20 @@ body {
 .fila-casi::-webkit-scrollbar { display: none; }
 .fila-casi > article { scroll-snap-align: start; }
 
+/* Le larghezze della scheda stanno qui e non fra le utility: le classi di
+   larghezza scritte dentro una costante TypeScript non vengono generate da
+   Tailwind — md:px-10 nella stessa pagina funziona, md:w-[520px] non finiva
+   nemmeno nel foglio. Qui il comportamento e' scritto e verificabile.
+   .caso-aperta viene dopo .caso, quindi vince a parita' di specificita'.
+   Su telefono l'aperta prende tutta la larghezza utile: 100vw meno i due
+   rientri della fila. */
+.caso { width: 280px; }
+.caso-aperta { width: calc(100vw - 48px); }
+@media (min-width: 768px) {
+  .caso { width: 360px; }
+  .caso-aperta { width: 520px; }
+}
+
 /* Il rientro allinea la prima scheda al testo della sezione: meta' dello spazio
    che avanza oltre i 1160px del contenitore, piu' il suo padding. In percentuale
    e non in vw, perche' vw conta anche la barra di scorrimento e la prima scheda

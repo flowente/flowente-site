@@ -3,7 +3,10 @@
 // prodotto = quale delle nostre soluzioni ha risolto il caso. Si legge come una
 // firma in fondo alla scheda, nel font del testo e non nel mono: il mono qui
 // sarebbe una terza etichetta tecnica dopo l'eyebrow, e ne basta una.
-export type Caso = { label: string; title: string; text: string; img: string; video?: string; prodotto?: string };
+// dettaglio = le righe in piu' che compaiono quando la scheda si apre. Sono
+// facoltative: senza, aprendo si vede comunque il testo per intero invece che
+// troncato.
+export type Caso = { label: string; title: string; text: string; dettaglio?: string; img: string; video?: string; prodotto?: string };
 
 // Sorgente unica dei casi: li usano la sezione in /servizi e la pila di schede
 // nella hero. Stavano dentro UseCases, ma da quando compaiono in due punti una
