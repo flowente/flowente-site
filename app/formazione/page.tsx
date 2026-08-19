@@ -7,7 +7,7 @@ import { CtaBand } from "@/components/CtaBand";
 export const metadata: Metadata = {
   title: "Formazione — Flowente",
   description:
-    "Fra chi valuta l'AI e poi non la adotta, il 58,6% indica la mancanza di competenze. Il team Flowente accompagna il tuo nella comprensione e nell'uso efficace degli strumenti.",
+    "Per molte aziende l'ostacolo non è il costo dell'AI, ma sapere come usarla. Con Flowente il team impara a scegliere gli strumenti e ad applicarli al lavoro di ogni giorno.",
 };
 
 // PAGINA APPENA APERTA. Per ora c'e' solo la hero: il testo e' quello della
@@ -28,7 +28,10 @@ export default function Formazione() {
         <PageHero
           eyebrow="Formazione"
           title="Si parte da qui."
-          text="Fra chi valuta l'AI e poi non la adotta, il 58,6% indica la mancanza di competenze — più del costo, che si ferma al 43%. Il team Flowente vi accompagna nella comprensione e utilizzo efficace degli strumenti."
+          text={
+            "Per molte aziende il vero ostacolo non è il costo dell'AI, ma sapere come usarla. Il 58,6% di chi ha valutato un investimento e poi si è fermato indica la mancanza di competenze.\n\n" +
+            "Con Flowente, il team impara a scegliere gli strumenti, usarli con criterio e applicarli al lavoro di ogni giorno."
+          }
           ctaLabel="Parliamone"
         />
 

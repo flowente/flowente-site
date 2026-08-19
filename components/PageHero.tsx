@@ -29,9 +29,20 @@ export function PageHero({ eyebrow, title, text, ctaLabel, ctaHref, align = "cen
         >
           {title}
         </h1>
-        {text && (
-          <p className={`text-fg-2 text-[1.08rem] mt-6 max-w-[560px] ${centered ? "mx-auto" : ""}`}>{text}</p>
-        )}
+        {/* Una riga vuota nel testo separa due paragrafi. Serve dove la hero
+            deve dire due cose distinte — il problema e poi la risposta — che in
+            un blocco solo si impastano. */}
+        {text &&
+          text.split("\n\n").map((blocco, i) => (
+            <p
+              key={i}
+              className={`text-fg-2 text-[1.08rem] max-w-[560px] ${i === 0 ? "mt-6" : "mt-4"} ${
+                centered ? "mx-auto" : ""
+              }`}
+            >
+              {blocco}
+            </p>
+          ))}
         {ctaLabel && (
           <div className={`mt-8 flex ${centered ? "justify-center" : ""}`}>
             <Button href={ctaHref || "/contatti"} size="lg">
