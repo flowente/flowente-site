@@ -82,7 +82,11 @@ export function confermaTesto({ nome, messaggio, azienda }: DatiConferma) {
     .join("\n");
 }
 
-export function confermaHtml({ nome, messaggio, azienda }: DatiConferma) {
+// logoSrc esiste solo per l'anteprima: la pagina su claude.ai blocca le immagini
+// da domini esterni, quindi li' il logo viene passato come data URI per poterlo
+// vedere. Nell'email vera resta l'indirizzo assoluto — un data URI in una mail
+// lo bloccano Gmail e Outlook, che e' il contrario del problema.
+export function confermaHtml({ nome, messaggio, azienda, logoSrc }: DatiConferma & { logoSrc?: string }) {
   const n = primoNome(nome);
   const saluto = n
     ? `Grazie ${esc(n)} per averci scritto, ti risponderemo al più presto.`
@@ -130,7 +134,7 @@ export function confermaHtml({ nome, messaggio, azienda }: DatiConferma) {
         <tr>
           <td style="padding:0 0 32px 0;line-height:0;">
             <a href="https://www.flowente.com" style="text-decoration:none;">
-              <img src="${LOGO}" width="177" height="23" alt="flowente"
+              <img src="${logoSrc || LOGO}" width="177" height="23" alt="flowente"
                    style="display:block;width:177px;height:23px;border:0;outline:none;text-decoration:none;font-family:${SERIF};font-size:18px;color:${INK};" />
             </a>
           </td>
