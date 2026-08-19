@@ -75,7 +75,7 @@ export const PRODOTTI: Prodotto[] = [
     slug: "business-platform",
     nome: "AI Automation",
     descrizione:
-      "Agenti AI e automazioni avanzate per collegare dati, documenti e strumenti nei processi più complessi, dove i passaggi sono molti.",
+      "Agenti AI e automazioni avanzate per collegare dati, documenti e strumenti nei processi più complessi, dove si susseguono diversi task.",
     sottotitolo: "Agenti e processi collegati",
     prezzo: null,
     caso: {
