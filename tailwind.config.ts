@@ -24,9 +24,9 @@ const config: Config = {
         accent: "var(--accent)",
       },
       fontFamily: {
-        display: ["var(--font-space-grotesk)", "sans-serif"],
-        sans: ["var(--font-inter)", "sans-serif"],
-        mono: ["var(--font-jetbrains)", "monospace"],
+        display: ["var(--font-display)", "Georgia", "serif"],
+        sans: ["var(--font-testo)", "Georgia", "serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       borderRadius: { DEFAULT: "6px", lg: "10px", xl: "14px" },
       maxWidth: { content: "1160px" },

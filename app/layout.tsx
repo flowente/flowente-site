@@ -33,16 +33,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
           rel="stylesheet"
         />
-        {/* PROVA FONT — solo sul ramo prova-font.
-            ?testo=switzer scambia il font del testo; la scelta resta in
-            sessionStorage cosi' si puo' navigare fra le pagine senza
-            riscriverla ogni volta. Inline e prima del corpo, altrimenti la
-            pagina si disegna con il font sbagliato e poi salta. */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var p=new URLSearchParams(location.search).get('testo');if(p)sessionStorage.setItem('provaTesto',p);var v=sessionStorage.getItem('provaTesto');if(v)document.documentElement.setAttribute('data-testo',v);}catch(e){}})()`,
-          }}
-        />
       </head>
       <body className="font-sans">
         <SvgFilters />
