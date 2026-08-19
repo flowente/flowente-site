@@ -12,10 +12,56 @@
   --text-2: #3A3A40;
   --muted: #8A8A92;
   --accent: #2540FF;
-  /* Font families (caricati via <link> in layout.tsx) */
-  --font-space-grotesk: "Space Grotesk", sans-serif;
-  --font-inter: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* PROVA FONT — ramo prova-font, non unito.
+     Display: Erode (Semibold sui titoli). Testo: Recia. Tecnico: JetBrains,
+     invariato. I nomi delle variabili restano quelli vecchi apposta: cosi' la
+     prova tocca due righe invece di quaranta file, e tornare indietro e' un
+     git checkout. Se il cambio si tiene, allora si rinominano.
+     I file stanno in /public/fonts, serviti da noi: niente terza parte, che su
+     un sito che si vanta di non mandare dati in giro conta. */
+  --font-space-grotesk: "Erode", Georgia, serif;
+  --font-inter: "Recia", Georgia, serif;
   --font-jetbrains: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* font-display: swap — il testo compare subito col fallback e cambia quando il
+   font e' pronto, invece di lasciare la pagina bianca. */
+@font-face {
+  font-family: "Erode";
+  src: url("/fonts/Erode-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  /* Il peso del wordmark: Logo.tsx usa font-medium. Senza questo il browser
+     stira il 400 o il 600 e il marchio si vede sbagliato. */
+  font-family: "Erode";
+  src: url("/fonts/Erode-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Erode";
+  src: url("/fonts/Erode-Semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Recia";
+  src: url("/fonts/Recia-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Recia";
+  src: url("/fonts/Recia-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }
 [data-theme="dark"] {
   --bg: #0B0B0C;
