@@ -25,7 +25,11 @@ const NUMERI = [
   },
   {
     cifra: "58,6%",
-    testo: "Tra chi ha valutato l'AI senza adottarla, indica la mancanza di competenze come primo ostacolo.",
+    // Due righe come le altre due didascalie: la soglia misurata a schermo e'
+    // intorno ai 70 caratteri, questa ne ha 68. "Primo ostacolo" resta perche'
+    // e' il fatto piu' difendibile - non uno fra i tanti, il primo della lista
+    // (58,6% contro il 47,3% del secondo).
+    testo: "Di chi l'ha valutata senza adottarla: primo ostacolo, le competenze.",
   },
 ];
 
