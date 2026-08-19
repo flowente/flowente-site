@@ -38,11 +38,6 @@ export type Prodotto = {
   prezzo: Prezzo | null;
   caso: Caso;
   esempi: string[];
-  // Le voci spente sotto l'elenco: NON sono capacita' inventate per riempire la
-  // colonna, sono voci prese dall'elenco del prodotto superiore. Cosi' la lista
-  // dice dove finisce questo livello e dove comincia il prossimo, senza che
-  // nessuna riga prometta o neghi qualcosa che non esiste da nessuna parte.
-  esclusi?: string[];
   // Etichetta in evidenza sulla scheda. Una sola fra i tre, o smette di
   // significare qualcosa.
   badge?: string;
@@ -68,16 +63,11 @@ export const PRODOTTI: Prodotto[] = [
       video: "/media/testimonianze/quick-automation.mp4",
     },
     esempi: [
-      "Email marketing automation",
-      "Weekly report automatici",
-      "Follow-up automatici",
+      "Risposte automatiche alle email",
+      "Dati che passano da soli tra i tuoi strumenti",
+      "Report settimanale pronto il lunedì",
+      "Promemoria e solleciti automatici",
       "Aggiornamento CRM e database",
-    ],
-    esclusi: [
-      "CRM su misura",
-      "Dashboard operative",
-      "Workflow e approvazioni interne",
-      "Modelli in ambiente privato",
     ],
     cta: "Scopri AI Pilota",
     mark: marks.onda,
@@ -100,12 +90,8 @@ export const PRODOTTI: Prodotto[] = [
       "CRM su misura",
       "Dashboard operative",
       "Portale clienti",
-      "Marketing e sales agent",
+      "Agenti marketing e vendite",
       "Workflow e approvazioni interne",
-    ],
-    esclusi: [
-      "Modelli in ambiente privato",
-      "Controllo accessi e data governance",
     ],
     badge: "Consigliato",
     cta: "Esplora AI Automation",
@@ -125,13 +111,12 @@ export const PRODOTTI: Prodotto[] = [
         "Le skills fissano il modo in cui si fanno le richieste: il modello riceve ogni volta solo il contesto che serve, invece dell'archivio intero. A parità di lavoro svolto, il costo per richiesta scende in modo netto.",
     },
     esempi: [
-      "LLM privati",
+      "Modelli AI privati",
       "Knowledge base aziendale protetta",
       "Controllo accessi e permessi",
       "Data governance",
-      "Integrazione con sistemi interni",
-      "Monitoring e compliance",
-      "Deploy sicuro di modelli",
+      "Integrazione con i sistemi interni",
+      "Monitoraggio e conformità",
     ],
     cta: "Scala con Private AI",
     mark: marks.lucchetto,

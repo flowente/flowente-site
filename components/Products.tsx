@@ -1,12 +1,11 @@
 import { Button } from "./Button";
 import { MarkBadge } from "./MarkBadge";
 import { Spunta } from "./Spunta";
-import { Croce } from "./Croce";
 import { PRODOTTI, percorso } from "@/lib/prodotti";
 
-// I tre prodotti come una scala: quattro voci attive su AI Pilota, cinque su AI
-// Automation, sette su Private AI, e sotto le voci spente che dicono dove
-// finisce ogni livello.
+// Tre elenchi di sole voci attive: cinque, cinque e sei. Le voci spente con la
+// croce sono state provate e tolte — se servissero di nuovo, stanno nel commit
+// 8721d12 insieme al componente Croce.
 //
 // SULLA TARGHETTA. Nel riferimento diceva "il più acquistato". Qui non si può:
 // non ci sono ancora acquisti da contare, e una riga del genere è falsa in
@@ -88,19 +87,12 @@ export function Products() {
                   </Button>
                 </div>
 
-                {/* Un elenco solo, senza filetto sopra: attive e spente sono la
-                    stessa lista, e una riga di separazione le farebbe leggere
-                    come due cose diverse. */}
+                {/* Senza filetto sopra: l'elenco chiude la scheda, non apre una
+                    seconda sezione. */}
                 <ul className="mt-7 space-y-2.5">
                   {p.esempi.map((e) => (
                     <li key={e} className="flex gap-2.5 text-[0.94rem] text-fg-2">
                       <Spunta className="mt-[5px]" />
-                      <span>{e}</span>
-                    </li>
-                  ))}
-                  {p.esclusi?.map((e) => (
-                    <li key={e} className="flex gap-2.5 text-[0.94rem] text-fg-muted opacity-60">
-                      <Croce className="mt-[5px]" />
                       <span>{e}</span>
                     </li>
                   ))}
