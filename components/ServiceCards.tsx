@@ -58,7 +58,7 @@ export function ServiceCards() {
             </div>
           ))}
         </div>
-        <div className="mt-10">
+        <div className="mt-10 flex justify-center">
           <Button href="/servizi">
             Esplora le soluzioni
           </Button>

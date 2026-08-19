@@ -6,24 +6,28 @@
 // sotto c'era anche "Il metodo, in tre fasi", perche' le due sezioni si
 // dividevano il lavoro. Adesso questa e' rimasta sola e deve dire anche cosa
 // succede, non solo di cosa si occupa.
+//
+// titolo e' una coppia di righe, non una frase: le quattro voci stanno in fila e
+// un titolo che va a capo dove capita fa partire i quattro paragrafi ad altezze
+// diverse. Cosi' il punto di rottura e' deciso, non subito.
 const VOCI = [
   {
-    titolo: "Automatizzare il lavoro ripetitivo",
+    titolo: ["Ridurre il lavoro", "ripetitivo"],
     testo:
       "Riduciamo le attività manuali tra email, file e strumenti, così il team può dedicarsi al lavoro che richiede davvero attenzione.",
   },
   {
-    titolo: "Rendere accessibile la conoscenza aziendale",
+    titolo: ["Rendere accessibile", "la conoscenza"],
     testo:
       "Documenti, procedure e informazioni diventano più facili da trovare, consultare e usare nel momento in cui servono.",
   },
   {
-    titolo: "Integrare l'AI nei processi esistenti",
+    titolo: ["Integrare l'AI", "nei processi"],
     testo:
       "Colleghiamo l'AI agli strumenti che già usate, senza creare un altro ambiente da gestire o un flusso da imparare.",
   },
   {
-    titolo: "Proteggere dati e proprietà intellettuale",
+    titolo: ["Proteggere dati", "e proprietà"],
     testo:
       "Definiamo dove risiedono dati e modelli, chi può accedervi e come vengono utilizzati, in base ai requisiti dell'azienda.",
   },
@@ -34,7 +38,7 @@ export function ForWho() {
     <section className="border-b border-border">
       <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24">
         <div className="max-w-[620px] mb-12">
-          <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted">Per chi</p>
+          <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted">Cosa miglioriamo</p>
           <h2 className="mt-4 font-display font-semibold tracking-[-0.03em] text-[clamp(2rem,4vw,3rem)] leading-[1.02]">
             Dove l&apos;AI migliora il lavoro.
           </h2>
@@ -47,7 +51,7 @@ export function ForWho() {
         <div className="grid gap-8 sm:gap-x-0 sm:grid-cols-2 lg:grid-cols-4">
           {VOCI.map((v, i) => (
             <div
-              key={v.titolo}
+              key={v.titolo.join(" ")}
               className={[
                 "sm:px-6 lg:px-8",
                 i % 2 === 1 ? "sm:border-l sm:border-border" : "sm:pl-0",
@@ -55,7 +59,11 @@ export function ForWho() {
               ].join(" ")}
             >
               <div className="font-mono text-accent text-[0.9rem]">{String(i + 1).padStart(2, "0")}</div>
-              <h3 className="font-display font-semibold text-[1.35rem] tracking-[-0.02em] mt-3">{v.titolo}</h3>
+              <h3 className="font-display font-semibold text-[1.35rem] tracking-[-0.02em] mt-3">
+                {v.titolo[0]}
+                <br />
+                {v.titolo[1]}
+              </h3>
               <p className="text-fg-2 text-[0.98rem] mt-2.5 max-w-[300px]">{v.testo}</p>
             </div>
           ))}
