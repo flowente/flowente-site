@@ -12,11 +12,68 @@
   --text-2: #3A3A40;
   --muted: #8A8A92;
   --accent: #2540FF;
-  /* Font families (caricati via <link> in layout.tsx) */
-  --font-space-grotesk: "Space Grotesk", sans-serif;
-  --font-inter: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-jetbrains: "JetBrains Mono", ui-monospace, monospace;
+  /* Erode display, Recia testo, JetBrains tecnico. I primi due sono nostri e
+     stanno in /public/fonts: niente terza parte, che su un sito che dichiara di
+     non mandare dati in giro conta. Vedi DESIGN.md §5. */
+  --font-display: "Erode", Georgia, serif;
+  --font-testo: "Recia", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
+
+/* font-display: swap — il testo compare subito col fallback e cambia quando il
+   font e' pronto, invece di lasciare la pagina bianca.
+
+   size-adjust: 110% su Erode. A parita' di font-size le maiuscole di Erode sono
+   il 9% piu' basse di quelle di Space Grotesk (121 contro 133 su un corpo di
+   200px, misurato a schermo), mentre la larghezza della stessa frase e' identica
+   allo 0,3%. Nei titoli, che cominciano con la maiuscola, il testo sembrava
+   rimpicciolito. size-adjust scala i glifi dentro lo stesso em, quindi si
+   correggono tutti i titoli in un punto invece di ritoccare i clamp() sparsi in
+   una dozzina di file.
+
+   Il prezzo: la stessa frase diventa il 10% piu' larga, e i titoli che erano
+   stati sistemati per stare su una riga vanno ricontrollati. */
+@font-face {
+  font-family: "Erode";
+  src: url("/fonts/Erode-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 110%;
+}
+@font-face {
+  /* Il peso del wordmark: Logo.tsx usa font-medium. Senza questo il browser
+     stira il 400 o il 600 e il marchio si vede sbagliato. */
+  font-family: "Erode";
+  src: url("/fonts/Erode-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 110%;
+}
+@font-face {
+  font-family: "Erode";
+  src: url("/fonts/Erode-Semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 110%;
+}
+@font-face {
+  font-family: "Recia";
+  src: url("/fonts/Recia-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Recia";
+  src: url("/fonts/Recia-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 [data-theme="dark"] {
   --bg: #0B0B0C;
   --surface: #141416;
@@ -53,7 +110,7 @@ body {
 
 /* ===== BOTTONI ===== */
 .btn {
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-testo), sans-serif;
   font-weight: 500; font-size: .95rem; letter-spacing: -.006em; line-height: 1;
   padding: 12px 22px; border-radius: 8px; border: 1px solid transparent;
   cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
@@ -157,15 +214,15 @@ body {
 
 /* ===== PROSE LEGALE ===== */
 .prose-legal { color: var(--text-2); font-size: 1rem; line-height: 1.7; }
-.prose-legal h2 { font-family: var(--font-space-grotesk); color: var(--text); font-weight: 600; letter-spacing: -0.02em; font-size: 1.5rem; margin: 2.4rem 0 0.8rem; }
-.prose-legal h3 { font-family: var(--font-space-grotesk); color: var(--text); font-weight: 600; font-size: 1.1rem; margin: 1.6rem 0 0.5rem; }
+.prose-legal h2 { font-family: var(--font-display); color: var(--text); font-weight: 600; letter-spacing: -0.02em; font-size: 1.5rem; margin: 2.4rem 0 0.8rem; }
+.prose-legal h3 { font-family: var(--font-display); color: var(--text); font-weight: 600; font-size: 1.1rem; margin: 1.6rem 0 0.5rem; }
 .prose-legal p { margin: 0 0 1rem; max-width: 68ch; }
 .prose-legal a { color: var(--text); text-decoration: underline; text-underline-offset: 2px; }
 .prose-legal ul { margin: 0 0 1rem 1.1rem; max-width: 68ch; }
 .prose-legal li { margin: 0.3rem 0; }
 .prose-legal table { width: 100%; max-width: 68ch; border-collapse: collapse; margin: 0.5rem 0 1.4rem; font-size: 0.92rem; }
 .prose-legal th, .prose-legal td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; }
-.prose-legal th { font-family: var(--font-jetbrains); font-weight: 500; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+.prose-legal th { font-family: var(--font-mono); font-weight: 500; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
 .prose-legal .muted { color: var(--muted); font-size: 0.92rem; }
 
 /* ===== GRID a puntini (hero) ===== */
