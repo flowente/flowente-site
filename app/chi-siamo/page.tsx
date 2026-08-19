@@ -7,7 +7,7 @@ import { CtaBand } from "@/components/CtaBand";
 export const metadata: Metadata = {
   title: "Chi siamo — Flowente",
   description:
-    "Portiamo l'AI dentro il lavoro quotidiano delle aziende. Non partiamo dalla tecnologia da mostrare, ma dai processi che fanno perdere tempo.",
+    "Portiamo l'AI dentro il lavoro quotidiano delle aziende, in modo semplice e concreto.",
 };
 
 export default function ChiSiamo() {
@@ -18,7 +18,7 @@ export default function ChiSiamo() {
         <PageHero
           eyebrow="Chi siamo"
           title="AI applicata ai processi reali."
-          text="Flowente nasce per portare l'intelligenza artificiale dentro il lavoro quotidiano delle aziende, in modo semplice e concreto. Non partiamo dalla tecnologia da mostrare, ma dai processi che fanno perdere tempo, creano complessità o frenano la crescita."
+          text="Flowente nasce per portare l'intelligenza artificiale dentro il lavoro quotidiano delle aziende, in modo semplice e concreto."
         />
 
         {/* In cosa crediamo */}

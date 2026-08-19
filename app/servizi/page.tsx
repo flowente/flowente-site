@@ -9,7 +9,7 @@ import { CtaBand } from "@/components/CtaBand";
 export const metadata: Metadata = {
   title: "Soluzioni — Flowente",
   description:
-    "Dalla prima automazione all'infrastruttura AI privata: Quick Automation, Business Platform e Private AI Infrastructure. Scegli il punto di partenza.",
+    "Dalla prima automazione al modello privato: AI Pilota, AI Automation e Private AI. Scegli il punto di partenza.",
 };
 
 export default function Servizi() {

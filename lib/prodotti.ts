@@ -1,6 +1,12 @@
 import { marks, type Mark } from "./marks";
 import type { ShapeKind } from "@/components/AccentShape";
 
+// NOMI E INDIRIZZI NON COINCIDONO PIU', ed e' voluto. I prodotti si chiamano
+// AI Pilota, AI Automation e Private AI; gli slug sono rimasti quelli di prima
+// (quick-automation, business-platform, private-ai-infrastructure) perche'
+// rinominarli rompe ogni link gia' condiviso e quanto Google ha indicizzato.
+// Si cambiano il giorno che si mettono in piedi i redirect dai vecchi.
+//
 // Sorgente unica dei tre prodotti: la usano le schede in /servizi, le pagine di
 // dettaglio e la tendina della barra in alto. Una copia sola evita che i tre
 // punti dicano cose diverse alla prossima revisione del copy.
@@ -40,12 +46,12 @@ export type Prodotto = {
 export const PRODOTTI: Prodotto[] = [
   {
     slug: "quick-automation",
-    nome: "Quick Automation",
+    nome: "AI Pilota",
+    // Qualche parola in piu' della scheda in home: li' e' un elenco da scorrere,
+    // qui chi legge sta gia' scegliendo e la riga in piu' gli serve.
     descrizione:
-      // Tre righe come le altre due descrizioni: "manuali" è caduto perché già
-      // implicito in "ripetitive", ed era la parola che faceva la quarta riga.
-      "Automatizza attività ripetitive e passaggi tra strumenti, togliendo il lavoro che si ripete ogni settimana.",
-    sottotitolo: "Automazioni e agenti, senza cambiare strumenti",
+      "Una prima automazione concreta e misurabile per ridurre un'attività manuale ripetitiva, partendo da un flusso solo.",
+    sottotitolo: "La prima automazione, misurata",
     prezzo: null,
     caso: {
       titolo: "Skills e plugin di rendicontazione periodica.",
@@ -61,16 +67,16 @@ export const PRODOTTI: Prodotto[] = [
       "Follow-up automatici",
       "Aggiornamento CRM e database",
     ],
-    cta: "Scopri Quick Automation",
+    cta: "Scopri AI Pilota",
     mark: marks.onda,
     shape: "circle",
   },
   {
     slug: "business-platform",
-    nome: "Business Platform",
+    nome: "AI Automation",
     descrizione:
-      "Costruisce piattaforme e agenti operativi su misura per gestire dati, clienti e flussi in un ambiente unico.",
-    sottotitolo: "Un unico ambiente per processi e dati",
+      "Agenti AI e automazioni avanzate per collegare dati, documenti e strumenti nei processi più complessi, dove i passaggi sono molti.",
+    sottotitolo: "Agenti e processi collegati",
     prezzo: null,
     caso: {
       titolo: "Agente di ricerca sui dati storici aziendali.",
@@ -86,16 +92,16 @@ export const PRODOTTI: Prodotto[] = [
       "Content creation agent",
       "Workflow e approvazioni interne",
     ],
-    cta: "Esplora Business Platform",
+    cta: "Esplora AI Automation",
     mark: marks.flusso,
     shape: "square",
   },
   {
     slug: "private-ai-infrastructure",
-    nome: "Private AI Infrastructure",
+    nome: "Private AI",
     descrizione:
-      "Infrastruttura AI privata per usare modelli e dati aziendali con controllo, sicurezza e governance.",
-    sottotitolo: "Modelli e dati sui tuoi server",
+      "Modelli AI privati, configurati sui dati e sulle regole della tua azienda, che restano dentro il perimetro che decidi tu.",
+    sottotitolo: "Modelli e dati nel tuo perimetro",
     prezzo: null,
     caso: {
       titolo: "Un modello aziendale con le skills che tagliano i costi.",
@@ -111,8 +117,6 @@ export const PRODOTTI: Prodotto[] = [
       "Monitoring e compliance",
       "Deploy sicuro di modelli",
     ],
-    // "Scala con Private AI Infrastructure" misura 248px contro i 245 disponibili
-    // nel bottone della scheda: andava a capo per tre pixel.
     cta: "Scala con Private AI",
     mark: marks.lucchetto,
     shape: "triangle",

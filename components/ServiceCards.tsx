@@ -10,9 +10,9 @@ type Item = { nome: string; text: string; mark: Mark; shape: ShapeKind };
 // processo intero, il modello privato, le persone. Chi legge si colloca da solo
 // nella riga giusta senza che gliela indichiamo.
 //
-// ATTENZIONE: questi sono i nomi nuovi. /servizi, la tendina della barra e le
-// pagine prodotto usano ancora Quick Automation / Business Platform / Private AI
-// Infrastructure, e per Formazione non esiste ancora una pagina.
+// ATTENZIONE: Formazione e' l'unica delle quattro senza una pagina e senza una
+// voce in /servizi. Le altre tre vengono da lib/prodotti.ts; questa vive solo
+// qui, ed e' un doppione che va riunito il giorno che la scheda prodotto esiste.
 const ITEMS: Item[] = [
   {
     nome: "AI Pilota",
