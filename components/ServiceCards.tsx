@@ -16,25 +16,25 @@ type Item = { nome: string; text: string; mark: Mark; shape: ShapeKind };
 const ITEMS: Item[] = [
   {
     nome: "AI Pilota",
-    text: "Una prima automazione concreta per togliere di mezzo un'attività manuale e ripetitiva. Partiamo da un flusso semplice, lo rendiamo operativo e misuriamo il risultato.",
+    text: "Una prima automazione concreta e misurabile per ridurre un'attività manuale ripetitiva.",
     mark: marks.onda,
     shape: "circle",
   },
   {
     nome: "AI Automation",
-    text: "Progettiamo agenti AI e automazioni avanzate che collegano dati, documenti e strumenti aziendali. L'AI raccoglie informazioni, esegue attività e attiva il passaggio successivo del processo.",
+    text: "Agenti AI e automazioni avanzate per collegare dati, documenti e strumenti nei processi più complessi.",
     mark: marks.flusso,
     shape: "square",
   },
   {
     nome: "Private AI",
-    text: "Progettiamo modelli AI dedicati alla tua azienda, configurati e, quando serve, addestrati su documenti, procedure e dati autorizzati. Operano in un ambiente privato, con accessi e regole definite.",
+    text: "Modelli AI privati, configurati sui dati e sulle regole della tua azienda.",
     mark: marks.lucchetto,
     shape: "triangle",
   },
   {
     nome: "Formazione",
-    text: "Percorsi pratici per capire e usare l'AI nel lavoro quotidiano. Partiamo da ruoli, strumenti e casi reali del team, per trasformare la curiosità in autonomia.",
+    text: "Percorsi pratici per usare l'AI con sicurezza e autonomia nel lavoro di ogni giorno.",
     mark: marks.coil,
     shape: "blob",
   },
@@ -59,12 +59,12 @@ export function ServiceCards() {
             per riga. Le schede si allungano tutte alla piu' alta da sole. */}
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {ITEMS.map((it) => (
-            <div key={it.nome} className="rounded-[16px] border border-border bg-surface p-6 flex flex-col">
+            <div key={it.nome} className="rounded-[16px] border border-border bg-surface p-7 flex flex-col">
               <div className="h-[104px] flex items-center justify-start">
                 <MarkBadge mark={it.mark} shape={it.shape} boxW={120} boxH={100} shapeSize={96} markW={92} markH={63} />
               </div>
               <h3 className="font-display font-semibold text-[1.2rem] tracking-[-0.01em] mt-2">{it.nome}</h3>
-              <p className="text-fg-2 text-[0.95rem] mt-2.5">{it.text}</p>
+              <p className="text-fg-2 text-[0.98rem] mt-2.5">{it.text}</p>
             </div>
           ))}
         </div>
