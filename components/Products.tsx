@@ -29,14 +29,16 @@ export function Products() {
             alta, e l'elenco in fondo assorbe la differenza. */}
         <div className="grid gap-5 md:grid-cols-3">
           {PRODOTTI.map((p) => (
-            // Bordo in ink e non in accento: il blu su un rettangolo di quella
-            // misura smette di essere un tocco e diventa una superficie colorata,
-            // che e' proprio quello che il design system non vuole. In nero la
-            // scheda si stacca lo stesso, solo con piu' garbo.
+            // La scheda in evidenza non ha un bordo diverso: e' semplicemente
+            // piu' grande e sollevata. Un contorno scuro la incornicia e la
+            // separa dalle altre; l'ombra la porta avanti restando dentro la
+            // stessa famiglia. Il margine negativo la fa sporgere di venti pixel
+            // sopra e sotto — solo da md, perche' in colonna singola non c'e'
+            // nessuna fila rispetto a cui essere piu' grande.
             <div
               key={p.slug}
-              className={`relative rounded-[16px] border bg-surface flex flex-col overflow-hidden ${
-                p.badge ? "border-fg" : "border-border"
+              className={`relative rounded-[16px] border border-border bg-surface flex flex-col overflow-hidden ${
+                p.badge ? "md:-my-5 shadow-[0_18px_50px_rgba(11,11,12,0.10)]" : ""
               }`}
             >
               {/* All'angolo in alto a destra della scheda, non accanto al nome:

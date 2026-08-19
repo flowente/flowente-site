@@ -169,10 +169,51 @@ body {
    Su telefono l'aperta prende tutta la larghezza utile: 100vw meno i due
    rientri della fila. */
 .caso { width: 280px; }
-.caso-aperta { width: calc(100vw - 48px); }
 @media (min-width: 768px) {
   .caso { width: 360px; }
-  .caso-aperta { width: 520px; }
+}
+/* La scheda si solleva appena al passaggio: dice che si puo' aprire, senza
+   aggiungere un bottone. */
+.caso { transition: box-shadow .28s ease, border-color .28s ease; }
+.caso:hover { border-color: var(--muted); box-shadow: 0 10px 30px rgba(11, 11, 12, 0.07); }
+.caso-bottone:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 15px; }
+
+/* ===== FINESTRA DEL CASO =====
+   <dialog> nativo: il fuoco che resta dentro, Esc e il ritorno al punto di
+   partenza li fa il browser. Qui c'e' solo l'aspetto. */
+.finestra-caso {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  max-width: min(640px, calc(100vw - 32px));
+  max-height: calc(100dvh - 48px);
+  overflow: visible;
+  color: var(--text);
+}
+.finestra-caso::backdrop {
+  background: rgba(11, 11, 12, 0.55);
+  backdrop-filter: blur(3px);
+}
+.finestra-corpo {
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
+  box-shadow: 0 30px 80px rgba(11, 11, 12, 0.28);
+}
+/* Entrata e uscita: dissolvenza e un accenno di risalita, sui tempi lenti del
+   resto del sito. data-chiusura lo mette il componente prima di chiudere, per
+   dare all'uscita il tempo di vedersi. */
+.finestra-caso[open] { animation: finestraIn .28s ease-out both; }
+.finestra-caso[open]::backdrop { animation: veloIn .28s ease-out both; }
+.finestra-caso[data-chiusura] { animation: finestraOut .2s ease-in both; }
+.finestra-caso[data-chiusura]::backdrop { animation: veloOut .2s ease-in both; }
+@keyframes finestraIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes finestraOut { from { opacity: 1; } to { opacity: 0; } }
+@keyframes veloIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes veloOut { from { opacity: 1; } to { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .finestra-caso[open], .finestra-caso[open]::backdrop,
+  .finestra-caso[data-chiusura], .finestra-caso[data-chiusura]::backdrop { animation: none; }
+  .caso { transition: none; }
 }
 
 /* Il rientro allinea la prima scheda al testo della sezione: meta' dello spazio

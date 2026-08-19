@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { CASI } from "@/lib/casi";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { CASI, type Caso } from "@/lib/casi";
 
 // I dati stanno in lib/casi.ts: li condivide con la pila di schede nella hero.
 //
@@ -12,53 +12,52 @@ import { CASI } from "@/lib/casi";
 //
 // Le schede hanno larghezza fissa e la riga scorre in orizzontale: cosi' il
 // numero dei casi non cambia l'impaginazione. Se ne aggiungi due in casi.ts,
-// entrano in coda e basta.
-//
-// TRE PER SCHERMATA. A 300px il testo di un caso andava a nove righe e ne
-// restavano fuori la meta'. A 360px ne stanno quattro da chiusa, che bastano a
-// capire di cosa si parla; il resto si legge aprendo.
+// entrano in coda e basta. Le larghezze stanno in globals.css (.caso): scritte
+// come utility dentro una costante Tailwind non le genera.
 //
 // QUELLA DOPO SPORGE APPOSTA. A 1280 tre schede piene arrivano a 1213px e la
 // quarta si affaccia per una quarantina di pixel: e' il segnale che ce n'e'
 // dell'altro. Una riga che finisce esatta sul bordo sembra completa, e nessuno
 // prova a scorrerla.
 //
-// IL FUOCO. Al clic la scheda si allarga e mostra il testo intero piu' le righe
-// di dettaglio. Una sola aperta per volta: due schede larghe dentro una riga che
-// scorre costringono a cercare dove si era rimasti. Si richiude cliccandola di
-// nuovo o con Esc.
+// IL DETTAGLIO SI APRE IN UNA FINESTRA. La prima versione allargava la scheda
+// sul posto: spingeva le altre, cambiava la posizione di scorrimento e obbligava
+// a rincorrere il punto in cui si era. Adesso lo sfondo si spegne e il caso
+// arriva al centro dello schermo, dove ha spazio per essere letto.
 //
-// Su telefono l'aperta prende tutta la larghezza utile — 100vw meno i due
-// rientri della fila — perche' li' non esiste un "accanto": o la scheda occupa
-// lo schermo, o si legge un testo lungo dentro una colonna da 280px.
-//
-// Le due larghezze sono in globals.css (.caso e .caso-aperta): scritte come
-// utility dentro una costante non venivano generate, e la scheda restava della
-// misura di partenza qualunque cosa si cliccasse.
+// <dialog> nativo e non un div: Esc, il blocco del fuoco dentro la finestra e il
+// ritorno del fuoco alla scheda di partenza li fa il browser. Rifarli a mano
+// significa sbagliarne almeno uno.
 
 export function UseCases() {
-  const [aperta, setAperta] = useState<number | null>(null);
+  const [aperto, setAperto] = useState<Caso | null>(null);
+  const finestra = useRef<HTMLDialogElement>(null);
 
-  // Esc chiude, come la tendina della barra: se una cosa si apre, deve potersi
-  // chiudere anche senza mouse.
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setAperta(null);
+  const chiudi = useCallback(() => {
+    const d = finestra.current;
+    if (!d) return;
+    // Lascia finire la dissolvenza prima di smontare il contenuto.
+    d.setAttribute("data-chiusura", "");
+    const fine = () => {
+      d.removeAttribute("data-chiusura");
+      d.close();
+      setAperto(null);
     };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return fine();
+    window.setTimeout(fine, 220);
   }, []);
 
-  // Aprendo una scheda vicina al bordo, meta' resterebbe fuori schermo: la
-  // riporta dentro da sola, ma solo dopo che si e' allargata.
-  const apri = (i: number, scheda: HTMLElement | null) => {
-    const nuova = aperta === i ? null : i;
-    setAperta(nuova);
-    if (nuova === null || !scheda) return;
-    window.setTimeout(() => {
-      scheda.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
-    }, 460);
-  };
+  useEffect(() => {
+    const d = finestra.current;
+    if (!d || !aperto) return;
+    if (!d.open) d.showModal();
+    // La pagina dietro non deve scorrere mentre si legge il caso.
+    const prima = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prima;
+    };
+  }, [aperto]);
 
   return (
     <section id="casi-duso" className="border-b border-border scroll-mt-[80px]">
@@ -78,97 +77,117 @@ export function UseCases() {
           dentro i 1160px, l'ultima scheda si fermerebbe a meta' pagina e il
           taglio sembrerebbe un errore invece di un invito. Il rientro che
           riallinea la prima scheda al testo qui sopra e' il padding di
-          .fila-casi, in globals.css — con max() e calc() annidati Tailwind non
-          genera la utility e la scheda restava a filo bordo. */}
+          .fila-casi, in globals.css. */}
       <div className="pb-20 md:pb-24">
         <div
-          // items-start: ogni scheda tiene la sua altezza. Con lo stiramento
-          // predefinito, aprendone una si allungherebbero anche le altre e
-          // resterebbero con il fondo vuoto.
           className="fila-casi flex items-start gap-5 overflow-x-auto pb-4"
           role="region"
           aria-label="Casi d'uso, scorrevole in orizzontale"
           tabIndex={0}
         >
-          {CASI.map((c, i) => {
-            const eAperta = aperta === i;
-            return (
-              <article
-                key={c.label}
-                className={`shrink-0 rounded-[16px] border bg-surface overflow-hidden transition-[width,border-color] duration-[420ms] ease-[cubic-bezier(.32,0,.22,1)] ${
-                  eAperta ? "caso caso-aperta border-fg" : "caso border-border"
-                }`}
+          {CASI.map((c) => (
+            <article key={c.label} className="caso shrink-0 rounded-[16px] border border-border bg-surface overflow-hidden">
+              {/* Tutta la scheda e' il comando: un bersaglio piccolo dentro una
+                  scheda cliccabile costringe a mirare. */}
+              <button
+                type="button"
+                onClick={() => setAperto(c)}
+                aria-haspopup="dialog"
+                className="caso-bottone block w-full text-left"
               >
-                {/* Tutta la scheda e' il comando: un bersaglio piccolo dentro una
-                    scheda cliccabile costringe a mirare. type=button perche' non
-                    manda niente da nessuna parte. */}
-                <button
-                  type="button"
-                  onClick={(e) => apri(i, e.currentTarget.closest("article"))}
-                  aria-expanded={eAperta}
-                  className="block w-full text-left"
-                >
-                  <span className="block bg-surface-2 border-b border-border">
-                    {/* Immagine d'ambiente, non un cliente: alt vuoto per non attribuirle un'identità.
-                        Il rapporto sta sull'immagine, non sul contenitore: lì un file più alto del 3:2
-                        non verrebbe vincolato e allungherebbe la card. */}
-                    <img src={c.img} alt="" className="block w-full aspect-[3/2] object-cover" loading="lazy" />
+                <span className="block bg-surface-2 border-b border-border">
+                  {/* Immagine d'ambiente, non un cliente: alt vuoto per non attribuirle un'identità.
+                      Il rapporto sta sull'immagine, non sul contenitore: lì un file più alto del 3:2
+                      non verrebbe vincolato e allungherebbe la card. */}
+                  <img src={c.img} alt="" className="block w-full aspect-[3/2] object-cover" loading="lazy" />
+                </span>
+
+                <span className="block p-6">
+                  <span className="block font-mono text-[0.66rem] uppercase tracking-wide text-accent">{c.label}</span>
+
+                  {/* Tre righe perche' il titolo di GymOS ne occupa tre: un titolo
+                      tagliato e' la cosa peggiore da troncare, visto che e' la
+                      sola riga che qualcuno legge di sicuro. */}
+                  <span className="block font-display font-semibold text-[1.05rem] leading-[1.35] tracking-[-0.015em] mt-2.5 line-clamp-3 h-[4.35rem]">
+                    {c.title}
                   </span>
 
-                  <span className="block p-6">
-                    <span className="block font-mono text-[0.66rem] uppercase tracking-wide text-accent">{c.label}</span>
+                  <span className="block text-fg-2 text-[0.92rem] leading-[1.55] mt-2 line-clamp-4 h-[5.75rem] overflow-hidden">
+                    {c.text}
+                  </span>
 
-                    {/* Tre righe perche' il titolo di GymOS ne occupa tre: un
-                        titolo tagliato e' la cosa peggiore da troncare, visto che
-                        e' la sola riga che qualcuno legge di sicuro. */}
-                    <span className="block font-display font-semibold text-[1.05rem] leading-[1.35] tracking-[-0.015em] mt-2.5 line-clamp-3 h-[4.35rem]">
-                      {c.title}
-                    </span>
-
-                    {/* Altezze fisse in tutti e due gli stati: da auto non si
-                        anima, e l'apertura sarebbe uno scatto invece di un
-                        movimento. Chiusa quattro righe, aperta abbastanza da
-                        contenere i testi di adesso per intero. */}
-                    <span
-                      className={`block text-fg-2 text-[0.92rem] leading-[1.55] mt-2 overflow-hidden transition-[height] duration-[420ms] ease-[cubic-bezier(.32,0,.22,1)] ${
-                        eAperta ? "h-[8.6rem] md:h-[7.2rem]" : "line-clamp-4 h-[5.75rem]"
-                      }`}
-                    >
-                      {c.text}
-                    </span>
-
-                    {/* Le righe in piu'. Se il caso non le ha, lo spazio resta a
-                        zero e l'apertura mostra solo il testo per intero. */}
-                    <span
-                      className={`block overflow-hidden transition-[height,opacity] duration-[420ms] ease-[cubic-bezier(.32,0,.22,1)] ${
-                        eAperta && c.dettaglio ? "mt-3 h-[7.2rem] opacity-100" : "h-0 opacity-0"
-                      }`}
-                    >
-                      <span className="block text-fg-2 text-[0.92rem] leading-[1.55]">{c.dettaglio}</span>
-                    </span>
-
-                    {/* La soluzione usata, nel font del testo: e' una firma, non
-                        un'etichetta. L'altezza e' riservata anche quando manca,
-                        altrimenti le schede senza prodotto starebbero piu' basse. */}
-                    <span className="flex items-center justify-between gap-3 mt-4 h-[26px]">
-                      {c.prodotto ? (
-                        <span className="inline-flex items-center rounded-full border border-border px-2.5 py-1 text-[0.78rem] leading-none text-fg-muted">
-                          {c.prodotto}
-                        </span>
-                      ) : (
-                        <span />
-                      )}
-                      <span className="text-[0.78rem] leading-none text-fg-muted underline underline-offset-4">
-                        {eAperta ? "Chiudi" : "Leggi tutto"}
+                  {/* La soluzione usata, nel font del testo: e' una firma, non
+                      un'etichetta. L'altezza e' riservata anche quando manca,
+                      altrimenti le schede senza prodotto starebbero piu' basse. */}
+                  <span className="flex items-center justify-between gap-3 mt-4 h-[26px]">
+                    {c.prodotto ? (
+                      <span className="inline-flex items-center rounded-full border border-border px-2.5 py-1 text-[0.78rem] leading-none text-fg-muted">
+                        {c.prodotto}
                       </span>
+                    ) : (
+                      <span />
+                    )}
+                    <span className="text-[0.78rem] leading-none text-fg-muted underline underline-offset-4">
+                      Leggi tutto
                     </span>
                   </span>
-                </button>
-              </article>
-            );
-          })}
+                </span>
+              </button>
+            </article>
+          ))}
         </div>
       </div>
+
+      <dialog
+        ref={finestra}
+        className="finestra-caso"
+        aria-label={aperto ? aperto.title : undefined}
+        // Il clic sullo sfondo chiude. L'evento arriva al <dialog> solo quando
+        // si colpisce l'area fuori dal riquadro, perche' dentro c'e' un figlio
+        // che lo intercetta.
+        onClick={(e) => {
+          if (e.target === finestra.current) chiudi();
+        }}
+        onCancel={(e) => {
+          // Esc: lo gestiamo noi per far vedere la dissolvenza in uscita.
+          e.preventDefault();
+          chiudi();
+        }}
+      >
+        {aperto && (
+          <div className="finestra-corpo rounded-[18px] border border-border bg-surface overflow-hidden">
+            <div className="relative">
+              <img src={aperto.img} alt="" className="block w-full aspect-[3/2] object-cover" />
+              <button
+                type="button"
+                onClick={chiudi}
+                aria-label="Chiudi"
+                className="absolute top-4 right-4 flex h-9 w-9 items-center justify-center rounded-full bg-surface/90 border border-border text-fg-2 hover:text-fg transition-colors"
+              >
+                <svg viewBox="0 0 14 14" className="h-[11px] w-[11px]" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
+                  <path d="M2 2l10 10M12 2L2 12" />
+                </svg>
+              </button>
+            </div>
+
+            <div className="p-7 md:p-9">
+              <p className="font-mono text-[0.68rem] uppercase tracking-wide text-accent">{aperto.label}</p>
+              <h3 className="mt-3 font-display font-semibold text-[clamp(1.3rem,3vw,1.7rem)] leading-[1.25] tracking-[-0.02em]">
+                {aperto.title}
+              </h3>
+              <p className="mt-4 text-fg-2 text-[1rem] leading-[1.6]">{aperto.text}</p>
+              {aperto.dettaglio && <p className="mt-4 text-fg-2 text-[1rem] leading-[1.6]">{aperto.dettaglio}</p>}
+              {aperto.prodotto && (
+                <p className="mt-6">
+                  <span className="inline-flex items-center rounded-full border border-border px-3 py-1.5 text-[0.82rem] leading-none text-fg-muted">
+                    {aperto.prodotto}
+                  </span>
+                </p>
+              )}
+            </div>
+          </div>
+        )}
+      </dialog>
     </section>
   );
 }
