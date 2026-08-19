@@ -51,11 +51,22 @@ export function UseCases() {
     const d = finestra.current;
     if (!d || !aperto) return;
     if (!d.open) d.showModal();
-    // La pagina dietro non deve scorrere mentre si legge il caso.
-    const prima = document.body.style.overflow;
+
+    // La pagina dietro non deve scorrere mentre si legge il caso. Ma togliendo
+    // lo scorrimento sparisce anche la barra, e la pagina scivola di lato dei
+    // pixel che quella occupava: il salto che si vede all'apertura. Li misuro e
+    // li restituisco come padding, cosi' la larghezza utile non cambia e niente
+    // si muove. Su Mac e su telefono la barra e' in sovrapposizione, la
+    // differenza e' zero e questa riga non fa nulla.
+    const barra = window.innerWidth - document.documentElement.clientWidth;
+    const overflowPrima = document.body.style.overflow;
+    const paddingPrima = document.body.style.paddingRight;
     document.body.style.overflow = "hidden";
+    if (barra > 0) document.body.style.paddingRight = `${barra}px`;
+
     return () => {
-      document.body.style.overflow = prima;
+      document.body.style.overflow = overflowPrima;
+      document.body.style.paddingRight = paddingPrima;
     };
   }, [aperto]);
 
