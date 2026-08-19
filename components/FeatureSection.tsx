@@ -22,9 +22,41 @@ type Props = {
      un'immagine solo dove c'è qualcosa di reale da mostrare. */
   img?: string;
   imgAlt?: string;
+  /* Colonna unica centrata invece delle due affiancate. Serve dove la sezione
+     non racconta una cosa fra le altre ma si ferma a dirne una sola: senza
+     niente accanto, la riga di testo diventa il centro della pagina. */
+  center?: boolean;
 };
 
-export function FeatureSection({ eyebrow, title, text, note, ctaLabel, ctaHref, mark, shape = "square", reverse, code, img, imgAlt }: Props) {
+export function FeatureSection({ eyebrow, title, text, note, ctaLabel, ctaHref, mark, shape = "square", reverse, code, img, imgAlt, center }: Props) {
+  if (center) {
+    return (
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24 flex flex-col items-center text-center">
+          <MarkBadge mark={mark} shape={shape} boxW={280} boxH={160} shapeSize={120} markW={250} markH={140} />
+          {eyebrow && (
+            <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted mt-8">{eyebrow}</p>
+          )}
+          {/* Piu' stretto del titolo a due colonne: al centro una riga lunga
+              costringe l'occhio a tornare indietro ogni volta. */}
+          <h2
+            className="font-display font-semibold tracking-[-0.03em] mt-4 max-w-[820px]"
+            style={{ fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: 1.02 }}
+          >
+            {title}
+          </h2>
+          <p className="mt-5 max-w-[620px] text-fg-2 text-[1.06rem]">{text}</p>
+          {note && <p className="mt-5 max-w-[620px] text-fg-muted text-[0.9rem]">{note}</p>}
+          {ctaLabel && (
+            <div className="mt-7">
+              <Button variant="ghost" href={ctaHref || "#"}>{ctaLabel}</Button>
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="border-b border-border">
       <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24 grid gap-10 md:gap-14 items-center md:grid-cols-2">
