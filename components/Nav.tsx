@@ -120,11 +120,12 @@ export function Nav() {
             ) : (
               // relative + targhetta in absolute: se la targhetta stesse nel
               // flusso alzerebbe la voce rispetto alle altre e la barra
-              // perderebbe l'allineamento.
+              // perderebbe l'allineamento. All'angolo in alto a destra e non
+              // centrata: al centro sembrava il titolo della voce.
               <a key={l.href} className="relative hover:text-fg transition-colors" href={l.href}>
                 {l.label}
                 {l.nuova && (
-                  <span className="absolute -top-[17px] left-1/2 -translate-x-1/2 rounded-full bg-accent px-1.5 py-[1px] font-mono text-[0.52rem] uppercase tracking-[0.1em] text-paper">
+                  <span className="absolute -top-[17px] -right-2 rounded-full bg-accent px-1.5 py-[1px] font-mono text-[0.52rem] uppercase tracking-[0.1em] text-paper">
                     Nuova
                   </span>
                 )}

@@ -31,24 +31,24 @@ export function Products() {
           {PRODOTTI.map((p) => (
             <div
               key={p.slug}
-              className={`rounded-[16px] border bg-surface flex flex-col overflow-hidden ${
+              className={`relative rounded-[16px] border bg-surface flex flex-col overflow-hidden ${
                 p.badge ? "border-accent" : "border-border"
               }`}
             >
+              {/* All'angolo in alto a destra della scheda, non accanto al nome:
+                  li' competeva con il nome, qui e' un'etichetta appiccicata
+                  sopra - che e' quello che deve sembrare. */}
+              {p.badge && (
+                <span className="absolute top-5 right-5 rounded-full bg-accent px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-paper">
+                  {p.badge}
+                </span>
+              )}
+
               <div className="p-7 flex flex-col grow">
                 <div className="h-[104px] flex items-center justify-start">
                   <MarkBadge mark={p.mark} shape={p.shape} boxW={120} boxH={100} shapeSize={96} markW={92} markH={63} />
                 </div>
-                {/* Nome e targhetta sulla stessa riga: la targhetta deve arrivare
-                    all'occhio insieme al nome, non prima. */}
-                <div className="mt-2 flex items-center justify-between gap-3">
-                  <h3 className="font-display font-semibold text-[1.35rem] tracking-[-0.02em]">{p.nome}</h3>
-                  {p.badge && (
-                    <span className="shrink-0 rounded-full bg-accent px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-paper">
-                      {p.badge}
-                    </span>
-                  )}
-                </div>
+                <h3 className="mt-2 font-display font-semibold text-[1.35rem] tracking-[-0.02em]">{p.nome}</h3>
 
                 {/* Altezze minime su descrizione, prezzo e area del bottone: senza,
                     il filetto cadrebbe a un'altezza diversa in ogni scheda, perché
