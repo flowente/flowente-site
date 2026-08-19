@@ -28,7 +28,7 @@ export function FormazioneBand() {
         <div>
           <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted">Formazione</p>
           <h2 className="mt-4 font-display font-semibold tracking-[-0.03em] text-[clamp(2rem,4vw,3rem)] leading-[1.02]">
-            Si parte da qui.
+            La Formazione è il primo passo.
           </h2>
         </div>
         <div className="max-w-[560px]">
@@ -38,7 +38,7 @@ export function FormazioneBand() {
             strumenti.
           </p>
           <div className="mt-7">
-            <Button variant="ghost" href="/contatti">
+            <Button href="/formazione">
               Scopri la formazione
             </Button>
           </div>

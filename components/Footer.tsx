@@ -23,7 +23,7 @@ const COLS = [
     links: [
       { label: "Soluzioni", href: "/servizi" },
       { label: "Case Study", href: "/servizi#casi-duso" },
-      { label: "Come lavoriamo", href: "/metodo" },
+      { label: "Formazione", href: "/formazione" },
       { label: "Chi siamo", href: "/chi-siamo" },
       { label: "Contatti", href: "/contatti" },
     ],
