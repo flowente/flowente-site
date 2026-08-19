@@ -11,10 +11,21 @@ import { CASI } from "@/lib/casi";
 // numero dei casi non cambia l'impaginazione. Se ne aggiungi due in casi.ts,
 // entrano in coda e basta.
 //
-// LA QUARTA SPORGE APPOSTA. A 1280 la riga e' larga piu' del contenitore e
-// l'ultima resta tagliata a meta': e' il segnale che ce n'e' dell'altro. Una
-// riga che finisce esatta sul bordo sembra completa, e nessuno prova a
-// scorrerla.
+// TRE PER SCHERMATA, non quattro. A 300px il testo di un caso andava a nove
+// righe e ne restavano fuori la meta'. A 360px ne servono sei, ed e' il numero
+// scelto: i quattro testi di adesso ci stanno interi, nessuno viene tagliato.
+// Se un testo nuovo sfora, il troncamento tiene la scheda a misura — ma e' il
+// segnale che quel testo va accorciato, non che la scheda va allungata.
+//
+// Su telefono le righe diventano otto: la scheda e' larga 280px e gli stessi
+// testi ne occupano sette o otto. Li' una scheda piu' alta non costa niente,
+// perche' se ne vede una per volta e non c'e' nessuna fila da tenere allineata
+// con lo sguardo.
+//
+// QUELLA DOPO SPORGE APPOSTA. A 1280 tre schede piene arrivano a 1213px e la
+// quarta si affaccia per una quarantina di pixel: e' il segnale che ce n'e'
+// dell'altro. Una riga che finisce esatta sul bordo sembra completa, e nessuno
+// prova a scorrerla.
 export function UseCases() {
   return (
     <section id="casi-duso" className="border-b border-border scroll-mt-[80px]">
@@ -46,7 +57,7 @@ export function UseCases() {
           {CASI.map((c) => (
             <article
               key={c.label}
-              className="shrink-0 w-[268px] md:w-[300px] rounded-[16px] border border-border bg-surface overflow-hidden flex flex-col"
+              className="shrink-0 w-[280px] md:w-[360px] rounded-[16px] border border-border bg-surface overflow-hidden flex flex-col"
             >
               <div className="bg-surface-2 border-b border-border">
                 {/* Immagine d'ambiente, non un cliente: alt vuoto per non attribuirle un'identità.
@@ -63,7 +74,7 @@ export function UseCases() {
                 <h3 className="font-display font-semibold text-[1.05rem] leading-[1.35] tracking-[-0.015em] mt-2.5 line-clamp-2 h-[2.9rem]">
                   {c.title}
                 </h3>
-                <p className="text-fg-2 text-[0.9rem] leading-[1.55] mt-2 line-clamp-4 h-[5.6rem] overflow-hidden">
+                <p className="text-fg-2 text-[0.92rem] leading-[1.55] mt-2 line-clamp-8 h-[11.45rem] md:line-clamp-6 md:h-[8.6rem] overflow-hidden">
                   {c.text}
                 </p>
               </div>
