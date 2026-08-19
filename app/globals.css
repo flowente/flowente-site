@@ -147,6 +147,39 @@ body {
 @keyframes pageOut { from { opacity: 1; } to { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .page-fade, .page-fade.is-leaving { animation: none; } }
 
+/* ===== FILA DEI CASI — scorrimento orizzontale =====
+   La barra di scorrimento sparisce ma lo scorrimento resta: con la rotellina,
+   con due dita sul trackpad, con il dito sul telefono e con le frecce da
+   tastiera (la fila ha tabindex, quindi ci si arriva col Tab).
+   scroll-snap: ogni scheda si ferma allineata invece che a meta'. */
+.fila-casi {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-snap-type: x proximity;
+  scroll-padding-left: 24px;
+}
+.fila-casi::-webkit-scrollbar { display: none; }
+.fila-casi > article { scroll-snap-align: start; }
+
+/* Il rientro allinea la prima scheda al testo della sezione: meta' dello spazio
+   che avanza oltre i 1160px del contenitore, piu' il suo padding. In percentuale
+   e non in vw, perche' vw conta anche la barra di scorrimento e la prima scheda
+   finiva sette pixel piu' in la' del titolo. Sotto i 1160px lo spazio che avanza
+   e' negativo e max() lascia il solo padding.
+   A destra lo stesso valore: senza, arrivati in fondo l'ultima scheda tocca il
+   bordo dello schermo. */
+.fila-casi {
+  padding-left: max(24px, calc((100% - 1160px) / 2 + 24px));
+  padding-right: max(24px, calc((100% - 1160px) / 2 + 24px));
+}
+@media (min-width: 768px) {
+  .fila-casi {
+    padding-left: max(40px, calc((100% - 1160px) / 2 + 40px));
+    padding-right: max(40px, calc((100% - 1160px) / 2 + 40px));
+    scroll-padding-left: max(40px, calc((100% - 1160px) / 2 + 40px));
+  }
+}
+
 /* ===== FASCIA "POWERED BY" — scorrimento continuo =====
    Il nastro contiene tre copie identiche della lista e trasla di un terzo della
    propria larghezza: a fine ciclo la seconda copia si trova esattamente dove
