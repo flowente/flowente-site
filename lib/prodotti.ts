@@ -82,6 +82,7 @@ export const PRODOTTI: Prodotto[] = [
       titolo: "Agente di ricerca sui dati storici aziendali.",
       testo:
         "Anni di commesse, preventivi e ordini in sistemi che ormai nessuno interroga. Si chiede in italiano — quanto ha reso quella linea, quali clienti sono fermi da un anno — e la risposta arriva con il riferimento al dato da cui è presa.",
+      video: "/media/testimonianze/business-platform.mp4",
     },
     esempi: [
       "CRM su misura",
