@@ -3,7 +3,6 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageHero } from "@/components/PageHero";
 import { Products } from "@/components/Products";
-import { FormazioneBand } from "@/components/FormazioneBand";
 import { UseCases } from "@/components/UseCases";
 import { CtaBand } from "@/components/CtaBand";
 
@@ -25,10 +24,9 @@ export default function Servizi() {
           ctaLabel="Parliamone"
         />
         <Products />
-        {/* La stessa fascia della home, qui subito dopo il listino: chi ha appena
-            guardato tre prodotti e non sa quale scegliere ha una quarta strada,
-            ed e' quella che costa meno. */}
-        <FormazioneBand />
+        {/* Niente fascia Formazione qui: la voce e' gia' in barra e ha la sua
+            pagina, e ripeterla nel listino la faceva sembrare un quarto prodotto.
+            In home resta, perche' li' quella pagina va ancora annunciata. */}
         {/* Le tre sezioni su advisory, sviluppo software e AI privata che stavano
             qui ripetevano gli stessi concetti con altre parole. */}
         <UseCases />
