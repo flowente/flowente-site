@@ -74,7 +74,9 @@ export function Nav() {
       <div className="mx-auto max-w-content px-6 md:px-10 h-[66px] flex items-center justify-between">
         <Logo className="text-[1.1rem] md:text-[1.25rem]" href="/" />
 
-        <nav className="hidden md:flex gap-7 text-[0.9rem] text-fg-2 items-center">
+        {/* font-medium: con Recia il 400 in barra risultava troppo leggero accanto al
+            marchio. Il 500 c'e' gia' fra i tagli caricati, non costa una richiesta in piu'. */}
+        <nav className="hidden md:flex gap-7 text-[0.9rem] font-medium text-fg-2 items-center">
           {LINKS.map((l) =>
             l.label === "Soluzioni" ? (
               // L'etichetta è un link e la freccia un comando a sé: chi clicca
@@ -156,7 +158,7 @@ export function Nav() {
           <ul className="mx-auto max-w-content px-6 py-2">
             {LINKS.map((l) => (
               <li key={l.href} className="border-b border-border">
-                <a href={l.href} className="block py-4 text-[1.05rem] text-fg-2 hover:text-fg transition-colors">
+                <a href={l.href} className="block py-4 text-[1.05rem] font-medium text-fg-2 hover:text-fg transition-colors">
                   {l.label}
                 </a>
                 {/* Su telefono i prodotti stanno sotto "Soluzioni", rientrati:

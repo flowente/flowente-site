@@ -1,57 +1,87 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CASI, ANCORA_CASI, type Caso } from "@/lib/casi";
 import { VideoMuto } from "./VideoMuto";
 
-// Pila di schede nella hero: tre case study veri che si danno il cambio. Quella
-// in testa scivola sotto le altre e la seconda ne prende esattamente il posto.
+// Pila di schede nella hero: tre case study veri che si danno il cambio.
 //
 // Vengono da lib/casi.ts, quindi si aggiornano da sole quando cambiano i case
 // study in /servizi.
 const PILA: Caso[] = [CASI[1], CASI[2], CASI[3]];
 
-// Quanto resta ferma una scheda e quanto dura lo scambio. Tempi lunghi come il
-// resto del sito: la pila deve accompagnare la lettura, non interromperla.
-const SOSTA = 5200;
-const SCAMBIO = 900;
+// L'ANIMAZIONE. La scheda in testa non scivola sotto le altre: esce di lato
+// ruotando, passa sopra a tutto, e rientra in fondo alla pila dall'altra parte.
+// E' il gesto di chi sfoglia un mazzo, e si legge come un'azione invece che
+// come una dissolvenza.
+//
+// SOSTA e' quanto una scheda resta ferma; USCITA quanto dura il volo prima che
+// la pila si ricomponga; SCAMBIO la durata di ogni spostamento.
+const SOSTA = 4200;
+const USCITA = 620;
+const SCAMBIO = 620;
 
-// Posizione delle tre schede: 0 è in testa, 2 è in fondo. Sotto md rotazione e
-// sfalsamento sono ridotti — la rotazione allarga l'ingombro di circa l'altezza
-// per il seno dell'angolo, e su una scheda alta 420px bastavano 3,5 gradi per
-// portarla a filo del bordo dello schermo.
+// Le tre posizioni della pila. Impilamento verso l'alto e a destra, con le
+// schede dietro leggermente rimpicciolite: da' profondita' vera invece del solo
+// sfalsamento. Sotto md rotazioni e scostamenti sono ridotti, perche' ruotare
+// una scheda alta 420px ne allarga l'ingombro e a 375px arrivava a filo bordo.
 const POSIZIONI = [
-  "translate-x-0 translate-y-0 -rotate-[1deg] md:-rotate-[1.6deg]",
-  "translate-x-1.5 translate-y-3 rotate-[1deg] md:translate-x-2.5 md:translate-y-[22px] md:rotate-[1.8deg]",
-  "translate-x-3 translate-y-6 rotate-[2deg] md:translate-x-5 md:translate-y-11 md:rotate-[3.5deg]",
+  "translate-x-0 translate-y-0 -rotate-[2deg] md:-rotate-[3deg] scale-100",
+  "translate-x-3 -translate-y-2 rotate-[1deg] md:translate-x-[26px] md:-translate-y-[18px] md:rotate-[1.5deg] scale-[0.975] md:scale-[0.962]",
+  "translate-x-6 -translate-y-4 rotate-[-0.5deg] md:translate-x-[52px] md:-translate-y-[36px] md:rotate-[-1deg] scale-[0.95] md:scale-[0.925]",
 ];
 
-// Trasparenza per posizione: la scheda in testa è piena, le altre si spengono
-// via via. Serve a due cose. Dà profondità alla pila, e soprattutto copre lo
-// scatto: senza, la scheda uscente cambiava piano di colpo e si vedeva saltare.
-// È lo stesso fade del resto del sito — opacità che sale e scende, stessa idea
-// di pageIn — applicato allo scambio invece che al caricamento.
-// Non troppo spinta: le schede dietro si vedono per una striscia di sedici pixel
-// a destra e una quarantina in basso, e su fondo chiaro sotto il 60% smettono di
-// leggersi come carta. Sono tre numeri, si tarano guardando il risultato.
-const OPACITA = [1, 0.82, 0.62];
+// La posizione durante il volo. Nello snippet originale la scheda usciva di
+// -56%: qui la pila sta nella colonna destra della hero e a quella distanza
+// finiva sopra il titolo, coprendolo. A -34% resta quasi tutta nella sua
+// colonna, e l'opacita' che scende fa il resto — quel poco che sconfina non
+// nasconde niente.
+const VOLO = "-translate-x-[34%] translate-y-[4%] -rotate-[9deg] scale-[0.98]";
+
+const OPACITA = [1, 0.9, 0.78];
 
 export function HeroCases() {
-  const [giro, setGiro] = useState(0);
+  // testa = indice della scheda davanti. uscente = quella in volo, se c'e'.
+  const [testa, setTesta] = useState(PILA.length - 1);
+  const [uscente, setUscente] = useState<number | null>(null);
   const [fermo, setFermo] = useState(false);
+
+  // testa serve dentro l'intervallo, che pero' si crea una volta sola: senza il
+  // ref leggerebbe per sempre il valore del primo giro.
+  const testaRef = useRef(testa);
+  testaRef.current = testa;
 
   useEffect(() => {
     if (fermo) return;
     // Chi ha chiesto di non vedere animazioni si tiene la prima scheda.
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const t = window.setInterval(() => setGiro((g) => g + 1), SOSTA);
-    return () => window.clearInterval(t);
+
+    let atterraggio = 0;
+    const giro = window.setInterval(() => {
+      setUscente(testaRef.current);
+      // La pila si ricompone quando il volo e' finito: fino ad allora la scheda
+      // uscente e' ancora "in mano" e le altre non si muovono.
+      atterraggio = window.setTimeout(() => {
+        setUscente(null);
+        setTesta((x) => (x + 1) % PILA.length);
+      }, USCITA);
+    }, SOSTA);
+
+    return () => {
+      window.clearInterval(giro);
+      // Senza questo, mettendo il puntatore sopra mentre una scheda vola, quella
+      // resterebbe fuori: l'atterraggio non arriverebbe mai.
+      window.clearTimeout(atterraggio);
+      setUscente(null);
+    };
   }, [fermo]);
 
-  // In testa parte l'ultima della lista, così l'ordine di lettura resta quello
-  // dell'elenco. A ogni giro ognuna scala di un posto.
-  const posizione = (i: number) => (((PILA.length - 1 - i - giro) % PILA.length) + PILA.length) % PILA.length;
-  const inTesta = PILA.findIndex((_, i) => posizione(i) === 0);
+  // Mentre una scheda vola, le altre si dispongono gia' come se fosse uscita:
+  // la seconda prende il posto della prima nello stesso momento in cui quella
+  // se ne va, ed e' questo a far sembrare il gesto una cosa sola.
+  const riferimento = uscente !== null ? (testa + 1) % PILA.length : testa;
+  const posizione = (i: number) => (((i - riferimento) % PILA.length) + PILA.length) % PILA.length;
+  const inTesta = uscente !== null ? uscente : testa;
 
   return (
     <a
@@ -63,37 +93,35 @@ export function HeroCases() {
       onBlur={() => setFermo(false)}
       // Griglia con tutte le schede nella stessa cella: restano nel flusso, così
       // l'altezza del contenitore è quella della scheda e non va fissata a mano.
-      className="hero-cases grid w-full max-w-[420px] mx-auto md:mx-0 md:justify-self-end"
+      className="hero-cases relative grid w-full max-w-[420px] mx-auto md:mx-0 md:justify-self-end"
     >
       {PILA.map((caso, i) => {
+        const vola = i === uscente;
         const pos = posizione(i);
-        const testa = pos === 0;
+        const davanti = vola || pos === 0;
         return (
           <span
             key={caso.label}
             // Le schede dietro restano fuori dalla lettura assistita: il nome del
             // link è già quello in testa, e leggerle tutte lo renderebbe illeggibile.
-            aria-hidden={testa ? undefined : "true"}
+            aria-hidden={davanti ? undefined : "true"}
             style={{
-              zIndex: 30 - pos * 10,
-              opacity: OPACITA[pos],
-              // Lo z-index cambia a metà scambio, non all'inizio. È un valore
-              // discreto — non si può interpolare — e cambiandolo subito la
-              // scheda uscente spariva dietro mentre era ancora al suo posto:
-              // era quello lo scatto. Ritardandolo, quando passa sotto si è già
-              // spostata e sbiadita, e il salto non si vede.
-              transition: `transform ${SCAMBIO}ms ease-in-out, opacity ${SCAMBIO}ms ease-in-out, z-index 0s linear ${
-                SCAMBIO / 2
-              }ms`,
+              // Chi vola passa sopra a tutto, altrimenti sparirebbe dietro le
+              // altre proprio mentre esce.
+              zIndex: vola ? 40 : 30 - pos * 10,
+              opacity: vola ? 0.12 : OPACITA[pos],
+              // Curva decisa in partenza e morbida in arrivo: il volo deve avere
+              // uno scatto iniziale, il rientro no.
+              transition: `transform ${SCAMBIO}ms cubic-bezier(.32,0,.22,1), opacity ${SCAMBIO}ms ease, z-index 0s`,
             }}
             className={`col-start-1 row-start-1 rounded-[18px] border border-border bg-surface overflow-hidden ${
-              POSIZIONI[pos]
-            } ${testa ? "shadow-[0_12px_44px_rgba(11,11,12,0.10)]" : ""}`}
+              vola ? VOLO : POSIZIONI[pos]
+            } ${davanti ? "shadow-[0_14px_44px_rgba(11,11,12,0.12)]" : ""}`}
           >
             {caso.video ? (
               <VideoMuto
                 src={caso.video}
-                attivo={testa}
+                attivo={davanti}
                 poster={caso.img}
                 className="block w-full aspect-[3/2] object-cover"
                 etichetta={caso.title}
@@ -120,6 +148,20 @@ export function HeroCases() {
           </span>
         );
       })}
+
+      {/* Indicatore, non comando: dice quante schede ci sono e a che punto siamo.
+          Non è cliccabile perché tutta la pila è un link ai case study, e due
+          bersagli sovrapposti costringerebbero a indovinare cosa succede. */}
+      <span aria-hidden="true" className="absolute -bottom-7 left-1/2 -translate-x-1/2 flex gap-2">
+        {PILA.map((_, i) => (
+          <span
+            key={i}
+            className={`block h-[6px] w-[6px] rounded-full transition-colors duration-500 ${
+              i === inTesta ? "bg-accent" : "bg-border"
+            }`}
+          />
+        ))}
+      </span>
     </a>
   );
 }
