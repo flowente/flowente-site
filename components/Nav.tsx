@@ -125,7 +125,7 @@ export function Nav() {
               <a key={l.href} className="relative hover:text-fg transition-colors" href={l.href}>
                 {l.label}
                 {l.nuova && (
-                  <span className="absolute -top-[17px] -right-2 rounded-full bg-accent px-1.5 py-[1px] font-mono text-[0.52rem] uppercase tracking-[0.1em] text-paper">
+                  <span className="absolute -top-[17px] -right-2 rounded-full bg-accent px-1.5 py-[1px] font-medium text-[0.56rem] uppercase tracking-[0.1em] text-paper">
                     Nuova
                   </span>
                 )}
@@ -171,7 +171,7 @@ export function Nav() {
                 <a href={l.href} className="flex items-center gap-2 py-4 text-[1.05rem] text-fg-2 hover:text-fg transition-colors">
                   {l.label}
                   {l.nuova && (
-                    <span className="rounded-full bg-accent px-1.5 py-[1px] font-mono text-[0.55rem] uppercase tracking-[0.1em] text-paper">
+                    <span className="rounded-full bg-accent px-1.5 py-[1px] font-medium text-[0.6rem] uppercase tracking-[0.1em] text-paper">
                       Nuova
                     </span>
                   )}

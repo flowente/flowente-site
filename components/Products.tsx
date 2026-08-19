@@ -39,7 +39,7 @@ export function Products() {
                   li' competeva con il nome, qui e' un'etichetta appiccicata
                   sopra - che e' quello che deve sembrare. */}
               {p.badge && (
-                <span className="absolute top-5 right-5 rounded-full bg-accent px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-paper">
+                <span className="absolute top-5 right-5 rounded-full bg-accent px-2.5 py-1 font-medium text-[0.66rem] uppercase tracking-[0.1em] text-paper">
                   {p.badge}
                 </span>
               )}
