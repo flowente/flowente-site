@@ -69,7 +69,7 @@ export function ServiceCards() {
           ))}
         </div>
         <div className="mt-10">
-          <Button variant="ghost" href="/servizi">
+          <Button href="/servizi">
             Esplora le soluzioni
           </Button>
         </div>

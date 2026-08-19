@@ -6,12 +6,16 @@ import { Social } from "./Social";
 // all'estrema destra, dove finisce la lettura.
 const COLS = [
   {
+    // I nomi dei prodotti, non delle categorie: queste quattro voci devono dire
+    // le stesse parole delle schede in home e della tendina, o il sito sembra
+    // vendere due cataloghi diversi. Formazione porta a /servizi perche' non ha
+    // ancora una pagina sua.
     h: "Cosa facciamo",
     links: [
-      { label: "Automazioni AI", href: "/servizi" },
-      { label: "Assistenti AI", href: "/servizi" },
-      { label: "AI privata", href: "/servizi" },
-      { label: "Integrazione", href: "/servizi" },
+      { label: "AI Pilota", href: "/servizi/quick-automation" },
+      { label: "AI Automation", href: "/servizi/business-platform" },
+      { label: "Private AI", href: "/servizi/private-ai-infrastructure" },
+      { label: "Formazione", href: "/servizi" },
     ],
   },
   {
