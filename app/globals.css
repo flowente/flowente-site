@@ -175,7 +175,10 @@ body {
 /* La scheda si solleva appena al passaggio: dice che si puo' aprire, senza
    aggiungere un bottone. */
 .caso { transition: box-shadow .28s ease, border-color .28s ease; }
-.caso:hover { border-color: var(--muted); box-shadow: 0 10px 30px rgba(11, 11, 12, 0.07); }
+/* ink-300 e non --muted: il grigio del testo secondario su un bordo di 1px
+   risultava una cornice, non un accenno. Qui basta un gradino sopra il filetto
+   normale. */
+.caso:hover { border-color: #B4B4BA; box-shadow: 0 10px 30px rgba(11, 11, 12, 0.07); }
 .caso-bottone:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 15px; }
 
 /* ===== FINESTRA DEL CASO =====

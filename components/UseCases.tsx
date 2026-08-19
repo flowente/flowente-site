@@ -162,7 +162,10 @@ export function UseCases() {
                 type="button"
                 onClick={chiudi}
                 aria-label="Chiudi"
-                className="absolute top-4 right-4 flex h-9 w-9 items-center justify-center rounded-full bg-surface/90 border border-border text-fg-2 hover:text-fg transition-colors"
+                // Pieno e non traslucido: sta sopra l'immagine del caso, che
+                // puo' essere scura quanto vuole. Con la trasparenza il segno
+                // spariva dentro le foto piu' cupe.
+                className="absolute top-4 right-4 flex h-9 w-9 items-center justify-center rounded-full bg-surface border border-border text-fg-2 shadow-[0_2px_10px_rgba(11,11,12,0.18)] hover:text-fg transition-colors"
               >
                 <svg viewBox="0 0 14 14" className="h-[11px] w-[11px]" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
                   <path d="M2 2l10 10M12 2L2 12" />
