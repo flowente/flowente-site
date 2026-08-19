@@ -28,9 +28,20 @@ export default function Formazione() {
         <PageHero
           eyebrow="Formazione"
           title="Si parte da qui."
-          text={
-            "Per molte aziende il vero ostacolo non è il costo dell'AI, ma sapere come usarla. Il 58,6% di chi ha valutato un investimento e poi si è fermato indica la mancanza di competenze.\n\n" +
-            "Con Flowente, il team impara a scegliere gli strumenti, usarli con criterio e applicarli al lavoro di ogni giorno."
+          text="Per molte aziende il vero ostacolo non è il costo dell'AI, ma sapere come usarla. Il 58,6% di chi ha valutato un investimento e poi si è fermato indica la mancanza di competenze."
+          note={
+            <>
+              Fonte:{" "}
+              <a
+                href="https://www.istat.it/comunicato-stampa/imprese-e-ict-anno-2025/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 hover:text-fg transition-colors"
+              >
+                ISTAT, Imprese e ICT — Anno 2025
+              </a>
+              .
+            </>
           }
           ctaLabel="Parliamone"
         />

@@ -5,12 +5,16 @@ type Props = {
   eyebrow?: string;
   title: ReactNode;
   text?: string;
+  // Riga piccola sotto il testo. ReactNode e non string perché ci va il link
+  // alla fonte: un numero nella hero senza la fonte accanto è un numero che
+  // chi legge deve prendere sulla fiducia.
+  note?: ReactNode;
   ctaLabel?: string;
   ctaHref?: string;
   align?: "center" | "left";
 };
 
-export function PageHero({ eyebrow, title, text, ctaLabel, ctaHref, align = "center" }: Props) {
+export function PageHero({ eyebrow, title, text, note, ctaLabel, ctaHref, align = "center" }: Props) {
   const centered = align === "center";
   return (
     <section className="border-b border-border">
@@ -43,6 +47,9 @@ export function PageHero({ eyebrow, title, text, ctaLabel, ctaHref, align = "cen
               {blocco}
             </p>
           ))}
+        {note && (
+          <p className={`text-fg-muted text-[0.85rem] mt-5 max-w-[560px] ${centered ? "mx-auto" : ""}`}>{note}</p>
+        )}
         {ctaLabel && (
           <div className={`mt-8 flex ${centered ? "justify-center" : ""}`}>
             <Button href={ctaHref || "/contatti"} size="lg">
