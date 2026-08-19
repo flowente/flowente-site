@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero";
 import { BuiltWith } from "@/components/BuiltWith";
 import { Numeri } from "@/components/Numeri";
 import { ServiceCards } from "@/components/ServiceCards";
+import { FormazioneBand } from "@/components/FormazioneBand";
 import { Steps } from "@/components/Steps";
 import { ForWho } from "@/components/ForWho";
 import { CtaBand } from "@/components/CtaBand";
@@ -19,6 +20,7 @@ export default function Home() {
             presentati, e la diciamo con tre dati invece che con un'opinione. */}
         <Numeri />
         <ServiceCards />
+        <FormazioneBand />
         <Steps />
         <ForWho />
         <CtaBand

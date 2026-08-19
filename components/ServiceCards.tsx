@@ -10,9 +10,12 @@ type Item = { nome: string; text: string; mark: Mark; shape: ShapeKind };
 // processo intero, il modello privato, le persone. Chi legge si colloca da solo
 // nella riga giusta senza che gliela indichiamo.
 //
-// ATTENZIONE: Formazione e' l'unica delle quattro senza una pagina e senza una
-// voce in /servizi. Le altre tre vengono da lib/prodotti.ts; questa vive solo
-// qui, ed e' un doppione che va riunito il giorno che la scheda prodotto esiste.
+// Formazione non e' qui: ha la sua fascia a tutta larghezza subito sotto. In
+// una fila di quattro riquadri uguali spariva; da sola si legge.
+//
+// Il titolo dice "Quattro modi" e i riquadri sono tre: il quarto e' quella
+// fascia, che arriva due centimetri piu' giu'. Se un giorno la fascia se ne
+// va, questo titolo va rimesso a "Tre modi".
 const ITEMS: Item[] = [
   {
     nome: "AI Pilota",
@@ -32,12 +35,6 @@ const ITEMS: Item[] = [
     mark: marks.lucchetto,
     shape: "triangle",
   },
-  {
-    nome: "Formazione",
-    text: "Percorsi pratici per usare l'AI con sicurezza e autonomia nel lavoro di ogni giorno.",
-    mark: marks.coil,
-    shape: "blob",
-  },
 ];
 
 export function ServiceCards() {
@@ -54,10 +51,7 @@ export function ServiceCards() {
             e nelle attività di ogni giorno.
           </p>
         </div>
-        {/* Due per riga sul tablet, quattro sul desktop: a quattro colonne sotto
-            i 1024px la colonna scende a ~180px e il testo si spezza a due parole
-            per riga. Le schede si allungano tutte alla piu' alta da sole. */}
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {ITEMS.map((it) => (
             <div key={it.nome} className="rounded-[16px] border border-border bg-surface p-7 flex flex-col">
               <div className="h-[104px] flex items-center justify-start">
