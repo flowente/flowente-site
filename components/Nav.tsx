@@ -8,13 +8,10 @@ import { PRODOTTI, percorso } from "@/lib/prodotti";
 
 // Le etichette cambiano, gli indirizzi no: rinominare anche le rotte
 // significherebbe rompere ogni link già condiviso.
-//
-// nuova = la targhetta sopra la voce. Una sola alla volta, e va tolta quando la
-// pagina smette di essere una novità: due "Nuova" contemporaneamente non
-// segnalano più niente.
+
 const LINKS = [
   { label: "Soluzioni", href: "/servizi" },
-  { label: "Formazione", href: "/formazione", nuova: true },
+  { label: "Formazione", href: "/formazione" },
   { label: "Chi siamo", href: "/chi-siamo" },
   { label: "Contatti", href: "/contatti" },
 ];
@@ -118,17 +115,8 @@ export function Nav() {
                 )}
               </div>
             ) : (
-              // relative + targhetta in absolute: se la targhetta stesse nel
-              // flusso alzerebbe la voce rispetto alle altre e la barra
-              // perderebbe l'allineamento. All'angolo in alto a destra e non
-              // centrata: al centro sembrava il titolo della voce.
-              <a key={l.href} className="relative hover:text-fg transition-colors" href={l.href}>
+              <a key={l.href} className="hover:text-fg transition-colors" href={l.href}>
                 {l.label}
-                {l.nuova && (
-                  <span className="absolute -top-[17px] -right-2 rounded-full bg-accent px-1.5 py-[1px] font-medium text-[0.56rem] uppercase tracking-[0.1em] text-paper">
-                    Nuova
-                  </span>
-                )}
               </a>
             )
           )}
@@ -168,13 +156,8 @@ export function Nav() {
           <ul className="mx-auto max-w-content px-6 py-2">
             {LINKS.map((l) => (
               <li key={l.href} className="border-b border-border">
-                <a href={l.href} className="flex items-center gap-2 py-4 text-[1.05rem] text-fg-2 hover:text-fg transition-colors">
+                <a href={l.href} className="block py-4 text-[1.05rem] text-fg-2 hover:text-fg transition-colors">
                   {l.label}
-                  {l.nuova && (
-                    <span className="rounded-full bg-accent px-1.5 py-[1px] font-medium text-[0.6rem] uppercase tracking-[0.1em] text-paper">
-                      Nuova
-                    </span>
-                  )}
                 </a>
                 {/* Su telefono i prodotti stanno sotto "Soluzioni", rientrati:
                     una tendina dentro un menu già aperto sarebbe un livello di troppo. */}
