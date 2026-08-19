@@ -38,6 +38,14 @@ export type Prodotto = {
   prezzo: Prezzo | null;
   caso: Caso;
   esempi: string[];
+  // Le voci spente sotto l'elenco: NON sono capacita' inventate per riempire la
+  // colonna, sono voci prese dall'elenco del prodotto superiore. Cosi' la lista
+  // dice dove finisce questo livello e dove comincia il prossimo, senza che
+  // nessuna riga prometta o neghi qualcosa che non esiste da nessuna parte.
+  esclusi?: string[];
+  // Etichetta in evidenza sulla scheda. Una sola fra i tre, o smette di
+  // significare qualcosa.
+  badge?: string;
   cta: string;
   mark: Mark;
   shape: ShapeKind;
@@ -62,10 +70,14 @@ export const PRODOTTI: Prodotto[] = [
     esempi: [
       "Email marketing automation",
       "Weekly report automatici",
-      "P&L automation",
-      "WhatsApp automation",
       "Follow-up automatici",
       "Aggiornamento CRM e database",
+    ],
+    esclusi: [
+      "CRM su misura",
+      "Dashboard operative",
+      "Workflow e approvazioni interne",
+      "Modelli in ambiente privato",
     ],
     cta: "Scopri AI Pilota",
     mark: marks.onda,
@@ -88,11 +100,14 @@ export const PRODOTTI: Prodotto[] = [
       "CRM su misura",
       "Dashboard operative",
       "Portale clienti",
-      "Marketing agent",
-      "Sales agent",
-      "Content creation agent",
+      "Marketing e sales agent",
       "Workflow e approvazioni interne",
     ],
+    esclusi: [
+      "Modelli in ambiente privato",
+      "Controllo accessi e data governance",
+    ],
+    badge: "Consigliato",
     cta: "Esplora AI Automation",
     mark: marks.flusso,
     shape: "square",

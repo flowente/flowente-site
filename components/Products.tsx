@@ -1,12 +1,21 @@
 import { Button } from "./Button";
 import { MarkBadge } from "./MarkBadge";
 import { Spunta } from "./Spunta";
+import { Croce } from "./Croce";
 import { PRODOTTI, percorso } from "@/lib/prodotti";
 
-// Tre prodotti distinti e indipendenti. Nessuna scheda è messa in evidenza — né
-// bordo più marcato né etichetta "consigliato": nei listini a livelli serve a
-// indicare il piano da comprare, ma qui non c'è una scala e suggerirne una
-// direbbe il contrario di quello che i prodotti sono.
+// I tre prodotti come una scala: quattro voci attive su AI Pilota, cinque su AI
+// Automation, sette su Private AI, e sotto le voci spente che dicono dove
+// finisce ogni livello.
+//
+// SULLA TARGHETTA. Nel riferimento diceva "il più acquistato". Qui non si può:
+// non ci sono ancora acquisti da contare, e una riga del genere è falsa in
+// senso stretto — verificabile da chiunque chieda "quanti?". "Consigliato" fa
+// lo stesso lavoro (dice all'occhio dove guardare per primo) ed è vera, perché
+// è davvero quello che consigliamo. Il giorno che i numeri di vendita
+// esistono, si cambia questa stringa in lib/prodotti.ts e nient'altro.
+//
+// Una targhetta sola fra i tre, o smette di indicare qualcosa.
 //
 // I dati stanno in lib/prodotti.ts: li condivide con le pagine di dettaglio e
 // con la tendina della barra in alto.
@@ -23,13 +32,24 @@ export function Products() {
           {PRODOTTI.map((p) => (
             <div
               key={p.slug}
-              className="rounded-[16px] border border-border bg-surface flex flex-col overflow-hidden"
+              className={`rounded-[16px] border bg-surface flex flex-col overflow-hidden ${
+                p.badge ? "border-accent" : "border-border"
+              }`}
             >
-              <div className="p-7 flex flex-col">
+              <div className="p-7 flex flex-col grow">
                 <div className="h-[104px] flex items-center justify-start">
                   <MarkBadge mark={p.mark} shape={p.shape} boxW={120} boxH={100} shapeSize={96} markW={92} markH={63} />
                 </div>
-                <h3 className="font-display font-semibold text-[1.35rem] tracking-[-0.02em] mt-2">{p.nome}</h3>
+                {/* Nome e targhetta sulla stessa riga: la targhetta deve arrivare
+                    all'occhio insieme al nome, non prima. */}
+                <div className="mt-2 flex items-center justify-between gap-3">
+                  <h3 className="font-display font-semibold text-[1.35rem] tracking-[-0.02em]">{p.nome}</h3>
+                  {p.badge && (
+                    <span className="shrink-0 rounded-full bg-accent px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-paper">
+                      {p.badge}
+                    </span>
+                  )}
+                </div>
 
                 {/* Altezze minime su descrizione, prezzo e area del bottone: senza,
                     il filetto cadrebbe a un'altezza diversa in ogni scheda, perché
@@ -67,13 +87,20 @@ export function Products() {
                     {p.cta}
                   </Button>
                 </div>
-              </div>
 
-              <div className="border-t border-border p-7 grow">
-                <ul className="space-y-2.5">
+                {/* Un elenco solo, senza filetto sopra: attive e spente sono la
+                    stessa lista, e una riga di separazione le farebbe leggere
+                    come due cose diverse. */}
+                <ul className="mt-7 space-y-2.5">
                   {p.esempi.map((e) => (
                     <li key={e} className="flex gap-2.5 text-[0.94rem] text-fg-2">
                       <Spunta className="mt-[5px]" />
+                      <span>{e}</span>
+                    </li>
+                  ))}
+                  {p.esclusi?.map((e) => (
+                    <li key={e} className="flex gap-2.5 text-[0.94rem] text-fg-muted opacity-60">
+                      <Croce className="mt-[5px]" />
                       <span>{e}</span>
                     </li>
                   ))}
