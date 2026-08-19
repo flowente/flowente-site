@@ -68,15 +68,29 @@ export function UseCases() {
               {/* Altezze fisse su titolo e testo: in fila le schede stanno
                   affiancate e una piu' alta delle altre si nota subito. Il
                   troncamento tiene, e il testo intero resta nella pagina del
-                  prodotto collegato. */}
+                  prodotto collegato.
+                  Il titolo ha tre righe perche' quello di GymOS ne occupa tre:
+                  con due ne restava fuori una. Gli altri ne usano due e sotto
+                  resta una riga vuota — costa meno di un titolo tagliato. */}
               <div className="p-6">
                 <div className="font-mono text-[0.66rem] uppercase tracking-wide text-accent">{c.label}</div>
-                <h3 className="font-display font-semibold text-[1.05rem] leading-[1.35] tracking-[-0.015em] mt-2.5 line-clamp-2 h-[2.9rem]">
+                <h3 className="font-display font-semibold text-[1.05rem] leading-[1.35] tracking-[-0.015em] mt-2.5 line-clamp-3 h-[4.35rem]">
                   {c.title}
                 </h3>
                 <p className="text-fg-2 text-[0.92rem] leading-[1.55] mt-2 line-clamp-8 h-[11.45rem] md:line-clamp-6 md:h-[8.6rem] overflow-hidden">
                   {c.text}
                 </p>
+                {/* La soluzione usata, in fondo e nel font del testo: e' una
+                    firma, non un'etichetta. L'altezza e' riservata anche quando
+                    manca, altrimenti le schede senza prodotto starebbero piu'
+                    basse delle altre. */}
+                <div className="mt-4 h-[26px]">
+                  {c.prodotto && (
+                    <span className="inline-flex items-center rounded-full border border-border px-2.5 py-1 text-[0.78rem] leading-none text-fg-muted">
+                      {c.prodotto}
+                    </span>
+                  )}
+                </div>
               </div>
             </article>
           ))}

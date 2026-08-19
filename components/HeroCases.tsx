@@ -137,8 +137,11 @@ export function HeroCases() {
                   devono sovrapporsi al pixel. Con un'altezza minima bastava un
                   titolo su due righe invece di una perché la pila si allungasse
                   a ogni giro — misurato, 497px contro 490. Il troncamento fa il
-                  resto: nessun testo può sfondare lo spazio che ha. */}
-              <span className="block font-display font-semibold text-[1.12rem] leading-[1.35] tracking-[-0.015em] mt-2.5 line-clamp-2 h-[3.1rem]">
+                  resto: nessun testo può sfondare lo spazio che ha.
+                  Tre righe di titolo perché quello di GymOS ne occupa tre: un
+                  titolo tagliato a metà è la cosa peggiore da troncare, visto
+                  che è la sola riga che qualcuno legge di sicuro. */}
+              <span className="block font-display font-semibold text-[1.12rem] leading-[1.35] tracking-[-0.015em] mt-2.5 line-clamp-3 h-[4.6rem]">
                 {caso.title}
               </span>
               <span className="block text-fg-2 text-[0.92rem] leading-[1.5] mt-2 line-clamp-3 h-[4.15rem] overflow-hidden">
