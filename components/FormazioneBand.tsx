@@ -6,9 +6,8 @@ import { Button } from "./Button";
 // componente condiviso perche' le due sezioni non devono cambiare insieme:
 // quella e' un manifesto, questa vende una cosa.
 //
-// Nessuna scheda e nessun elenco puntato. Formazione arriva dopo tre riquadri
-// con il bordo, e se fosse un quarto riquadro sparirebbe dentro la fila; a
-// tutta larghezza si stacca e si legge come un'altra cosa.
+// Nessuna scheda e nessun elenco puntato: sta sopra la fila dei tre riquadri e
+// deve leggersi come un'altra cosa, non come il primo di quattro.
 //
 // SUL 58,6%. La fonte e' l'ISTAT, "Imprese e ICT — Anno 2025", la stessa dei
 // numeri in home. Il dato dice: fra le imprese che hanno VALUTATO l'IA e non
@@ -24,14 +23,14 @@ export function FormazioneBand() {
         <div>
           <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted">Formazione</p>
           <h2 className="mt-4 font-display font-semibold tracking-[-0.03em] text-[clamp(1.8rem,3.4vw,2.6rem)] leading-[1.04]">
-            Il freno non è la tecnologia. È non sapere da dove iniziare.
+            Si parte da qui.
           </h2>
         </div>
         <div className="max-w-[560px]">
           <p className="text-fg-2 text-[1.06rem]">
             Fra chi valuta l&apos;AI e poi non la adotta, il 58,6% indica la mancanza di competenze — più del costo,
-            che si ferma al 43%. La formazione Flowente è mezza giornata con il tuo team, sui vostri strumenti veri e
-            non su slide: si esce con qualcosa che funziona già.
+            che si ferma al 43%. Il team Flowente vi accompagna nella comprensione e utilizzo efficace degli
+            strumenti.
           </p>
           <div className="mt-7">
             <Button variant="ghost" href="/contatti">

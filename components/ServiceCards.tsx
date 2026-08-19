@@ -10,12 +10,8 @@ type Item = { nome: string; text: string; mark: Mark; shape: ShapeKind };
 // processo intero, il modello privato, le persone. Chi legge si colloca da solo
 // nella riga giusta senza che gliela indichiamo.
 //
-// Formazione non e' qui: ha la sua fascia a tutta larghezza subito sotto. In
-// una fila di quattro riquadri uguali spariva; da sola si legge.
-//
-// Il titolo dice "Quattro modi" e i riquadri sono tre: il quarto e' quella
-// fascia, che arriva due centimetri piu' giu'. Se un giorno la fascia se ne
-// va, questo titolo va rimesso a "Tre modi".
+// Formazione non e' qui: ha la sua fascia a tutta larghezza, e sta prima di
+// questa sezione perche' viene prima anche nel percorso di chi compra.
 const ITEMS: Item[] = [
   {
     nome: "AI Pilota",
@@ -44,7 +40,7 @@ export function ServiceCards() {
         <div className="max-w-[620px] mb-12">
           <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted">Le soluzioni</p>
           <h2 className="mt-4 font-display font-semibold tracking-[-0.03em] text-[clamp(2rem,4vw,3rem)] leading-[1.02]">
-            Quattro modi per portare l&apos;AI nel lavoro di ogni giorno.
+            Tre modi per portare l&apos;AI nel lavoro di ogni giorno.
           </h2>
           <p className="mt-5 text-fg-2 text-[1.06rem]">
             Dal primo progetto alla formazione del team, portiamo l&apos;AI dove può essere davvero utile, nei processi

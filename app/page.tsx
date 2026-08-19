@@ -19,8 +19,10 @@ export default function Home() {
         {/* Subito sotto i loghi: e' la prima cosa che diciamo dopo esserci
             presentati, e la diciamo con tre dati invece che con un'opinione. */}
         <Numeri />
-        <ServiceCards />
+        {/* Prima dei prodotti, non dopo: chi non sa da dove iniziare non e'
+            ancora pronto a scegliere fra tre schede. */}
         <FormazioneBand />
+        <ServiceCards />
         <Steps />
         <ForWho />
         <CtaBand
