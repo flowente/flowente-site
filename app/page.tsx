@@ -4,7 +4,6 @@ import { BuiltWith } from "@/components/BuiltWith";
 import { Numeri } from "@/components/Numeri";
 import { ServiceCards } from "@/components/ServiceCards";
 import { FormazioneBand } from "@/components/FormazioneBand";
-import { Steps } from "@/components/Steps";
 import { ForWho } from "@/components/ForWho";
 import { CtaBand } from "@/components/CtaBand";
 import { Footer } from "@/components/Footer";
@@ -23,7 +22,6 @@ export default function Home() {
             ancora pronto a scegliere fra tre schede. */}
         <FormazioneBand />
         <ServiceCards />
-        <Steps />
         <ForWho />
         <CtaBand
           title="Valutiamo il tuo caso."
