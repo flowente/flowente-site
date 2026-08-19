@@ -6,6 +6,11 @@ import { Button } from "./Button";
 // componente condiviso perche' le due sezioni non devono cambiare insieme:
 // quella e' un manifesto, questa vende una cosa.
 //
+// Il titolo pero' NON e' quello del Manifesto: clamp(2rem,4vw,3rem) come Numeri
+// e ServiceCards, invece del 2.6rem di /chi-siamo. Qui la fascia sta in mezzo
+// ad altri due titoli di quella misura, e uno piu' piccolo si leggeva come una
+// sottosezione dei numeri sopra invece che come una sezione sua.
+//
 // Nessuna scheda e nessun elenco puntato: sta sopra la fila dei tre riquadri e
 // deve leggersi come un'altra cosa, non come il primo di quattro.
 //
@@ -22,7 +27,7 @@ export function FormazioneBand() {
       <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24 grid md:grid-cols-[0.9fr_1.1fr] gap-10">
         <div>
           <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted">Formazione</p>
-          <h2 className="mt-4 font-display font-semibold tracking-[-0.03em] text-[clamp(1.8rem,3.4vw,2.6rem)] leading-[1.04]">
+          <h2 className="mt-4 font-display font-semibold tracking-[-0.03em] text-[clamp(2rem,4vw,3rem)] leading-[1.02]">
             Si parte da qui.
           </h2>
         </div>
