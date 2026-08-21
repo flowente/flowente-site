@@ -62,6 +62,7 @@ export function ContactForm() {
       // Nessun nome, nessuna email, nessun testo: quelli vanno all'API e basta.
       traccia("lead_submitted", { form: "contatti", con_azienda: Boolean(data.company) });
       form.reset();
+      void import("posthog-js").then(({ default: posthog }) => posthog.capture("contact_form_submitted"));
     } catch {
       setStatus("error");
       traccia("form_failed", { form: "contatti" });

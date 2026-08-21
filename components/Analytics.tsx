@@ -11,14 +11,27 @@ import { EVENTO, statistichePermesse } from "@/lib/consenso";
 // inizializzarlo "in modalità spenta", perché lo script sarebbe comunque partito
 // e avrebbe già visto il tuo indirizzo IP.
 //
-// Senza NEXT_PUBLIC_POSTHOG_KEY qui non succede niente: il sito resta identico e
-// il banner continua a funzionare a vuoto. La chiave si mette fra le Variables
-// di Railway, che ricostruisce e la inserisce nel bundle.
-const CHIAVE = process.env.NEXT_PUBLIC_POSTHOG_KEY;
-// Regione europea come predefinita: il sito vende dati che non escono, mandare
-// le proprie metriche negli Stati Uniti sarebbe la contraddizione più facile da
-// notare. Si cambia solo con una variabile esplicita.
-const HOST = process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://eu.i.posthog.com";
+const CHIAVE = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN;
+const HOST = process.env.NEXT_PUBLIC_POSTHOG_HOST;
+
+function configurazionePostHog() {
+  const chiaviMancanti = [
+    ["NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN", CHIAVE],
+    ["NEXT_PUBLIC_POSTHOG_HOST", HOST],
+  ].filter(([, valore]) => !valore);
+
+  if (chiaviMancanti.length > 0) {
+    if (process.env.NODE_ENV === "development") {
+      const [variabile] = chiaviMancanti[0];
+      throw new Error(
+        `${variabile} variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once ${variabile} is configured`,
+      );
+    }
+    return null;
+  }
+
+  return { chiave: CHIAVE!, host: HOST! };
+}
 
 // opt_out_capturing() interrompe l'invio ma lascia dov'è l'identificatore già
 // scritto: chi revoca se lo ritroverebbe nel browser. Qui si cancella tutto ciò
@@ -49,19 +62,25 @@ export function Analytics() {
   const attivo = useRef(false);
 
   useEffect(() => {
-    if (!CHIAVE) return;
+    const configurazione = configurazionePostHog();
+    if (!configurazione) return;
 
     const avvia = async () => {
       if (attivo.current) return;
       const { default: posthog } = await import("posthog-js");
-      posthog.init(CHIAVE, {
-        api_host: HOST,
+      posthog.init(configurazione.chiave, {
+        api_host: configurazione.host,
+        defaults: "2026-01-30",
         // Le navigazioni fra le pagine sono client-side: il conteggio automatico
         // vedrebbe solo il primo caricamento. Lo facciamo a mano più sotto.
         capture_pageview: false,
-        // Niente registrazione di ogni clic: servono le pagine viste, e
-        // raccogliere meno del necessario è un obbligo prima che una scelta.
-        autocapture: false,
+        // Invia a Error Tracking soltanto eccezioni e promise rejection non gestite;
+        // gli errori in console non fanno parte del perimetro di monitoraggio.
+        capture_exceptions: {
+          capture_unhandled_errors: true,
+          capture_unhandled_rejections: true,
+          capture_console_errors: false,
+        },
         person_profiles: "identified_only",
         // Spegnere autocapture non basta: PostHog scarica la sua configurazione
         // dal progetto e attiva quello che è acceso lì. In produzione stava
