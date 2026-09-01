@@ -126,16 +126,17 @@ export function confermaHtml({ nome, messaggio, azienda, logoSrc }: DatiConferma
       <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:100%;">
 
         <!-- Marchio. Immagine e non SVG: Gmail elimina l'SVG. E' il lockup vero,
-             marchio in Flow Blue e wordmark in Erode, reso al doppio e servito a
-             meta' misura perche' sugli schermi retina un PNG 1x si sgrana.
+             marchio in Flow Blue e wordmark in Space Grotesk, reso al doppio e
+             servito a meta' misura perche' sugli schermi retina un PNG 1x si
+             sgrana. Va rigenerato ogni volta che cambia il font del display.
              L'indirizzo e' assoluto: dentro un'email non esistono percorsi
              relativi. L'alt fa il suo lavoro quando le immagini sono bloccate,
              che nella posta e' il caso normale e non l'eccezione. -->
         <tr>
           <td style="padding:0 0 32px 0;line-height:0;">
             <a href="https://www.flowente.com" style="text-decoration:none;">
-              <img src="${logoSrc || LOGO}" width="177" height="23" alt="flowente"
-                   style="display:block;width:177px;height:23px;border:0;outline:none;text-decoration:none;font-family:${SERIF};font-size:18px;color:${INK};" />
+              <img src="${logoSrc || LOGO}" width="184" height="22" alt="flowente"
+                   style="display:block;width:184px;height:22px;border:0;outline:none;text-decoration:none;font-family:${SERIF};font-size:18px;color:${INK};" />
             </a>
           </td>
         </tr>
