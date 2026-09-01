@@ -74,6 +74,42 @@
   font-display: swap;
 }
 
+/* PROVA — ramo prova-grotesk, non unito.
+   Space Grotesk sul display, Hind nel testo. Si accende con ?coppia=grotesk.
+
+   Space Grotesk e' un font variabile: un file solo copre da 300 a 700, quindi
+   la dichiarazione e' una sola con l'intervallo di pesi. Scaricato da Google e
+   servito da noi, come gli altri: la sottoinsieme "latin" basta all'italiano,
+   perche' le accentate stanno tutte in Latin-1.
+
+   size-adjust: nessuno per ora. Va misurato sulle maiuscole, come per Erode,
+   ma solo dopo aver deciso se la coppia si tiene. */
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/SpaceGrotesk-Variable.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Hind";
+  src: url("/fonts/Hind-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Hind";
+  src: url("/fonts/Hind-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+html[data-coppia="grotesk"] {
+  --font-display: "Space Grotesk", -apple-system, "Segoe UI", sans-serif;
+  --font-testo: "Hind", -apple-system, "Segoe UI", sans-serif;
+}
+
 [data-theme="dark"] {
   --bg: #0B0B0C;
   --surface: #141416;
