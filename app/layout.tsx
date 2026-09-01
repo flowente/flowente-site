@@ -33,15 +33,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
           rel="stylesheet"
         />
-        {/* PROVA — solo sul ramo prova-grotesk. ?coppia=grotesk scambia display
-            e testo; la scelta resta in sessionStorage per girare fra le pagine.
-            Inline e prima del corpo, altrimenti la pagina si disegna con un
-            font e poi salta. */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var p=new URLSearchParams(location.search).get('coppia');if(p)sessionStorage.setItem('provaCoppia',p);var v=sessionStorage.getItem('provaCoppia');if(v)document.documentElement.setAttribute('data-coppia',v);}catch(e){}})()`,
-          }}
-        />
       </head>
       <body className="font-sans">
         <SvgFilters />

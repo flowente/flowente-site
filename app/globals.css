@@ -12,78 +12,25 @@
   --text-2: #3A3A40;
   --muted: #8A8A92;
   --accent: #2540FF;
-  /* Erode display, Recia testo, JetBrains tecnico. I primi due sono nostri e
-     stanno in /public/fonts: niente terza parte, che su un sito che dichiara di
-     non mandare dati in giro conta. Vedi DESIGN.md §5. */
-  --font-display: "Erode", Georgia, serif;
-  --font-testo: "Recia", Georgia, serif;
+  /* Space Grotesk display, Inter testo, JetBrains tecnico. Tutti e tre nostri,
+     in /public/fonts: niente terza parte, che su un sito che dichiara di non
+     mandare dati in giro conta. Vedi DESIGN.md §5. */
+  --font-display: "Space Grotesk", -apple-system, "Segoe UI", sans-serif;
+  --font-testo: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 /* font-display: swap — il testo compare subito col fallback e cambia quando il
    font e' pronto, invece di lasciare la pagina bianca.
 
-   size-adjust: 110% su Erode. A parita' di font-size le maiuscole di Erode sono
-   il 9% piu' basse di quelle di Space Grotesk (121 contro 133 su un corpo di
-   200px, misurato a schermo), mentre la larghezza della stessa frase e' identica
-   allo 0,3%. Nei titoli, che cominciano con la maiuscola, il testo sembrava
-   rimpicciolito. size-adjust scala i glifi dentro lo stesso em, quindi si
-   correggono tutti i titoli in un punto invece di ritoccare i clamp() sparsi in
-   una dozzina di file.
+   Space Grotesk e Inter sono font variabili: un file ciascuno copre tutti i
+   pesi, quindi bastano due dichiarazioni con l'intervallo. Sottoinsieme latin,
+   che all'italiano basta — le accentate stanno tutte in Latin-1.
 
-   Il prezzo: la stessa frase diventa il 10% piu' larga, e i titoli che erano
-   stati sistemati per stare su una riga vanno ricontrollati. */
-@font-face {
-  font-family: "Erode";
-  src: url("/fonts/Erode-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-  size-adjust: 110%;
-}
-@font-face {
-  /* Il peso del wordmark: Logo.tsx usa font-medium. Senza questo il browser
-     stira il 400 o il 600 e il marchio si vede sbagliato. */
-  font-family: "Erode";
-  src: url("/fonts/Erode-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-  size-adjust: 110%;
-}
-@font-face {
-  font-family: "Erode";
-  src: url("/fonts/Erode-Semibold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-  size-adjust: 110%;
-}
-@font-face {
-  font-family: "Recia";
-  src: url("/fonts/Recia-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Recia";
-  src: url("/fonts/Recia-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* PROVA — ramo prova-grotesk, non unito.
-   Space Grotesk sul display, Hind nel testo. Si accende con ?coppia=grotesk.
-
-   Space Grotesk e' un font variabile: un file solo copre da 300 a 700, quindi
-   la dichiarazione e' una sola con l'intervallo di pesi. Scaricato da Google e
-   servito da noi, come gli altri: la sottoinsieme "latin" basta all'italiano,
-   perche' le accentate stanno tutte in Latin-1.
-
-   size-adjust: nessuno per ora. Va misurato sulle maiuscole, come per Erode,
-   ma solo dopo aver deciso se la coppia si tiene. */
+   Scaricati da Google ma serviti da noi. E' l'unica differenza rispetto al sito
+   di prima del 19 agosto, dove arrivavano da Google a ogni visita: graficamente
+   identico, ma i visitatori non fanno piu' una richiesta a terzi per leggere una
+   pagina che dichiara di non mandare dati in giro. */
 @font-face {
   font-family: "Space Grotesk";
   src: url("/fonts/SpaceGrotesk-Variable.woff2") format("woff2");
@@ -92,38 +39,11 @@
   font-display: swap;
 }
 @font-face {
-  font-family: "Hind";
-  src: url("/fonts/Hind-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Hind";
-  src: url("/fonts/Hind-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  /* Anche Inter e' variabile: un file, tutti i pesi. */
   font-family: "Inter";
   src: url("/fonts/Inter-Variable.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
-}
-
-/* Space Grotesk + Hind */
-html[data-coppia="grotesk"] {
-  --font-display: "Space Grotesk", -apple-system, "Segoe UI", sans-serif;
-  --font-testo: "Hind", -apple-system, "Segoe UI", sans-serif;
-}
-/* Space Grotesk + Inter: la coppia originale del sito, quella prima del cambio
-   del 19 agosto. */
-html[data-coppia="originale"] {
-  --font-display: "Space Grotesk", -apple-system, "Segoe UI", sans-serif;
-  --font-testo: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
 [data-theme="dark"] {

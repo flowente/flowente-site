@@ -5,7 +5,7 @@ import { ANCORA_CASI } from "@/lib/casi";
 export function Hero() {
   return (
     <section className="border-b border-border">
-      <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24 grid gap-10 items-center md:grid-cols-[1.05fr_0.95fr]">
+      <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24 grid gap-10 items-center md:grid-cols-[1.15fr_0.85fr]">
         <div>
           <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted mb-6">AI Systems Studio</p>
           {/* Due periodi, e il secondo porta il senso: per questo la prima riga
@@ -13,7 +13,13 @@ export function Hero() {
               invertito - li' il grigio chiudeva, qui apre. */}
           <h1
             className="font-display font-semibold tracking-[-0.045em]"
-            style={{ fontSize: "clamp(2.6rem, 6.2vw, 4.4rem)", lineHeight: 0.98 }}
+            // 5rem e non 4.4: il titolo torna vicino alla misura che aveva prima
+            // del cambio di copy. Il salto e' netto — sopra i 70px la seconda
+            // frase si spezza in tre pezzi e il titolo va a quattro righe — e si
+            // paga allargando la colonna del testo da 1.05fr a 1.15fr. La pila
+            // di schede non ci rimette: e' gia' limitata a 420px, quindi lo
+            // spazio che perde non lo usava.
+            style={{ fontSize: "clamp(2.6rem, 6.2vw, 5rem)", lineHeight: 0.98 }}
           >
             <span className="text-fg-muted font-normal">L&apos;AI &egrave; gi&agrave; qui.</span>
             <br />

@@ -74,8 +74,8 @@ export function Nav() {
       <div className="mx-auto max-w-content px-6 md:px-10 h-[66px] flex items-center justify-between">
         <Logo className="text-[1.1rem] md:text-[1.25rem]" href="/" />
 
-        {/* font-medium: con Recia il 400 in barra risultava troppo leggero accanto al
-            marchio. Il 500 c'e' gia' fra i tagli caricati, non costa una richiesta in piu'. */}
+        {/* font-medium e non il 400 di partenza: le voci reggono meglio accanto al
+            marchio. Con un font variabile il peso non costa un file in piu'. */}
         <nav className="hidden md:flex gap-7 text-[0.9rem] font-medium text-fg-2 items-center">
           {LINKS.map((l) =>
             l.label === "Soluzioni" ? (
