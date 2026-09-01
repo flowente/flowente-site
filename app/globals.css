@@ -105,9 +105,25 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  /* Anche Inter e' variabile: un file, tutti i pesi. */
+  font-family: "Inter";
+  src: url("/fonts/Inter-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Space Grotesk + Hind */
 html[data-coppia="grotesk"] {
   --font-display: "Space Grotesk", -apple-system, "Segoe UI", sans-serif;
   --font-testo: "Hind", -apple-system, "Segoe UI", sans-serif;
+}
+/* Space Grotesk + Inter: la coppia originale del sito, quella prima del cambio
+   del 19 agosto. */
+html[data-coppia="originale"] {
+  --font-display: "Space Grotesk", -apple-system, "Segoe UI", sans-serif;
+  --font-testo: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
 [data-theme="dark"] {
