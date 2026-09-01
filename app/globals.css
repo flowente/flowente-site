@@ -81,11 +81,21 @@ body {
 }
 
 /* ===== BOTTONI ===== */
+/* TUTTI I BOTTONI HANNO LA STESSA ALTEZZA: 48px, quella della CTA. Prima ce
+   n'erano due — 41px il normale, 48 il grande — e la differenza si notava dove
+   comparivano vicini. L'altezza la fa min-height e non il padding verticale:
+   cosi' un'etichetta che va a capo allunga il bottone invece di sfondarlo, e
+   l'altezza resta la stessa qualunque sia il corpo del testo.
+   I 48px non sono un gusto: il design system chiede bersagli tattili da almeno
+   44px (§13), e i 41 di prima erano sotto. Sotto i 420px si scende a 46, che
+   resta sopra il minimo.
+   Da qui in poi "lg" non vuol dire piu' alto: vuol dire piu' largo e con il
+   testo un filo piu' grande. */
 .btn {
   font-family: var(--font-testo), sans-serif;
   font-weight: 500; font-size: .95rem; letter-spacing: -.006em; line-height: 1;
-  padding: 12px 22px; border-radius: 8px; border: 1px solid transparent;
-  cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+  padding: 0 22px; min-height: 48px; border-radius: 8px; border: 1px solid transparent;
+  cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   transition: transform .18s ease; text-decoration: none;
   /* Senza questo l'etichetta della barra in alto andava a capo su due righe a
      375px, arrivando a toccare il marchio. Valeva con "Prenota una call"; con
@@ -94,11 +104,11 @@ body {
   white-space: nowrap;
 }
 @media (max-width: 420px) {
-  .btn { padding: 11px 15px; font-size: .875rem; }
-  .btn-lg { padding: 14px 20px; font-size: .95rem; }
+  .btn { padding: 0 15px; min-height: 46px; font-size: .875rem; }
+  .btn-lg { padding: 0 20px; font-size: .95rem; }
 }
 .btn:hover { transform: scale(1.02); }
-.btn-lg { padding: 15px 26px; font-size: 1rem; }
+.btn-lg { padding: 0 26px; font-size: 1rem; }
 .btn-primary { background: var(--text); color: var(--bg); }
 .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
 .btn-paper { background: #FBFBF9; color: #0B0B0C; }
