@@ -150,21 +150,28 @@ body {
    .caso-aperta viene dopo .caso, quindi vince a parita' di specificita'.
    Su telefono l'aperta prende tutta la larghezza utile: 100vw meno i due
    rientri della fila. */
+/* Sotto i 768 la misura resta fissa e la scheda dopo si affaccia: sul telefono
+   si scorre col dito, e l'affaccio e' il modo giusto di dirlo. */
 .caso { width: 280px; }
-/* Sul tablet 320 e non 340: a 768 esatti — l'iPad in verticale — con 340 la
-   terza scheda si affacciava di otto pixel, che non si legge come "ce n'e'
-   ancora", si legge come un errore di calcolo. */
+/* Da qui in su le schede sono FRAZIONI ESATTE della colonna, non misure fisse:
+   due sul tablet, tre sul desktop, e l'ultima finisce sul bordo della colonna
+   al pixel a qualunque larghezza. La percentuale si calcola sullo spazio utile
+   della fila, che sopra i 1160 vale 1080; i valori sottratti sono gli spazi
+   fra le schede (uno per due schede, due per tre).
+   PERCHE' LO SPAZIO FRA LE SCHEDE E' 44 E NON 20. Non e' una scelta estetica,
+   e' l'unico valore che fa sparire la scheda successiva. La fila ha 40px di
+   rientro anche a destra, e il ritaglio cade sul bordo esterno del rientro, non
+   su quello del testo: le tre schede finiscono a 1080, ma si vede fino a 1120.
+   La quarta parte a 3*(larghezza+spazio) = 1080+spazio, quindi si affaccia in
+   quei 40px per tutto lo spazio che manca a 40. Con 20 restava una striscia di
+   venti pixel — quella che si vedeva. Con 44 la quarta comincia quattro pixel
+   oltre il taglio e non se ne vede niente, senza contare sull'arrotondamento.
+   Se un giorno cambia il rientro della fila, questo numero va rifatto. */
 @media (min-width: 768px) {
-  .caso { width: 320px; }
+  .caso { width: calc((100% - 44px) / 2); }
 }
-/* 340 e non piu' 360. Dentro la colonna restano 1080px utili e il taglio cade a
-   1120: con 360 le prime tre schede piu' i due spazi facevano esattamente 1120,
-   la quarta restava fuori di un pixel e la fila sembrava finita. Nessuno prova a
-   scorrere una riga che finisce esatta sul bordo. Con 340 la quarta si affaccia
-   di quaranta pixel, e a questa larghezza il conto non dipende dallo schermo:
-   sopra i 1160 la colonna e' fissa, quindi il risultato e' sempre quello. */
 @media (min-width: 1024px) {
-  .caso { width: 340px; }
+  .caso { width: calc((100% - 88px) / 3); }
 }
 /* La scheda si solleva appena al passaggio: dice che si puo' aprire, senza
    aggiungere un bottone. */

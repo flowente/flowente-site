@@ -15,11 +15,14 @@ import { CASI, type Caso } from "@/lib/casi";
 // entrano in coda e basta. Le larghezze stanno in globals.css (.caso): scritte
 // come utility dentro una costante Tailwind non le genera.
 //
-// QUELLA DOPO SPORGE APPOSTA. Sopra i 1160px si vedono tre schede piene e la
-// quarta si affaccia per una quarantina di pixel: e' il segnale che ce n'e'
-// dell'altro. Una riga che finisce esatta sul bordo sembra completa, e nessuno
-// prova a scorrerla — per questo la scheda misura 340 e non 360, che dava
-// esattamente tre schede e nessun affaccio. Il conto sta in globals.css.
+// TRE SCHEDE, E LE FRECCE PER LE ALTRE. Prima la quarta si affacciava di una
+// quarantina di pixel per dire che la fila continuava. Non funzionava: una
+// striscia verticale tagliata sul bordo si legge come un errore, non come un
+// invito. Adesso le schede sono frazioni esatte della colonna — tre piene e
+// nessun avanzo — e a dire che c'e' dell'altro ci pensano due frecce, che sono
+// un comando visibile invece di un indizio da interpretare.
+// Su telefono resta l'affaccio: li' si scorre col dito, e due bersagli da
+// centrare sarebbero un peggioramento.
 //
 // IL DETTAGLIO SI APRE IN UNA FINESTRA. La prima versione allargava la scheda
 // sul posto: spingeva le altre, cambiava la posizione di scorrimento e obbligava
@@ -30,9 +33,75 @@ import { CASI, type Caso } from "@/lib/casi";
 // ritorno del fuoco alla scheda di partenza li fa il browser. Rifarli a mano
 // significa sbagliarne almeno uno.
 
+// 44px, che e' la misura minima di un bersaglio tattile in DESIGN.md §13.
+// Spenta e non nascosta quando da quella parte non c'e' piu' niente: una freccia
+// che sparisce sposta l'altra sotto il dito, e si preme quella sbagliata.
+function FrecciaCasi({ verso, attiva, onClick }: { verso: 1 | -1; attiva: boolean; onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={!attiva}
+      aria-label={verso === -1 ? "Casi precedenti" : "Casi successivi"}
+      className="flex h-11 w-11 items-center justify-center rounded-full border border-border text-fg-2 transition-colors hover:border-fg-muted hover:text-fg disabled:cursor-default disabled:opacity-30 disabled:hover:border-border disabled:hover:text-fg-2"
+    >
+      <svg viewBox="0 0 8 14" className="h-[13px] w-[8px]" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d={verso === -1 ? "M7 1L1 7l6 6" : "M1 1l6 6-6 6"} />
+      </svg>
+    </button>
+  );
+}
+
 export function UseCases() {
   const [aperto, setAperto] = useState<Caso | null>(null);
   const finestra = useRef<HTMLDialogElement>(null);
+
+  // Le due direzioni tenute separate: servono a spegnere la freccia quando da
+  // quella parte non c'e' piu' niente. E' l'unico modo di far vedere a che punto
+  // della fila si e' arrivati senza scriverlo da qualche parte.
+  const fila = useRef<HTMLDivElement>(null);
+  const [scorrevole, setScorrevole] = useState({ sx: false, dx: false });
+
+  const misura = useCallback(() => {
+    const f = fila.current;
+    if (!f) return;
+    const massimo = f.scrollWidth - f.clientWidth;
+    // I 4px di margine assorbono gli arrotondamenti a frazione di pixel: le
+    // schede sono terzi di colonna, quindi lo scorrimento massimo quasi mai e'
+    // un intero. Senza, arrivati in fondo la freccia resta accesa e non porta
+    // da nessuna parte.
+    setScorrevole({ sx: f.scrollLeft > 4, dx: f.scrollLeft < massimo - 4 });
+  }, []);
+
+  useEffect(() => {
+    const f = fila.current;
+    if (!f) return;
+    misura();
+    f.addEventListener("scroll", misura, { passive: true });
+    // Le schede sono frazioni della colonna: cambiando larghezza alla finestra
+    // cambia anche quanto resta da scorrere, e le frecce devono accorgersene.
+    const osserva = new ResizeObserver(misura);
+    osserva.observe(f);
+    return () => {
+      f.removeEventListener("scroll", misura);
+      osserva.disconnect();
+    };
+  }, [misura]);
+
+  // Un passo = una scheda, non una schermata. Con quattro casi e tre visibili,
+  // una schermata intera scavalcherebbe proprio quello che si stava guardando.
+  const scorri = (verso: 1 | -1) => {
+    const f = fila.current;
+    if (!f) return;
+    const prima = f.querySelector<HTMLElement>(".caso");
+    const spazio = parseFloat(getComputedStyle(f).columnGap) || 20;
+    // getBoundingClientRect e non offsetWidth: le schede sono terzi di colonna,
+    // quindi la larghezza ha una frazione che offsetWidth arrotonda. Su piu'
+    // scatti l'errore si accumula e la fila si ferma fuori posto.
+    const passo = prima ? prima.getBoundingClientRect().width + spazio : f.clientWidth;
+    const dolce = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    f.scrollBy({ left: verso * passo, behavior: dolce ? "smooth" : "auto" });
+  };
 
   const chiudi = useCallback(() => {
     const d = finestra.current;
@@ -74,14 +143,28 @@ export function UseCases() {
   return (
     <section id="casi-duso" className="border-b border-border scroll-mt-[80px]">
       <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24">
-        <div className="max-w-[620px] mb-12">
-          <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted">Casi d&apos;uso</p>
-          <h2 className="mt-4 font-display font-semibold tracking-[-0.03em] text-[clamp(2rem,4vw,3rem)] leading-[1.02]">
-            Case Study.
-          </h2>
-          <p className="text-fg-2 text-[1.06rem] mt-5">
-            Esempi reali di come i nostri sistemi migliorano i processi aziendali.
-          </p>
+        <div className="mb-12 flex items-end justify-between gap-8">
+          <div className="max-w-[620px]">
+            <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted">Casi d&apos;uso</p>
+            <h2 className="mt-4 font-display font-semibold tracking-[-0.03em] text-[clamp(2rem,4vw,3rem)] leading-[1.02]">
+              Case Study.
+            </h2>
+            <p className="text-fg-2 text-[1.06rem] mt-5">
+              Esempi reali di come i nostri sistemi migliorano i processi aziendali.
+            </p>
+          </div>
+
+          {/* Nell'intestazione e non sotto le schede: qui stanno dentro la
+              colonna, non coprono le immagini e si trovano prima di doverle
+              cercare. Compaiono solo se c'e' davvero altro da vedere — due
+              frecce spente sopra una fila che ci sta tutta sarebbero un comando
+              che non comanda niente. */}
+          {(scorrevole.sx || scorrevole.dx) && (
+            <div className="hidden shrink-0 gap-2 md:flex">
+              <FrecciaCasi verso={-1} attiva={scorrevole.sx} onClick={() => scorri(-1)} />
+              <FrecciaCasi verso={1} attiva={scorrevole.dx} onClick={() => scorri(1)} />
+            </div>
+          )}
         </div>
       </div>
 
@@ -94,7 +177,8 @@ export function UseCases() {
           .fila-casi, in globals.css. */}
       <div className="pb-20 md:pb-24">
         <div
-          className="fila-casi flex items-start gap-5 overflow-x-auto pb-4"
+          ref={fila}
+          className="fila-casi flex items-start gap-5 md:gap-11 overflow-x-auto pb-4"
           role="region"
           aria-label="Casi d'uso, scorrevole in orizzontale"
           tabIndex={0}
