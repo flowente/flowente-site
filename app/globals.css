@@ -151,8 +151,20 @@ body {
    Su telefono l'aperta prende tutta la larghezza utile: 100vw meno i due
    rientri della fila. */
 .caso { width: 280px; }
+/* Sul tablet 320 e non 340: a 768 esatti — l'iPad in verticale — con 340 la
+   terza scheda si affacciava di otto pixel, che non si legge come "ce n'e'
+   ancora", si legge come un errore di calcolo. */
 @media (min-width: 768px) {
-  .caso { width: 360px; }
+  .caso { width: 320px; }
+}
+/* 340 e non piu' 360. Dentro la colonna restano 1080px utili e il taglio cade a
+   1120: con 360 le prime tre schede piu' i due spazi facevano esattamente 1120,
+   la quarta restava fuori di un pixel e la fila sembrava finita. Nessuno prova a
+   scorrere una riga che finisce esatta sul bordo. Con 340 la quarta si affaccia
+   di quaranta pixel, e a questa larghezza il conto non dipende dallo schermo:
+   sopra i 1160 la colonna e' fissa, quindi il risultato e' sempre quello. */
+@media (min-width: 1024px) {
+  .caso { width: 340px; }
 }
 /* La scheda si solleva appena al passaggio: dice che si puo' aprire, senza
    aggiungere un bottone. */
@@ -201,22 +213,30 @@ body {
   .caso { transition: none; }
 }
 
-/* Il rientro allinea la prima scheda al testo della sezione: meta' dello spazio
-   che avanza oltre i 1160px del contenitore, piu' il suo padding. In percentuale
-   e non in vw, perche' vw conta anche la barra di scorrimento e la prima scheda
-   finiva sette pixel piu' in la' del titolo. Sotto i 1160px lo spazio che avanza
-   e' negativo e max() lascia il solo padding.
-   A destra lo stesso valore: senza, arrivati in fondo l'ultima scheda tocca il
-   bordo dello schermo. */
+/* LA RIGA STA NELLA COLONNA, COME TUTTO IL RESTO DELLA PAGINA.
+   Prima era a tutta larghezza: partiva allineata al titolo e usciva a destra,
+   per dire che c'era dell'altro da scorrere. Il difetto e' aritmetico. Quattro
+   schede da 360 con i loro spazi misurano 1500px, la colonna ne misura 1160:
+   il gruppo non poteva stare al centro nemmeno volendo, perche' allinearlo al
+   titolo lo sposta sempre 210px a destra del centro pagina. A 1920 partiva a
+   413 e finiva a 1913 — 413px di margine a sinistra e 8 a destra. Non si
+   leggeva come un invito a scorrere, si leggeva come un blocco storto. Peggio
+   ancora sopra i 2000, dove smetteva pure di sporgere.
+   Adesso la riga ha gli stessi 1160px centrati del contenitore: bordo sinistro
+   sul titolo, bordo destro simmetrico, uguale a ogni larghezza. Lo scorrimento
+   resta, e il taglio cade sul bordo della colonna invece che su quello dello
+   schermo — dove sembra voluto, perche' tutto il resto finisce li'. */
 .fila-casi {
-  padding-left: max(24px, calc((100% - 1160px) / 2 + 24px));
-  padding-right: max(24px, calc((100% - 1160px) / 2 + 24px));
+  max-width: 1160px;
+  margin-inline: auto;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 @media (min-width: 768px) {
   .fila-casi {
-    padding-left: max(40px, calc((100% - 1160px) / 2 + 40px));
-    padding-right: max(40px, calc((100% - 1160px) / 2 + 40px));
-    scroll-padding-left: max(40px, calc((100% - 1160px) / 2 + 40px));
+    padding-left: 40px;
+    padding-right: 40px;
+    scroll-padding-left: 40px;
   }
 }
 

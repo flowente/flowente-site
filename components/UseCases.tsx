@@ -15,10 +15,11 @@ import { CASI, type Caso } from "@/lib/casi";
 // entrano in coda e basta. Le larghezze stanno in globals.css (.caso): scritte
 // come utility dentro una costante Tailwind non le genera.
 //
-// QUELLA DOPO SPORGE APPOSTA. A 1280 tre schede piene arrivano a 1213px e la
+// QUELLA DOPO SPORGE APPOSTA. Sopra i 1160px si vedono tre schede piene e la
 // quarta si affaccia per una quarantina di pixel: e' il segnale che ce n'e'
 // dell'altro. Una riga che finisce esatta sul bordo sembra completa, e nessuno
-// prova a scorrerla.
+// prova a scorrerla — per questo la scheda misura 340 e non 360, che dava
+// esattamente tre schede e nessun affaccio. Il conto sta in globals.css.
 //
 // IL DETTAGLIO SI APRE IN UNA FINESTRA. La prima versione allargava la scheda
 // sul posto: spingeva le altre, cambiava la posizione di scorrimento e obbligava
@@ -84,10 +85,12 @@ export function UseCases() {
         </div>
       </div>
 
-      {/* Il nastro esce dal contenitore e arriva a filo schermo: se restasse
-          dentro i 1160px, l'ultima scheda si fermerebbe a meta' pagina e il
-          taglio sembrerebbe un errore invece di un invito. Il rientro che
-          riallinea la prima scheda al testo qui sopra e' il padding di
+      {/* Il nastro sta nella stessa colonna da 1160px di tutto il resto: prima
+          era a tutta larghezza e sfondava a destra, ma le quattro schede sono
+          piu' larghe della colonna e il gruppo finiva sempre fuori asse — su uno
+          schermo largo restava mezzo schermo vuoto a sinistra e niente a destra.
+          Adesso il taglio cade sul bordo della colonna, dove finisce anche tutto
+          il resto della pagina, quindi si legge come voluto. La misura e' in
           .fila-casi, in globals.css. */}
       <div className="pb-20 md:pb-24">
         <div
@@ -166,7 +169,7 @@ export function UseCases() {
         }}
       >
         {aperto && (
-          <div className="finestra-corpo rounded-[18px] border border-border bg-surface overflow-hidden">
+          <div className="finestra-corpo rounded-[18px] bg-surface overflow-hidden">
             <div className="relative">
               <img src={aperto.img} alt="" className="block w-full aspect-[3/2] object-cover" />
               <button

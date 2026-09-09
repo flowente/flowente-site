@@ -44,24 +44,21 @@ export default function PaginaProdotto({ params }: Props) {
               </h1>
               <p className="text-fg-2 text-[1.08rem] mt-6 max-w-[480px]">{p.descrizione}</p>
 
-              <div className="mt-8 flex items-baseline gap-2.5">
-                {p.prezzo ? (
-                  <>
-                    <span className="font-display font-semibold text-[2.6rem] tracking-[-0.03em] leading-none">
-                      {p.prezzo.importo}
-                    </span>
-                    <span className="text-fg-muted text-[0.92rem]">{p.prezzo.cadenza}</span>
-                  </>
-                ) : (
-                  <a
-                    href="/contatti"
-                    className="text-[1.08rem] text-fg underline underline-offset-4 hover:text-fg-muted transition-colors inline-flex items-center gap-2"
-                  >
-                    Contatta il team
-                    <span aria-hidden="true">→</span>
-                  </a>
-                )}
-              </div>
+              {/* Quando il prezzo non c'e' non si mette niente al suo posto. Qui
+                  stava "Contatta il team", due righe sopra un pulsante che dice
+                  "Parliamone" e porta allo stesso indirizzo: la stessa richiesta
+                  fatta due volte indebolisce entrambe. Sulle schede in /servizi
+                  quel link resta, perche' li' occupa la casella del prezzo e il
+                  pulsante della scheda porta altrove.
+                  Il ramo della cifra resta pronto per quando un listino esistera'. */}
+              {p.prezzo && (
+                <div className="mt-8 flex items-baseline gap-2.5">
+                  <span className="font-display font-semibold text-[2.6rem] tracking-[-0.03em] leading-none">
+                    {p.prezzo.importo}
+                  </span>
+                  <span className="text-fg-muted text-[0.92rem]">{p.prezzo.cadenza}</span>
+                </div>
+              )}
 
               <div className="mt-8">
                 <Button href="/contatti" size="lg">
