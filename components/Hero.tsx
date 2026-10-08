@@ -20,7 +20,7 @@ export function Hero() {
             // spazio che perde non lo usava.
             style={{ fontSize: "clamp(2.6rem, 6.2vw, 5rem)", lineHeight: 0.98 }}
           >
-            <span className="text-fg-muted font-normal">Sistemi AI integrati.</span>
+            <span className="text-fg-muted font-normal">Sistemi con AI integrata.</span>
             <br />
             Facciamole fare qualcosa di utile.
           </h1>
