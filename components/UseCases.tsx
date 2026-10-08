@@ -224,7 +224,7 @@ export function UseCases() {
                   {/* Immagine d'ambiente, non un cliente: alt vuoto per non attribuirle un'identità.
                       Il rapporto sta sull'immagine, non sul contenitore: lì un file più alto del 3:2
                       non verrebbe vincolato e allungherebbe la card. */}
-                  {c.demo ? (
+                  {c.demo && !c.demoAllApertura ? (
                     <DemoScheda src={c.demo} poster={c.img} etichetta={c.title} />
                   ) : (
                     <img src={c.img} alt="" className="block w-full aspect-[3/2] object-cover" loading="lazy" />

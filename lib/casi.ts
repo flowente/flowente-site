@@ -19,6 +19,9 @@ export type Caso = {
   img: string;
   video?: string;
   demo?: string;
+  // Con questo, la scheda in /servizi mostra la copertina (img) e la demo
+  // parte solo quando la scheda si apre. Senza, la demo gira gia' nella scheda.
+  demoAllApertura?: boolean;
   prodotto?: string;
 };
 
@@ -76,11 +79,20 @@ export const CASI: Caso[] = [
     prodotto: "AI Automation",
   },
   {
-    label: "Rendicontazione",
-    title: "Skills e plugin di rendicontazione periodica.",
-    text: "Il rapporto che qualcuno rimette insieme a mano ogni mese. Serve a vedere dove va il budget, dove il lavoro si ferma e quali canali di acquisizione rendono meno di quanto costano — le tre cose che di solito si scoprono tardi.",
-    img: "/media/casi/03-stesure.svg",
-    video: "/media/testimonianze/business-platform.mp4",
+    // L'agente sulla posta: ha preso il posto di "Rendicontazione", che era un
+    // esempio con l'immagine segnaposto. La scheda mostra la copertina fornita
+    // da Simone; il video — il flusso in n8n, un dietro le quinte di 9,6s —
+    // parte quando la scheda si apre. Ricompresso da 6,2 a 1,3 MB; la traccia
+    // audio era silenzio (-91 dB) ed e' stata tolta.
+    // Il testo dice solo quello che il video mostra: lo smistamento, la
+    // risposta o la bozza, l'inoltro a hello@. Il digest e' una funzione
+    // dichiarata da Simone.
+    label: "Email Agent",
+    title: "Email Agent: risponde alle email in automatico e prepara digest con report e riassunti.",
+    text: "Un agente AI che legge la posta in arrivo, la smista per argomento e risponde da solo quando può, oppure prepara la bozza da approvare. In più, un digest con report e riassunti di quello che è arrivato. Nel video, un breve dietro le quinte del sistema.",
+    img: "/media/casi/email-agent.jpg",
+    demo: "/media/casi/email-agent.mp4",
+    demoAllApertura: true,
   },
   {
     label: "Costi di esercizio",
