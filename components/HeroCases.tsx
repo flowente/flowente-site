@@ -7,8 +7,10 @@ import { VideoMuto } from "./VideoMuto";
 // Pila di schede nella hero: tre case study veri che si danno il cambio.
 //
 // Vengono da lib/casi.ts, quindi si aggiornano da sole quando cambiano i case
-// study in /servizi.
-const PILA: Caso[] = [CASI[1], CASI[2], CASI[3]];
+// study in /servizi. Quali casi, pero', si sceglie qui: gestionale palestra,
+// Lead Funnel (al posto di "Skills e plugin di rendicontazione", su richiesta
+// di Simone) e costi di esercizio.
+const PILA: Caso[] = [CASI[1], CASI[0], CASI[3]];
 
 // L'ANIMAZIONE. La scheda in testa non scivola sotto le altre: esce di lato
 // ruotando, passa sopra a tutto, e rientra in fondo alla pila dall'altra parte.

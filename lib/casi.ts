@@ -55,6 +55,9 @@ export const CASI: Caso[] = [
     text: "Agente AI con annessa dashboard per la categorizzazione e promozione di lead, capacità di risposta automatica contestuale e chiamate.",
     img: "/media/casi/lead-funnel.jpg",
     demo: "/media/casi/lead-funnel.mp4",
+    // Lo stesso file anche nella pila della hero: qui si puo', pesa 1,1 MB.
+    // Quello della palestra (5 MB) nella hero resta un'immagine.
+    video: "/media/casi/lead-funnel.mp4",
   },
   {
     // GymOS e' un progetto vero e ha un nome: e' il primo caso che esce dalla
