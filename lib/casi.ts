@@ -51,7 +51,7 @@ export const CASI: Caso[] = [
     // di netto e nel ciclo si vedeva lo stacco. img e' il fotogramma a 1
     // secondo: quello a meta' video mostra un'email e un telefono.
     label: "Lead Funnel",
-    title: "Lead Funnel.",
+    title: "Lead Funnel: agente AI e dashboard per categorizzare, seguire e promuovere i contatti.",
     text: "Agente AI con annessa dashboard per la categorizzazione e promozione di lead, capacità di risposta automatica contestuale e chiamate.",
     img: "/media/casi/lead-funnel.jpg",
     demo: "/media/casi/lead-funnel.mp4",

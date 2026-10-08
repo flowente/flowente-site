@@ -236,8 +236,11 @@ export function UseCases() {
 
                   {/* Tre righe perche' il titolo di GymOS ne occupa tre: un titolo
                       tagliato e' la cosa peggiore da troncare, visto che e' la
-                      sola riga che qualcuno legge di sicuro. */}
-                  <span className="block font-display font-semibold text-[1.05rem] leading-[1.35] tracking-[-0.015em] mt-2.5 line-clamp-3 h-[4.35rem]">
+                      sola riga che qualcuno legge di sicuro. Su telefono quattro:
+                      la scheda e' larga 280px e i titoli di GymOS e di Lead
+                      Funnel arrivano alla quarta riga — misurato, venivano
+                      tagliati. Altezza fissa, quindi le schede restano pari. */}
+                  <span className="block font-display font-semibold text-[1.05rem] leading-[1.35] tracking-[-0.015em] mt-2.5 line-clamp-4 h-[5.8rem] md:line-clamp-3 md:h-[4.35rem]">
                     {c.title}
                   </span>
 
