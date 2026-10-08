@@ -43,10 +43,18 @@ export type Caso = {
 // precedenti. Si sistemano quando arrivano gli scatti veri.
 export const CASI: Caso[] = [
   {
-    label: "Dati storici",
-    title: "Agente di ricerca sui dati storici aziendali.",
-    text: "Anni di commesse, preventivi e ordini in sistemi che ormai nessuno interroga. Si chiede in italiano — quanto ha reso quella linea, quali clienti sono fermi da un anno — e la risposta arriva con il riferimento al dato da cui è presa.",
-    img: "/media/casi/01-archivio.svg",
+    // Celeste, l'agente per i lead: progetto nostro come GymOS. Ha preso il
+    // posto di "Dati storici", che era un esempio con l'immagine segnaposto.
+    // Il video parte con una persona che presenta Celeste e passa alla
+    // dashboard; e' stato ricompresso da 7,6 a 1,1 MB e chiude con una
+    // dissolvenza sul colore del primo fotogramma, perche' l'originale finiva
+    // di netto e nel ciclo si vedeva lo stacco. img e' il fotogramma a 1
+    // secondo: quello a meta' video mostra un'email e un telefono.
+    label: "Lead Funnel",
+    title: "Lead Funnel.",
+    text: "Agente AI con annessa dashboard per la categorizzazione e promozione di lead, capacità di risposta automatica contestuale e chiamate.",
+    img: "/media/casi/lead-funnel.jpg",
+    demo: "/media/casi/lead-funnel.mp4",
   },
   {
     // GymOS e' un progetto vero e ha un nome: e' il primo caso che esce dalla
