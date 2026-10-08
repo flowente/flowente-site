@@ -54,7 +54,7 @@ export const CASI: Caso[] = [
     // nostro; restano fuori numeri e risultati, che non sono stati misurati.
     label: "Gestionale palestra",
     title: "Gestionale per palestra: prenotazioni, controllo ingressi e pianificazione della giornata.",
-    text: "Serviva un gestionale che tenesse conto delle diverse dinamiche di una palestra — prenotazioni, pagamenti, raccolta dati — e insieme una guida intelligente che accompagnasse il lavoro quotidiano dello staff.",
+    text: "Sistema Operativo AI, con gestionale destinato ad una palestra. Un layer AI ha visibilità sul sistema, sui clienti e transazioni e può informare e suggerire il team e gli amministratori per scelte strategiche sul marketing, remind per rinnovi di abbonamenti e tanto altro.",
     // Il gestionale vero in uso: clienti, abbonamenti, poi la parte marketing
     // e l'agente AI. E' lo stesso video della landing (53,7s, 5 MB, gia'
     // compresso). img e' il suo fotogramma a 1 secondo: lo mostra la hero, e
