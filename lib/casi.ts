@@ -6,7 +6,21 @@
 // dettaglio = le righe in piu' che compaiono quando la scheda si apre. Sono
 // facoltative: senza, aprendo si vede comunque il testo per intero invece che
 // troncato.
-export type Caso = { label: string; title: string; text: string; dettaglio?: string; img: string; video?: string; prodotto?: string };
+// demo = la registrazione dello schermo del prodotto. Diversa da video, che e'
+// una testimonianza e vive solo nella pila della hero: la demo prende il posto
+// dell'immagine nella scheda in /servizi e nella finestra di dettaglio. Nella
+// hero no: e' un file da 5 MB, e la home deve restare leggera. Li' resta img,
+// che per questo deve essere un fotogramma della demo stessa.
+export type Caso = {
+  label: string;
+  title: string;
+  text: string;
+  dettaglio?: string;
+  img: string;
+  video?: string;
+  demo?: string;
+  prodotto?: string;
+};
 
 // Sorgente unica dei casi: li usano la sezione in /servizi e la pila di schede
 // nella hero. Stavano dentro UseCases, ma da quando compaiono in due punti una
@@ -41,9 +55,13 @@ export const CASI: Caso[] = [
     label: "Gestionale palestra",
     title: "Gestionale per palestra: prenotazioni, controllo ingressi e pianificazione della giornata.",
     text: "Serviva un gestionale che tenesse conto delle diverse dinamiche di una palestra — prenotazioni, pagamenti, raccolta dati — e insieme una guida intelligente che accompagnasse il lavoro quotidiano dello staff.",
-    // Fotogramma estratto dal filmato del primo caso: qui serve un'immagine, non
-    // un altro video, e un fermo immagine vero regge meglio di un segnaposto.
-    img: "/media/casi/quick-automation-frame.jpg",
+    // Il gestionale vero in uso: clienti, abbonamenti, poi la parte marketing
+    // e l'agente AI. E' lo stesso video della landing (53,7s, 5 MB, gia'
+    // compresso). img e' il suo fotogramma a 1 secondo: lo mostra la hero, e
+    // lo vede chi aspetta che il video parta. Prima qui c'era un fotogramma
+    // della testimonianza di un altro caso, che con la palestra non c'entrava.
+    img: "/media/casi/gestionale-palestra.jpg",
+    demo: "/media/casi/gestionale-palestra.mp4",
     prodotto: "AI Automation",
   },
   {

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { CASI, type Caso } from "@/lib/casi";
+import { VideoMuto } from "./VideoMuto";
 
 // I dati stanno in lib/casi.ts: li condivide con la pila di schede nella hero.
 //
@@ -49,6 +50,32 @@ function FrecciaCasi({ verso, attiva, onClick }: { verso: 1 | -1; attiva: boolea
         <path d={verso === -1 ? "M7 1L1 7l6 6" : "M1 1l6 6-6 6"} />
       </svg>
     </button>
+  );
+}
+
+// La demo dentro la scheda: gira solo quando la scheda e' nello schermo. Fuori
+// sta ferma e non scarica niente — la fila ha quattro schede e questa e' un
+// file da 5 MB, che non deve partire per chi apre /servizi e non scorre fin qui.
+function DemoScheda({ src, poster, etichetta }: { src: string; poster: string; etichetta: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [inVista, setInVista] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([v]) => setInVista(v.isIntersecting), { rootMargin: "0px 0px 15% 0px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return (
+    <span ref={ref} className="block">
+      <VideoMuto
+        src={src}
+        poster={poster}
+        attivo={inVista}
+        etichetta={etichetta}
+        className="block w-full aspect-[3/2] object-cover"
+      />
+    </span>
   );
 }
 
@@ -197,7 +224,11 @@ export function UseCases() {
                   {/* Immagine d'ambiente, non un cliente: alt vuoto per non attribuirle un'identità.
                       Il rapporto sta sull'immagine, non sul contenitore: lì un file più alto del 3:2
                       non verrebbe vincolato e allungherebbe la card. */}
-                  <img src={c.img} alt="" className="block w-full aspect-[3/2] object-cover" loading="lazy" />
+                  {c.demo ? (
+                    <DemoScheda src={c.demo} poster={c.img} etichetta={c.title} />
+                  ) : (
+                    <img src={c.img} alt="" className="block w-full aspect-[3/2] object-cover" loading="lazy" />
+                  )}
                 </span>
 
                 <span className="block p-6">
@@ -255,7 +286,18 @@ export function UseCases() {
         {aperto && (
           <div className="finestra-corpo rounded-[18px] bg-surface overflow-hidden">
             <div className="relative">
-              <img src={aperto.img} alt="" className="block w-full aspect-[3/2] object-cover" />
+              {/* La demo si vede intera, in 16:9 come e' stata registrata: nella
+                  scheda il taglio a 3:2 va bene, qui e' il momento di leggerla. */}
+              {aperto.demo ? (
+                <VideoMuto
+                  src={aperto.demo}
+                  poster={aperto.img}
+                  etichetta={aperto.title}
+                  className="block w-full aspect-[16/9] object-cover"
+                />
+              ) : (
+                <img src={aperto.img} alt="" className="block w-full aspect-[3/2] object-cover" />
+              )}
               <button
                 type="button"
                 onClick={chiudi}
