@@ -28,7 +28,7 @@ export default function Formazione() {
         <PageHero
           eyebrow="Formazione"
           title="Si parte da qui."
-          text="Per molte aziende il vero ostacolo non è il costo dell'AI, ma sapere come usarla. Il 58,6% di chi ha valutato un investimento e poi si è fermato lo ha fatto per la mancanza di competenze."
+          text="Per molte aziende il vero ostacolo non è il costo dell'AI, ma sapere come usarla. Formiamo il team per capire la tecnologia e per sfruttare al meglio gli strumenti. Questa formazione ha un impatto decisivo anche nell'utilizzo dell'AI nella vita quotidiana."
           note={
             <>
               Fonte:{" "}
