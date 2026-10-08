@@ -89,7 +89,7 @@ export const CASI: Caso[] = [
     // dichiarata da Simone.
     label: "Email Agent",
     title: "Email Agent: risponde alle email in automatico e prepara digest con report e riassunti.",
-    text: "Un agente AI che legge la posta in arrivo, la smista per argomento e risponde da solo quando può, oppure prepara la bozza da approvare. In più, un digest con report e riassunti di quello che è arrivato. Nel video, un breve dietro le quinte del sistema.",
+    text: "Un agente AI che legge la posta in arrivo, la smista per argomento e risponde, oppure prepara la bozza da approvare. Realizza inoltre un digest con report e riassunti della posta in arrivo. Nel video, un breve dietro le quinte del sistema.",
     img: "/media/casi/email-agent.jpg",
     demo: "/media/casi/email-agent.mp4",
     demoAllApertura: true,
