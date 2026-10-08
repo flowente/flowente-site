@@ -7,7 +7,6 @@ export function Hero() {
     <section className="border-b border-border">
       <div className="mx-auto max-w-content px-6 md:px-10 py-20 md:py-24 grid gap-10 items-center md:grid-cols-[1.15fr_0.85fr]">
         <div>
-          <p className="font-mono text-[0.72rem] tracking-[0.18em] uppercase text-fg-muted mb-6">AI Systems Studio</p>
           {/* Due periodi, e il secondo porta il senso: per questo la prima riga
               resta in grigio e la seconda in nero. Stesso espediente di prima,
               invertito - li' il grigio chiudeva, qui apre. */}
@@ -21,7 +20,7 @@ export function Hero() {
             // spazio che perde non lo usava.
             style={{ fontSize: "clamp(2.6rem, 6.2vw, 5rem)", lineHeight: 0.98 }}
           >
-            <span className="text-fg-muted font-normal">L&apos;AI &egrave; gi&agrave; qui.</span>
+            <span className="text-fg-muted font-normal">Sistemi AI integrati.</span>
             <br />
             Facciamole fare qualcosa di utile.
           </h1>
